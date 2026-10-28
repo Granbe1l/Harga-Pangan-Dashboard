@@ -1,0 +1,435 @@
+{
+  "raw_rows": 33422,
+  "clean_rows": 32480,
+  "rejected_rows": 942,
+  "exact_duplicates_removed": 0,
+  "conflicting_rows_quarantined": 0,
+  "rejected_by_reason": {
+    "missing_price": 938,
+    "non_positive_price": 4
+  },
+  "whitespace_fields_normalized": 8040,
+  "province_count": 40,
+  "commodity_count": 25,
+  "period_start": "2021-01-01",
+  "period_end": "2025-10-01",
+  "series_count": 932,
+  "expected_observations_within_series_spans": 32692,
+  "missing_months_within_series_spans": 212,
+  "no_imputation": true,
+  "no_conflicting_price_averaging": true,
+  "geographic_series": [
+    {
+      "province_code": "11",
+      "province": "Aceh",
+      "source_codes": [
+        "11"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 903
+    },
+    {
+      "province_code": "12",
+      "province": "Sumatera Utara",
+      "source_codes": [
+        "12"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 920
+    },
+    {
+      "province_code": "13",
+      "province": "Sumatera Barat",
+      "source_codes": [
+        "13"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 912
+    },
+    {
+      "province_code": "14",
+      "province": "Riau",
+      "source_codes": [
+        "14"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 914
+    },
+    {
+      "province_code": "15",
+      "province": "Jambi",
+      "source_codes": [
+        "15"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 919
+    },
+    {
+      "province_code": "16",
+      "province": "Sumatera Selatan",
+      "source_codes": [
+        "16"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 907
+    },
+    {
+      "province_code": "17",
+      "province": "Bengkulu",
+      "source_codes": [
+        "17"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 872
+    },
+    {
+      "province_code": "18",
+      "province": "Lampung",
+      "source_codes": [
+        "18"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 907
+    },
+    {
+      "province_code": "19",
+      "province": "Kepulauan Bangka Belitung",
+      "source_codes": [
+        "19"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 880
+    },
+    {
+      "province_code": "21",
+      "province": "Kepulauan Riau",
+      "source_codes": [
+        "21"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 899
+    },
+    {
+      "province_code": "31",
+      "province": "DKI Jakarta",
+      "source_codes": [
+        "31"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 876
+    },
+    {
+      "province_code": "32",
+      "province": "Jawa Barat",
+      "source_codes": [
+        "32"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 918
+    },
+    {
+      "province_code": "33",
+      "province": "Jawa Tengah",
+      "source_codes": [
+        "33"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 925
+    },
+    {
+      "province_code": "34",
+      "province": "DI Yogyakarta",
+      "source_codes": [
+        "34"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 907
+    },
+    {
+      "province_code": "35",
+      "province": "Jawa Timur",
+      "source_codes": [
+        "35"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 913
+    },
+    {
+      "province_code": "36",
+      "province": "Banten",
+      "source_codes": [
+        "36"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 925
+    },
+    {
+      "province_code": "51",
+      "province": "Bali",
+      "source_codes": [
+        "51"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 908
+    },
+    {
+      "province_code": "52",
+      "province": "Nusa Tenggara Barat",
+      "source_codes": [
+        "52"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 911
+    },
+    {
+      "province_code": "53",
+      "province": "Nusa Tenggara Timur",
+      "source_codes": [
+        "53"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 907
+    },
+    {
+      "province_code": "61",
+      "province": "Kalimantan Barat",
+      "source_codes": [
+        "61"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 917
+    },
+    {
+      "province_code": "62",
+      "province": "Kalimantan Tengah",
+      "source_codes": [
+        "62"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 909
+    },
+    {
+      "province_code": "63",
+      "province": "Kalimantan Selatan",
+      "source_codes": [
+        "63"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 925
+    },
+    {
+      "province_code": "64",
+      "province": "Kalimantan Timur",
+      "source_codes": [
+        "64"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 915
+    },
+    {
+      "province_code": "65",
+      "province": "Kalimantan Utara",
+      "source_codes": [
+        "65"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 887
+    },
+    {
+      "province_code": "71",
+      "province": "Sulawesi Utara",
+      "source_codes": [
+        "71"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 906
+    },
+    {
+      "province_code": "72",
+      "province": "Sulawesi Tengah",
+      "source_codes": [
+        "72"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 895
+    },
+    {
+      "province_code": "73",
+      "province": "Sulawesi Selatan",
+      "source_codes": [
+        "73"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 922
+    },
+    {
+      "province_code": "74",
+      "province": "Sulawesi Tenggara",
+      "source_codes": [
+        "74"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 909
+    },
+    {
+      "province_code": "75",
+      "province": "Gorontalo",
+      "source_codes": [
+        "75"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 854
+    },
+    {
+      "province_code": "76",
+      "province": "Sulawesi Barat",
+      "source_codes": [
+        "76"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 906
+    },
+    {
+      "province_code": "81",
+      "province": "Maluku",
+      "source_codes": [
+        "81"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 906
+    },
+    {
+      "province_code": "82",
+      "province": "Maluku Utara",
+      "source_codes": [
+        "82"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2025-10-01",
+      "rows": 906
+    },
+    {
+      "province_code": "91",
+      "province": "Papua",
+      "source_codes": [
+        "91"
+      ],
+      "period_start": "2024-01-01",
+      "period_end": "2025-10-01",
+      "rows": 475
+    },
+    {
+      "province_code": "92",
+      "province": "Papua Barat",
+      "source_codes": [
+        "92"
+      ],
+      "period_start": "2024-01-01",
+      "period_end": "2025-10-01",
+      "rows": 472
+    },
+    {
+      "province_code": "93",
+      "province": "Papua Selatan",
+      "source_codes": [
+        "93"
+      ],
+      "period_start": "2024-01-01",
+      "period_end": "2025-10-01",
+      "rows": 410
+    },
+    {
+      "province_code": "94",
+      "province": "Papua Tengah",
+      "source_codes": [
+        "94"
+      ],
+      "period_start": "2024-01-01",
+      "period_end": "2025-10-01",
+      "rows": 456
+    },
+    {
+      "province_code": "95",
+      "province": "Papua Pegunungan",
+      "source_codes": [
+        "95"
+      ],
+      "period_start": "2024-01-01",
+      "period_end": "2025-07-01",
+      "rows": 347
+    },
+    {
+      "province_code": "96",
+      "province": "Papua Barat Daya",
+      "source_codes": [
+        "96"
+      ],
+      "period_start": "2024-01-01",
+      "period_end": "2025-10-01",
+      "rows": 476
+    },
+    {
+      "province_code": "PAPUA_BARAT_HIST",
+      "province": "Papua Barat (seri historis)",
+      "source_codes": [
+        "91"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2023-12-01",
+      "rows": 432
+    },
+    {
+      "province_code": "PAPUA_HIST",
+      "province": "Papua (seri historis)",
+      "source_codes": [
+        "94"
+      ],
+      "period_start": "2021-01-01",
+      "period_end": "2023-12-01",
+      "rows": 432
+    }
+  ],
+  "unit_note": "Satuan kg/liter merupakan asumsi kerja menurut jenis komoditas, tidak tersedia dalam CSV sumber; verifikasi sebelum penggunaan operasional.",
+  "geography_note": "Skema wilayah Papua pada snapshot berubah mulai 2024. Seri sebelum perubahan dipisahkan; bukan rekonstruksi batas administratif.",
+  "province_note": "Jumlah seri wilayah mencakup dua seri Papua historis terpisah; bukan jumlah provinsi Indonesia pada satu waktu.",
+  "normalization": [
+    "Buang dua baris judul CSV; trim/collapse whitespace",
+    "Harga rupiah bulat: pemisah ribuan koma/titik dihapus",
+    "DI Yogyakarta diseragamkan",
+    "Papua/Papua Barat sebelum 2024 dipisahkan dari seri pascaperubahan",
+    "Harga kosong, tanda '-', nol/negatif, periode invalid dikarantina",
+    "Duplikat identik dihapus; seluruh grup harga berkonflik dikarantina",
+    "Tidak mengisi bulan atau harga yang hilang"
+  ]
+}

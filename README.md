@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml)
 
-**[Baca studi kasus dalam satu menit](docs/CASE_STUDY.md)** · [Lihat dashboard](reports/screenshots/ringkasan-first-screen.png) · [Bukti pengujian](reports/validation_summary.md)
+**[Baca studi kasus dalam satu menit](docs/CASE_STUDY.md)** · [Checklist bukti](docs/REVIEW_CHECKLIST.md) · [Lihat dashboard](reports/screenshots/ringkasan-first-screen.png) · [Bukti pengujian](reports/validation_summary.md)
 
 Studi kasus portofolio **data analyst**: menghubungkan perubahan harga pangan historis dengan estimasi biaya bahan baku warung makan di Jawa Barat. Wilayah lain tersedia sebagai eksplorasi tambahan.
 
@@ -12,11 +12,11 @@ Studi kasus portofolio **data analyst**: menghubungkan perubahan harga pangan hi
 
 ## Apa yang dijawab?
 
-1. Berapa biaya keranjang contoh pada bulan pilihan?
+1. Bahan apa yang berubah harganya dan berapa yang memiliki pembanding?
 2. Bahan mana yang paling memengaruhi perubahan biaya terhadap bulan sebelumnya?
 3. Bagaimana anggaran berubah jika kebutuhan, harga pembelian, atau skenario harga diubah?
 
-Halaman **Ringkasan** hanya menyajikan hasil berdasarkan data historis dan kuantitas contoh tetap. Halaman **Simulator anggaran** menyajikan skenario asumsi pengguna. Keduanya bukan catatan transaksi atau klaim dampak bisnis yang sudah terjadi.
+Halaman **Ringkasan** dibuka pada tab **Temuan harga**: harga tersedia, jumlah kenaikan melewati ambang, dan perubahan terbesar. Hasil ini tidak memakai asumsi kuantitas atau satuan kg/liter. Tab **Dampak keranjang latihan** menyajikan estimasi berbasis jumlah contoh. **Simulator anggaran** memakai input pengguna. Tidak ada klaim transaksi atau penghematan yang sudah terjadi.
 
 Pada Jawa Barat, Oktober 2025, keranjang enam bahan contoh bernilai **Rp1.118.460**, bertambah **Rp10.687** terhadap September dengan jumlah tetap. Seluruh bahan memiliki pembanding. Nilai tersebut adalah **estimasi latihan dengan satuan asumsi**, bukan biaya usaha terverifikasi. Skenario terpisah berupa kenaikan seragam 10% menghasilkan **Rp1.230.306**, tambahan **Rp111.846**. Angka skenario bukan perubahan historis bulan tersebut.
 
@@ -26,7 +26,7 @@ Mengurangi contoh kebutuhan telur dari 5 kg menjadi 1 kg menggeser kontributor b
 
 Profil A/B (enam bahan) memiliki harga lengkap pada **22 dari 58 bulan** di Jawa Barat; perubahan bulanan lengkap pada **21 bulan**. Profil C secara eksplisit memakai lima bahan tanpa minyak dan mendukung **58 dari 58 bulan**. Profil tidak pernah diganti otomatis atau disambungkan sebagai satu tren. Harga umum tetap dapat dieksplorasi sejak Januari 2021.
 
-Mirror CSV diambil ulang dan cocok SHA-256. **Satuan sumber, kesesuaian terhadap sumber primer, serta lisensi redistribusi belum terverifikasi.** Pencocokan mirror tidak menyelesaikan tiga hal tersebut. Bukti akses tersedia di [verification.json](data/verification.json).
+**Dataset aktif memakai CSV yang diberikan pengguna sebagai ekspor publikasi primer BPN, dengan XLSX sebagai pembanding.** Seluruh 33.422 baris cocok antarkedua format. Hash dan jalur penerimaan dicatat; akses langsung ke server belum terverifikasi. Kedua file tidak mencantumkan satuan atau lisensi. Bukti: [receipt](data/raw/primary/receipt.json), [verification](data/verification.json), dan [migrasi](docs/PRIMARY_MIGRATION.md).
 
 ## Jalankan aplikasi
 
@@ -45,7 +45,7 @@ Windows PowerShell: `py -3.12 -m venv .venv`, lalu `.venv\Scripts\Activate.ps1` 
 
 | Menu | Kegunaan |
 | --- | --- |
-| Ringkasan | Biaya keranjang, perubahan historis, kelengkapan, grafik kontribusi biaya; detail bahan dan tren dapat dibuka |
+| Ringkasan | Temuan harga tanpa asumsi jumlah; tab terpisah untuk dampak biaya latihan, profil dan sensitivitas |
 | Simulator anggaran | Kuantitas per periode, harga/satuan per bahan dengan asal input, batas anggaran, penerapan massal, reset, CSV dan Excel |
 | Fluktuasi historis | Perbandingan perubahan bulanan dan CV pada bulan pengamatan bersama; filter cakupan, jumlah bulan/pasangan, dan pemeriksaan seri yang dikeluarkan |
 | Perbandingan wilayah | Harga wilayah pilihan, median tanpa bobot, selisih terhadap median, grafik ringkas atau seluruh wilayah |
@@ -69,7 +69,7 @@ Pilihan cepat **+0%, +10%, +20%** menerapkan perubahan ke seluruh bahan terpilih
 
 Snapshot harga **Januari 2021–Oktober 2025** terdiri dari **33.422 baris mentah**, **32.480 observasi valid**, dan **942 baris yang dipisahkan** (938 harga kosong, empat harga nonpositif). Terdapat 25 komoditas. Sebanyak 38 seri modern dan dua seri historis Papua bukan jumlah provinsi pada satu waktu.
 
-CSV berasal dari [salinan publik Achmad Ichzan](https://github.com/achmadichzan/Prediksi_Harga_Pangan_Nasional/blob/main/harga_pangan.csv), yang mencantumkan Badan Pangan Nasional sebagai sumber asal. Belum diverifikasi terhadap versi resmi terbaru. **Tanggal pencatatan snapshot berbeda dengan bulan harga terakhir.** Aplikasi tidak memperbarui data secara otomatis. Ketentuan sumber dan izin redistribusi perlu diperiksa sebelum pemakaian komersial; lihat [Sumber](docs/SOURCES.md), [Metodologi](docs/METHODOLOGY.md), dan [Kamus data](docs/DATA_DICTIONARY.md).
+CSV dan XLSX diberikan pengguna dari [publikasi Badan Pangan Nasional](https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi). Seluruh isi dua format dibandingkan dan file mentah disimpan tanpa perubahan. Asal unduhan mengikuti keterangan pengguna; bukan klaim verifikasi langsung dari server. Isi observasi bersih identik dengan versi mirror lama yang kini diarsipkan. **Tanggal pencatatan snapshot berbeda dengan bulan harga terakhir.** Aplikasi tidak memperbarui data secara otomatis. Ketentuan sumber dan izin redistribusi perlu diperiksa sebelum pemakaian komersial; lihat [Sumber](docs/SOURCES.md), [Metodologi](docs/METHODOLOGY.md), dan [Kamus data](docs/DATA_DICTIONARY.md).
 
 ## Validasi dan laporan
 
@@ -81,7 +81,7 @@ python scripts/package_project.py
 
 Tes memeriksa perbandingan bulan kalender, total tidak lengkap, sumber harga per bahan, state lintas halaman, penerapan massal, reset, hasil skenario, keamanan formula Excel, dan navigasi. Screenshot desktop/mobile diperbarui melalui pemeriksaan browser opsional; langkah dan batas pengujiannya tersedia di [checklist revisi](docs/REDESIGN_CHECKLIST.md).
 
-`scripts/prepare_data.py` dapat membangun ulang CSV dan SQLite, tetapi **menulis ulang artefak data**. Untuk pemeriksaan tanpa mengubah snapshot checkout, panggil `analyst.pipeline.prepare_data()` pada direktori sementara dengan salinan `data/raw/harga_pangan.csv` dan `data/source.json`.
+`scripts/prepare_data.py` dapat membangun ulang CSV dan SQLite, tetapi **menulis ulang artefak data**. Untuk pemeriksaan tanpa mengubah snapshot checkout, panggil `analyst.pipeline.prepare_data()` pada direktori sementara dengan konfigurasi `data/source_input.json`, receipt, dan file dalam `data/raw/primary/`.
 
 Ekspor analisis di menu Data & metode mengikuti filter analisis. Ekspor simulator adalah file terpisah yang memuat kebutuhan dan harga yang sedang digunakan, asal harga per baris, periode, status kelengkapan, dan total/subtotal.
 

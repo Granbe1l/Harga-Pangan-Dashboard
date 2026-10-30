@@ -26,7 +26,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 METHOD_NOTES = [
     "Snapshot historis harga konsumen bulanan; bukan harga real-time, transaksi, atau penawaran pemasok.",
-    "CSV diperoleh dari salinan pihak ketiga yang mencantumkan Badan Pangan Nasional sebagai sumber asal. Kesesuaian dengan versi terbaru sumber asal belum diverifikasi secara independen.",
+    "Dataset aktif berasal dari ekspor CSV/XLSX BPN yang diberikan pengguna. Kecocokan kedua format diperiksa; pengambilan langsung dari server dan keaslian independen belum diverifikasi.",
     "Satuan kg/liter merupakan asumsi kerja per komoditas; CSV asli tidak menyediakan kolom satuan. Verifikasi sebelum penggunaan operasional.",
     "MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama tahun sebelumnya. Bulan kosong tidak dilewati dan tidak diimputasi.",
     "Peringkat variasi tingkat harga memakai bulan pengamatan bersama untuk seri yang lolos cakupan; perubahan bulanan memakai pasangan bulan kalender yang sama. Tabel penyaringan bukan peringkat akhir.",
@@ -330,7 +330,7 @@ def summary_markdown(summary: dict[str, Any]) -> str:
     ]
     if summary["top_increases"]:
         for item in summary["top_increases"]:
-            lines.append(f"- **{item['commodity']}**: naik **{item['mom_pct']:.2f}%**, dari Rp{item['previous_price']:,.0f} menjadi Rp{item['price']:,.0f} per {item.get('unit', 'satuan asumsi')}.")
+            lines.append(f"- **{item['commodity']}**: naik **{item['mom_pct']:.2f}%**, dari Rp{item['previous_price']:,.0f} menjadi Rp{item['price']:,.0f} per {item.get('unit', 'satuan asumsi')} (satuan asumsi; tidak tercantum pada ekspor).")
     else:
         lines.append("Peringkat kenaikan belum dapat dihitung: pembanding MoM tidak tersedia." if not snap["mom_comparable_commodities"] else "Tidak ada kenaikan positif pada pasangan bulan yang tersedia.")
     lines += ["", "## Variasi harga dalam jendela analisis", ""]

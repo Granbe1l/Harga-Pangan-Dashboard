@@ -1,13 +1,16 @@
 # Harga pangan → estimasi biaya: studi kasus data analyst
 
-**Pertanyaan:** ketika harga bahan berubah dan jumlah kebutuhan tetap, bahan mana yang paling berpengaruh pada estimasi biaya keranjang?
+**Pertanyaan:** bahan apa yang mengalami kenaikan harga terbesar, seberapa lengkap pembandingnya, dan bagaimana perubahan tersebut memengaruhi estimasi keranjang dengan kebutuhan berbeda?
 
 **Ruang lingkup:** snapshot harga konsumen provinsi Januari 2021–Oktober 2025. Studi kasus awal Jawa Barat, dengan tiga komposisi latihan yang dinyatakan terbuka. Bukan aplikasi harga hari ini, rekomendasi pemasok, atau bukti penghematan usaha.
+
+**Sumber aktif:** ekspor CSV/XLSX BPN yang diberikan pengguna. Semua 33.422 baris cocok antardua format; sumber server dan satuan tidak diklaim terverifikasi independen.
 
 ## Hasil yang dapat diperiksa dalam satu menit
 
 | Pemeriksaan | Hasil pada Jawa Barat |
 | --- | --- |
+| Temuan harga Oktober 2025 | Dua dari 24 pembanding naik ≥10%; cabai merah keriting tertinggi +11,16% |
 | Data mentah → valid | 33.422 → 32.480 observasi |
 | Keranjang enam bahan lengkap | 22 dari 58 bulan; pertama Januari 2024 |
 | Perubahan total bulanan lengkap, profil A/B | 21 dari 58 bulan |
@@ -29,9 +32,9 @@ Nilai rupiah tersebut bersifat **latihan**, karena satuan sumber belum terverifi
 
 ## Apa yang belum dibuktikan?
 
-- Mirror cocok byte-per-byte, tetapi akurasi terhadap sumber primer, satuan sumber, dan izin redistribusi belum terkonfirmasi.
+- CSV/XLSX unggahan cocok isinya. Pengambilan langsung dari server, satuan sumber, dan izin redistribusi belum terkonfirmasi.
 - Belum ada catatan kebutuhan satu usaha atau hasil uji pengguna manusia yang dikumpulkan. Rencana uji tersedia dan hasilnya tidak direkayasa.
 - Belum ada bukti peningkatan laba, penghematan, atau kinerja prediksi.
 - Hosting publik dan sleep hosting membutuhkan URL deployment untuk diverifikasi.
 
-**Coba cepat:** lihat cakupan di Ringkasan → bandingkan Profil A/B pada panel profil → buka Simulator → ubah satu jumlah → lihat selisih dan batas anggaran → periksa sumber harga serta dasar satuan pada ekspor.
+**Coba cepat:** baca tab Temuan harga → buka tab Dampak keranjang latihan dan lihat cakupan → bandingkan Profil A/B pada panel profil → buka Simulator → ubah satu jumlah → lihat selisih dan batas anggaran → periksa sumber harga serta dasar satuan pada ekspor.

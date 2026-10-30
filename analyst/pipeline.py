@@ -93,7 +93,7 @@ def clean_source(source: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict
     rejected: list[dict[str, Any]] = []
     whitespace_changes = 0
     national_codes = {"0", "00", "000", "99", "999"}
-    for offset, (_, raw) in enumerate(source.iterrows(), start=4):
+    for offset, (_, raw) in enumerate(source.iterrows(), start=int(source.attrs.get("source_row_start", 2))):
         original = {column: None if pd.isna(raw[column]) else str(raw[column]) for column in SOURCE_COLUMNS}
         record = {column: normalize_text(raw[column]) for column in SOURCE_COLUMNS}
         whitespace_changes += sum(original[c] is not None and original[c] != record[c] for c in SOURCE_COLUMNS)
@@ -162,7 +162,7 @@ def clean_source(source: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, dict
         ],
         "unit_note": UNIT_NOTE, "geography_note": GEOGRAPHY_NOTE,
         "province_note": "Jumlah seri wilayah mencakup dua seri Papua historis terpisah; bukan jumlah provinsi Indonesia pada satu waktu.",
-        "normalization": ["Buang dua baris judul CSV; trim/collapse whitespace", "Harga rupiah bulat: pemisah ribuan koma/titik dihapus", "DI Yogyakarta diseragamkan", "Papua/Papua Barat sebelum 2024 dipisahkan dari seri pascaperubahan", "Harga kosong, tanda '-', nol/negatif, periode invalid dikarantina", "Duplikat identik dihapus; seluruh grup harga berkonflik dikarantina", "Tidak mengisi bulan atau harga yang hilang"],
+        "normalization": ["Baca header CSV aktual; trim/collapse whitespace", "Harga rupiah bulat: pemisah ribuan koma/titik dihapus", "DI Yogyakarta diseragamkan", "Papua/Papua Barat sebelum 2024 dipisahkan dari seri pascaperubahan", "Harga kosong, tanda '-', nol/negatif, periode invalid dikarantina", "Duplikat identik dihapus; seluruh grup harga berkonflik dikarantina", "Tidak mengisi bulan atau harga yang hilang"],
     }
     return cleaned, rejected_frame, report
 
@@ -174,13 +174,37 @@ def read_raw(path: Path | str) -> pd.DataFrame:
     header_line = next((i for i, line in enumerate(lines[:10]) if line.startswith("Kode Provinsi,Nama Provinsi,")), None)
     if header_line is None:
         raise ValueError("Header dataset tidak dikenali; file sumber tidak diubah.")
-    return pd.read_csv(io.StringIO("\n".join(lines[header_line:])), dtype=str)
+    frame = pd.read_csv(io.StringIO("\n".join(lines[header_line:])), dtype=str)
+    frame.attrs["source_row_start"] = header_line + 2
+    return frame
 
 
 def prepare_data(root: Path | str | None = None, download: bool = False) -> dict[str, Any]:
     """Build CSV/SQLite/report artifacts; network only when explicitly requested."""
     root = Path(root) if root is not None else ROOT
-    raw_path = root / "data/raw/harga_pangan.csv"
+    input_config = root / "data/source_input.json"
+    config = json.loads(input_config.read_text()) if input_config.exists() else {}
+    primary = config.get("dataset_kind") == "primary_export_user_supplied"
+    raw_path = root / config.get("raw_path", "data/raw/harga_pangan.csv")
+    if primary and download:
+        raise ValueError("Dataset aktif memakai ekspor primer pengguna. --download mirror dinonaktifkan; impor ulang file resmi dengan receipt yang baru.")
+    receipt = None
+    if primary:
+        receipt = json.loads((root/config["receipt_path"]).read_text())
+        evidence = next((f for f in receipt["files"] if f["path"] == config["raw_path"]), None)
+        if evidence is None or hashlib.sha256(raw_path.read_bytes()).hexdigest() != evidence["sha256"]:
+            raise ValueError("Hash input primer tidak sesuai receipt; artefak tidak diubah.")
+        for item in receipt["files"]:
+            path = root / item["path"]
+            if hashlib.sha256(path.read_bytes()).hexdigest() != item["sha256"]:
+                raise ValueError("Hash berkas pembanding primer tidak sesuai receipt; artefak tidak diubah.")
+        companion = next((root/f["path"] for f in receipt["files"] if f["format"] == "XLSX"), None)
+        if companion is None:
+            raise ValueError("Receipt primer memerlukan XLSX pembanding yang diterima bersama CSV.")
+        csv_frame = read_raw(raw_path).fillna("").map(normalize_text)
+        xlsx_frame = pd.read_excel(companion,dtype=str).fillna("").map(normalize_text)
+        if not csv_frame.equals(xlsx_frame):
+            raise ValueError("Isi CSV dan XLSX primer berbeda; hasil lama dipertahankan untuk diperiksa.")
     if download:
         with urllib.request.urlopen(SOURCE_URL, timeout=45) as response:
             payload = response.read()
@@ -200,23 +224,39 @@ def prepare_data(root: Path | str | None = None, download: bool = False) -> dict
     serializable["date"] = serializable["date"].dt.strftime("%Y-%m-%d")
     serializable.to_csv(output / "prices.csv", index=False)
     rejected.to_csv(output / "rejected.csv", index=False)
-    source = {
-        "title": "Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi (salinan pihak ketiga)",
-        "original_publisher_cited": "Badan Pangan Nasional", "original_url_cited": ORIGINAL_URL,
-        "mirror_url": SOURCE_URL,
-        "mirror_repository": "https://github.com/achmadichzan/Prediksi_Harga_Pangan_Nasional",
-        "raw_sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
-        "raw_bytes": raw_path.stat().st_size,
-        "source_header": list(SOURCE_COLUMNS),
-        "original_independently_verified": False,
-        "license_status": "Lisensi redistribusi tidak tercantum pada snapshot; periksa sumber asal sebelum redistribusi/komersialisasi.",
-        "snapshot_note": "Snapshot historis yang dibundel, bukan harga real-time atau kutipan pemasok.",
-        "unit_note": UNIT_NOTE,
-        "geography_note": GEOGRAPHY_NOTE,
-    }
+    if primary:
+        source = {
+            "title":"Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi",
+            "dataset_kind":"primary_export_user_supplied",
+            "original_publisher_cited":receipt["publisher"],"original_url_cited":receipt["publication_url"],
+            "acquisition_method":receipt["acquisition_method"],"active_raw_path":config["raw_path"],
+            "receipt_path":config["receipt_path"],"raw_sha256":hashlib.sha256(raw_path.read_bytes()).hexdigest(),
+            "raw_bytes":raw_path.stat().st_size,"source_header":list(SOURCE_COLUMNS),
+            "original_independently_verified":False,"csv_xlsx_consistency_verified":True,
+            "source_verification_scope":"File primer yang disediakan pengguna; isi CSV dan XLSX cocok. Pengambilan langsung dari server BPN belum diverifikasi.",
+            "license_status":"Ketentuan penggunaan ulang tidak tercantum dalam kedua file; belum terkonfirmasi.",
+            "snapshot_note":"Ekspor historis yang diberikan pengguna dari publikasi BPN; bukan harga real-time atau harga pemasok.",
+            "unit_note":UNIT_NOTE,"geography_note":GEOGRAPHY_NOTE,
+            "snapshot_recorded_at_utc":receipt["imported_at_utc"],
+        }
+    else:
+        source = {
+            "title": "Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi (salinan pihak ketiga)",
+            "original_publisher_cited": "Badan Pangan Nasional", "original_url_cited": ORIGINAL_URL,
+            "mirror_url": SOURCE_URL,
+            "mirror_repository": "https://github.com/achmadichzan/Prediksi_Harga_Pangan_Nasional",
+            "raw_sha256": hashlib.sha256(raw_path.read_bytes()).hexdigest(),
+            "raw_bytes": raw_path.stat().st_size,
+            "source_header": list(SOURCE_COLUMNS),
+            "original_independently_verified": False,
+            "license_status": "Lisensi redistribusi tidak tercantum pada snapshot; periksa sumber asal sebelum redistribusi/komersialisasi.",
+            "snapshot_note": "Snapshot historis yang dibundel, bukan harga real-time atau kutipan pemasok.",
+            "unit_note": UNIT_NOTE,
+            "geography_note": GEOGRAPHY_NOTE,
+        }
     previous_metadata = root / "data/source.json"
     old_source = json.loads(previous_metadata.read_text(encoding="utf-8")) if previous_metadata.exists() else {}
-    source["snapshot_recorded_at_utc"] = old_source.get("snapshot_recorded_at_utc") if old_source.get("raw_sha256") == source["raw_sha256"] else None
+    source["snapshot_recorded_at_utc"] = source.get("snapshot_recorded_at_utc") or (old_source.get("snapshot_recorded_at_utc") if old_source.get("raw_sha256") == source["raw_sha256"] else None)
     source["snapshot_recorded_at_utc"] = source["snapshot_recorded_at_utc"] or datetime.now(timezone.utc).isoformat()
     (root / "data/source.json").write_text(json.dumps(source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (output / "quality_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

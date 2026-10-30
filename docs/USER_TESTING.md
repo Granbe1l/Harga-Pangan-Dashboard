@@ -12,8 +12,8 @@ Ajak 3–5 orang secara sukarela; minimal satu yang belum pernah melihat proyek.
 
 | Tugas | Kriteria yang diamati |
 | --- | --- |
-| Dalam 60 detik, jelaskan arti Rp10.687 pada contoh awal | Menyebut perubahan estimasi dua bulan, bukan penghematan/prediksi |
-| Cari cakupan keranjang lengkap | Menemukan 22/58 bulan pada contoh Jawa Barat |
+| Dalam 60 detik, jelaskan dua kenaikan ≥10% pada tab Temuan harga, lalu Rp10.687 pada tab latihan | Menyebut perubahan estimasi dua bulan, bukan penghematan/prediksi |
+| Cari cakupan keranjang lengkap | Menemukan 22/58 bulan pada tab Dampak keranjang latihan di Jawa Barat |
 | Bandingkan Profil A dan B | Menyadari peringkat bergantung jumlah contoh |
 | Ubah satu jumlah di Simulator | Nilai berubah tanpa arahan langkah demi langkah |
 | Isi harga dan satuan sendiri | Memahami status pernyataan pengguna, bukan sumber terverifikasi |

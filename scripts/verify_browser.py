@@ -45,6 +45,8 @@ def main():
                 settle(page)
         def select(page,label,value):
             box=page.get_by_role('combobox',name=re.compile(re.escape(label)))
+            if label=='Pilih komposisi latihan':
+                page.get_by_role('tab',name='Dampak keranjang latihan',exact=True).click();settle(page)
             if label=='Pilih komposisi latihan' and box.count()==0:
                 page.get_by_text('Profil latihan, sensitivitas, dan cakupan',exact=True).click();settle(page)
             box.click();box.fill(value)
@@ -70,36 +72,38 @@ def main():
         page=browser.new_page(viewport={'width':1440,'height':950},device_scale_factor=1)
         page.on('pageerror',lambda e: errors.append(str(e)))
         start=time.perf_counter();page.goto(opt.url);ready(page)
-        page.get_by_text('Kontributor perubahan biaya',exact=True).wait_for()
+        page.get_by_text('Perubahan harga bulan ini',exact=True).wait_for()
         report['local_initial_ready_seconds']=round(time.perf_counter()-start,2)
-        expect(page.get_by_test_id('stMetricValue').nth(0)).to_have_text('Rp 1.118.460')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').nth(0)).to_have_text('25 / 25')
         cta=page.get_by_role('button',name='Coba simulasi belanja →')
         assert cta.bounding_box()['y']+cta.bounding_box()['height']<950
-        report['checks'].append('desktop first screen contains budget KPIs, finding, chart, and simulator CTA')
+        report['checks'].append('desktop first screen contains observed price findings without assumed basket units and a simulator CTA')
         page.screenshot(path=str(out/'ringkasan-first-screen.png'))
         for label,name in MENUS:
             if label!='Ringkasan':menu(page,label)
             screenshot(page,name,1440,950)
         menu(page,'Ringkasan')
+        page.get_by_role('tab',name='Dampak keranjang latihan',exact=True).click();settle(page)
+        screenshot(page,'keranjang-latihan',1440,950)
         page.get_by_text('Profil latihan, sensitivitas, dan cakupan',exact=True).click();settle(page)
         select(page,'Pilih komposisi latihan','Latihan B')
-        expect(page.get_by_test_id('stMetricValue').nth(1)).to_have_text('Rp 3.923')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').nth(1)).to_have_text('Rp 3.923')
         screenshot(page,'profil-b-sensitivitas',1440,950)
         select(page,'Bulan referensi','Januari 2021')
         select(page,'Pilih komposisi latihan','Latihan C')
-        expect(page.get_by_test_id('stMetricValue').nth(2)).to_have_text('5 / 5 bahan')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').nth(2)).to_have_text('5 / 5 bahan')
         screenshot(page,'profil-c-riwayat-panjang',1440,950)
         select(page,'Pilih komposisi latihan','Latihan A')
         select(page,'Bulan referensi','Oktober 2025')
         report['checks'].append('profile sensitivity changes contributor; explicit five-item profile supports early history without imputation')
         menu(page,'Simulator anggaran')
         edit_cell(page,.43,'30.5')
-        expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.191.214',timeout=10000)
+        expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('Rp 1.191.214',timeout=10000)
         page.get_by_text('Edit harga pembelian sendiri',exact=True).click();settle(page)
         edit_cell(page,.75,'20000')
-        expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.397.760',timeout=10000)
+        expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('Rp 1.397.760',timeout=10000)
         menu(page,'Ringkasan');menu(page,'Simulator anggaran')
-        expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.397.760')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('Rp 1.397.760')
         report['checks'].append('real mouse/keyboard edits: fractional quantity and manual price persist across navigation')
         screenshot(page,'simulator-harga-sendiri',1440,950)
         with page.expect_download() as download:
@@ -122,12 +126,12 @@ def main():
         assert 'melewati batas anggaran' in page.get_by_test_id('stMain').inner_text()
         report['checks'].append('browser CSV and Excel downloads preserve edited prices and unverified unit status; spending limit evaluated separately')
         page.get_by_role('button',name='Kembalikan contoh awal',exact=True).click();settle(page)
-        expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.118.460')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('Rp 1.118.460')
         select(page,'Bulan referensi','Januari 2021')
-        expect(page.get_by_test_id('stMetricValue').first).to_have_text('—')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('—')
         screenshot(page,'simulator-belum-lengkap',1440,950)
         page.get_by_role('button',name=re.compile('Gunakan Oktober 2025')).click();settle(page)
-        expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.118.460')
+        expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('Rp 1.118.460')
         report['checks'].append('reset and missing-price recovery button restore complete scenario')
         menu(page,'Fluktuasi historis')
         assert 'Bulan bersama' in page.get_by_test_id('stMain').inner_text()
@@ -135,7 +139,7 @@ def main():
         report['checks'].append('fluctuation ranking explicitly shares observation months and monthly comparison pairs')
         select(page,'Bulan referensi','Januari 2021')
         screenshot(page,'risiko-riwayat-terbatas',1440,950)
-        menu(page,'Ringkasan');screenshot(page,'ringkasan-riwayat-terbatas',1440,950)
+        menu(page,'Ringkasan');page.get_by_role('tab',name='Temuan harga',exact=True).click();settle(page);screenshot(page,'ringkasan-riwayat-terbatas',1440,950)
         select(page,'Bulan referensi','Oktober 2025');select(page,'Wilayah acuan','Papua Pegunungan')
         screenshot(page,'ringkasan-tanpa-harga',1440,950)
         select(page,'Wilayah acuan','Jawa Barat');menu(page,'Perbandingan wilayah')
@@ -153,11 +157,14 @@ def main():
         summary={r[0]:r[1] for r in book['Ringkasan'].iter_rows(min_row=2,values_only=True)}
         assert summary['Bulan keranjang lengkap']==22
         assert summary['Bulan perubahan lengkap']==21
-        report['checks'].append('analysis Excel includes 32,480 rows, coverage counts, and sensitivity profiles')
+        metadata=' '.join(str(c.value) for row in book['Sumber & Metode'] for c in row)
+        assert 'primary_export_user_supplied' in metadata
+        assert '561054df5d8b36e7d75d92715fe037031a7e9c7c9f513fd178322cce491845d1' in metadata
+        report['checks'].append('analysis Excel includes 32,480 rows, primary-upload receipt hash, coverage, and sensitivity profiles')
         mobile=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True)
         mobile.on('pageerror',lambda e: errors.append(str(e)))
         mobile.goto(opt.url);ready(mobile)
-        mobile.get_by_text('Kontributor perubahan biaya',exact=True).wait_for()
+        mobile.get_by_text('Perubahan harga bulan ini',exact=True).wait_for()
         for label,name in MENUS:
             if label!='Ringkasan':menu(mobile,label,True)
             screenshot(mobile,name+'-mobile',390,844)
@@ -165,7 +172,7 @@ def main():
         # A fresh anonymous context must not inherit the first visitor's choices.
         fresh=browser.new_page(viewport={'width':1280,'height':900})
         fresh.goto(opt.url);ready(fresh)
-        expect(fresh.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.118.460')
+        expect(fresh.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('25 / 25')
         report['checks'].append('fresh anonymous browser context starts at default data without another session inputs')
         assert not errors, errors
         report['javascript_page_errors']=errors

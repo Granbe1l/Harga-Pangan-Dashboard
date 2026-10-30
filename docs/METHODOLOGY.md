@@ -63,7 +63,7 @@ Satuan **kg** dipakai untuk sebagian besar bahan dan **liter** untuk minyak gore
 
 Coba satu komoditas dengan dua bulan berurutan dan hitung MoM secara manual. Ulangi pada seri yang mempunyai bulan kosong. Di simulator, gunakan satu bahan dan jumlah sederhana, cocokkan hasil perkalian, lalu coba keadaan saat harga bulan pilihan tidak tersedia.
 
-Ambang kenaikan adalah parameter pengguna. Data historis tidak membuktikan penyebab perubahan harga, hasil simulator bukan penghematan aktual, dan salinan belum diperiksa terhadap versi resmi terbaru.
+Ambang kenaikan adalah parameter pengguna. Data historis tidak membuktikan penyebab perubahan harga, hasil simulator bukan penghematan aktual, dan file primer diberikan pengguna dan cocok CSV–XLSX; pengambilan server dan satuan belum diverifikasi independen.
 
 ## Ringkasan anggaran historis dan skenario
 
@@ -82,3 +82,7 @@ Harga bulan kini dan bulan sebelumnya diambil terpisah agar harga lama yang vali
 Untuk grafik fluktuasi terbaru, seri disaring menurut minimal tiga harga dan cakupan. Perhitungan berikutnya memakai irisan bulan yang memiliki harga untuk seluruh seri yang lolos. Ukuran perubahan memakai bulan akhir yang sama, dan seluruh seri harus memiliki harga pada bulan kalender sebelumnya. CV harga memerlukan minimal tiga bulan bersama; rata-rata perubahan absolut dan simpangan perubahan membutuhkan minimal dua pasangan bersama. Rata-rata perubahan absolut mengabaikan arah; tidak berarti prediksi atau tingkat risiko usaha. Tabel penyaringan dipisahkan dari tabel perbandingan bulan bersama.
 
 Batas anggaran dibandingkan dengan total skenario lengkap saja. Harga/satuan input pengguna dicatat per bahan, belum dianggap hasil verifikasi eksternal. Laporan analisis mencatat cakupan keranjang latihan dan sensitivitas komposisi.
+
+## Ekspor primer aktif
+
+File CSV unggahan adalah input aktif; XLSX dipertahankan sebagai pembanding. Harga bersih cocok dengan versi sebelumnya, sehingga hasil numerik tidak dibuat berubah tanpa alasan. Nomor baris karantina mengikuti ekspor header-pertama. Halaman Ringkasan memisahkan temuan persentase tanpa asumsi jumlah dari estimasi keranjang yang membutuhkan satuan dan kuantitas.

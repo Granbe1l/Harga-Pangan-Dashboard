@@ -50,3 +50,7 @@ Kunci analitis: `province_code + commodity + date`. Jangan menjumlahkan `price` 
 | Median provinsi | Median harga provinsi yang tersedia untuk satu komoditas dan satu bulan; tidak berbobot dan bukan angka nasional resmi. |
 
 Nama kolom turunan pada hasil ekspor dapat dilihat pada header hasil. Definisi bisnisnya mengikuti [metodologi](METHODOLOGY.md).
+
+## Provenansi input aktif
+
+`data/source_input.json` memilih CSV ekspor primer yang diberikan pengguna. `data/raw/primary/receipt.json` memuat hash kedua file, nama asli, dan kecocokan 33.422 baris. Kolom `source_row` karantina mengikuti CSV header-pertama, sehingga observasi pertama berada di baris 2. Tidak ada kolom satuan pada CSV/XLSX; `unit` pada data olahan tetap asumsi bertanda `unit_assumed=True` untuk tab latihan.

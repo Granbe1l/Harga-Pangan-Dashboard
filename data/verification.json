@@ -1,34 +1,33 @@
 {
-  "checked_at_utc": "2026-10-30T09:26:14.446272+00:00",
-  "mirror_matches_bundled_snapshot": true,
-  "raw_sha256": "c4b206afd027949f1165d4ecc2dd0799108bb0449b6aa16b29fee9d58c165d9d",
+  "checked_at_utc": "2026-10-30T10:22:50.857377+00:00",
+  "active_dataset_kind": "primary_export_user_supplied",
+  "primary_export_received": true,
+  "acquisition_method": "File CSV dan XLSX diberikan pengguna sebagai unduhan dari publikasi primer tersebut",
   "primary_verified": false,
-  "unit_status": "Belum terverifikasi; CSV tidak memiliki kolom satuan",
-  "reuse_license_status": "Belum terkonfirmasi",
-  "checks": [
+  "primary_verification_scope": "File unggahan pengguna; pengambilan langsung dan keaslian server belum diverifikasi independen",
+  "csv_xlsx_equal_after_text_normalization": true,
+  "compared_rows": 33422,
+  "files": [
     {
-      "name": "mirror_readme",
-      "url": "https://raw.githubusercontent.com/achmadichzan/Prediksi_Harga_Pangan_Nasional/main/README.md",
-      "status": 200,
-      "bytes": 3873,
-      "sha256": "df6ab486804d5f8a50210b9f883700b2c66eaf79e384e4d9056752180db4205e",
-      "content_type": "text/plain; charset=utf-8",
-      "policy_reason": null
+      "format": "CSV",
+      "original_filename": "Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi.csv",
+      "path": "data/raw/primary/harga_pangan.csv",
+      "sha256": "561054df5d8b36e7d75d92715fe037031a7e9c7c9f513fd178322cce491845d1",
+      "bytes": 1959872
     },
     {
-      "name": "mirror_data",
-      "url": "https://raw.githubusercontent.com/achmadichzan/Prediksi_Harga_Pangan_Nasional/main/harga_pangan.csv",
-      "status": 200,
-      "bytes": 1926510,
-      "sha256": "c4b206afd027949f1165d4ecc2dd0799108bb0449b6aa16b29fee9d58c165d9d",
-      "content_type": "text/plain; charset=utf-8",
-      "policy_reason": null
-    },
-    {
-      "name": "primary",
-      "url": "https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi",
-      "error": "ProxyError"
+      "format": "XLSX",
+      "original_filename": "Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi.xlsx",
+      "path": "data/raw/primary/harga_pangan.xlsx",
+      "sha256": "d3e3575de33c01474ee7ae71faf10d4ee00bd51005aa72746841f67ef4e958c6",
+      "bytes": 1008310
     }
   ],
-  "scope": "Pencocokan mirror tidak membuktikan kebenaran sumber primer, satuan, atau izin redistribusi."
+  "unit_status": "Tidak ada kolom satuan dalam CSV maupun XLSX; kg/liter tetap asumsi latihan",
+  "reuse_license_status": "Tidak dicantumkan di file; belum terkonfirmasi",
+  "previous_mirror_price_comparison": {
+    "processed_observations_equal": true,
+    "changed_price_observations": 0,
+    "previous_commit": "d087f097f6507cfcd2304f1b57f63c3ff20b33e9"
+  }
 }

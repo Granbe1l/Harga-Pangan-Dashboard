@@ -1,943 +1,943 @@
 source_row,Kode Provinsi,Nama Provinsi,Komoditas,Tahun,Bulan,Harga,reason
-100,75,Gorontalo,Kedelai Biji Kering,2021,Januari,-,missing_price
-103,82,Maluku Utara,Kedelai Biji Kering,2021,Januari,-,missing_price
-401,65,Kalimantan Utara,Minyak Goreng Kemasan,2021,Januari,-,missing_price
-508,75,Gorontalo,Kedelai Biji Kering,2021,Februari,-,missing_price
-618,13,Sumatera Barat,Cabai Rawit Merah,2021,Februari,-,missing_price
-809,65,Kalimantan Utara,Minyak Goreng Kemasan,2021,Februari,-,missing_price
-916,75,Gorontalo,Kedelai Biji Kering,2021,Maret,-,missing_price
-1026,13,Sumatera Barat,Cabai Rawit Merah,2021,Maret,-,missing_price
-1324,75,Gorontalo,Kedelai Biji Kering,2021,April,-,missing_price
-1432,11,Aceh,Cabai Rawit Merah,2021,April,-,missing_price
-1732,75,Gorontalo,Kedelai Biji Kering,2021,Mei,-,missing_price
-1842,13,Sumatera Barat,Cabai Rawit Merah,2021,Mei,-,missing_price
-2140,75,Gorontalo,Kedelai Biji Kering,2021,Juni,-,missing_price
-2250,13,Sumatera Barat,Cabai Rawit Merah,2021,Juni,-,missing_price
-2548,75,Gorontalo,Kedelai Biji Kering,2021,Juli,-,missing_price
-2656,11,Aceh,Cabai Rawit Merah,2021,Juli,-,missing_price
-2956,75,Gorontalo,Kedelai Biji Kering,2021,Agustus,-,missing_price
-3364,75,Gorontalo,Kedelai Biji Kering,2021,September,-,missing_price
-3472,11,Aceh,Cabai Rawit Merah,2021,September,-,missing_price
-3474,13,Sumatera Barat,Cabai Rawit Merah,2021,September,-,missing_price
-3772,75,Gorontalo,Kedelai Biji Kering,2021,Oktober,-,missing_price
-3882,13,Sumatera Barat,Cabai Rawit Merah,2021,Oktober,-,missing_price
-4180,75,Gorontalo,Kedelai Biji Kering,2021,November,-,missing_price
-4588,75,Gorontalo,Kedelai Biji Kering,2021,Desember,-,missing_price
-4696,11,Aceh,Cabai Rawit Merah,2021,Desember,-,missing_price
-4996,75,Gorontalo,Kedelai Biji Kering,2022,Januari,-,missing_price
-5404,75,Gorontalo,Kedelai Biji Kering,2022,Februari,-,missing_price
-5812,75,Gorontalo,Kedelai Biji Kering,2022,Maret,-,missing_price
-6220,75,Gorontalo,Kedelai Biji Kering,2022,April,-,missing_price
-6328,11,Aceh,Cabai Rawit Merah,2022,April,-,missing_price
-6628,75,Gorontalo,Kedelai Biji Kering,2022,Mei,-,missing_price
-6736,11,Aceh,Cabai Rawit Merah,2022,Mei,-,missing_price
-6934,75,Gorontalo,Minyak Goreng Kemasan,2022,Mei,-,missing_price
-7852,75,Gorontalo,Kedelai Biji Kering,2022,Agustus,-,missing_price
-7960,11,Aceh,Cabai Rawit Merah,2022,Agustus,-,missing_price
-8260,75,Gorontalo,Kedelai Biji Kering,2022,September,-,missing_price
-8368,11,Aceh,Cabai Rawit Merah,2022,September,-,missing_price
-8668,75,Gorontalo,Kedelai Biji Kering,2022,Oktober,-,missing_price
-9076,75,Gorontalo,Kedelai Biji Kering,2022,November,-,missing_price
-9892,75,Gorontalo,Kedelai Biji Kering,2023,Januari,-,missing_price
-10300,75,Gorontalo,Kedelai Biji Kering,2023,Februari,-,missing_price
-10408,11,Aceh,Cabai Rawit Merah,2023,Februari,-,missing_price
-10708,75,Gorontalo,Kedelai Biji Kering,2023,Maret,-,missing_price
-10816,11,Aceh,Cabai Rawit Merah,2023,Maret,-,missing_price
-11453,72,Sulawesi Tengah,Beras Premium,2023,Mei,-,missing_price
-11487,72,Sulawesi Tengah,Beras Medium,2023,Mei,-,missing_price
-11521,72,Sulawesi Tengah,Kedelai Biji Kering,2023,Mei,-,missing_price
-11555,72,Sulawesi Tengah,Bawang Merah,2023,Mei,-,missing_price
-11589,72,Sulawesi Tengah,Bawang Putih (Bonggol),2023,Mei,-,missing_price
-11623,72,Sulawesi Tengah,Cabai Merah Keriting,2023,Mei,-,missing_price
-11657,72,Sulawesi Tengah,Cabai Rawit Merah,2023,Mei,-,missing_price
-11691,72,Sulawesi Tengah,Daging Sapi Murni,2023,Mei,-,missing_price
-11725,72,Sulawesi Tengah,Daging Ayam Ras,2023,Mei,-,missing_price
-11759,72,Sulawesi Tengah,Telur Ayam Ras,2023,Mei,-,missing_price
-11793,72,Sulawesi Tengah,Gula Pasir Lokal/Curah,2023,Mei,-,missing_price
-11827,72,Sulawesi Tengah,Minyak Goreng Kemasan,2023,Mei,-,missing_price
-12040,11,Aceh,Cabai Rawit Merah,2023,Juni,-,missing_price
-13672,11,Aceh,Cabai Rawit Merah,2023,Oktober,-,missing_price
-14488,11,Aceh,Cabai Rawit Merah,2023,Desember,-,missing_price
-15272,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Januari,Rp0,non_positive_price
-15285,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Januari,Rp0,non_positive_price
-15297,93,Papua Selatan,Jagung Tingkat Peternak,2024,Januari,Rp0,non_positive_price
-15382,17,Bengkulu,Ikan Bandeng,2024,Januari,Rp0,non_positive_price
-15944,94,Papua Tengah,Minyak Goreng Curah,2024,Februari,-,missing_price
-16028,17,Bengkulu,Jagung Tingkat Peternak,2024,Februari,-,missing_price
-16030,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Februari,-,missing_price
-16032,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Februari,-,missing_price
-16045,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Februari,-,missing_price
-16050,75,Gorontalo,Jagung Tingkat Peternak,2024,Februari,-,missing_price
-16057,93,Papua Selatan,Jagung Tingkat Peternak,2024,Februari,-,missing_price
-16788,17,Bengkulu,Jagung Tingkat Peternak,2024,Maret,-,missing_price
-16790,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Maret,-,missing_price
-16792,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Maret,-,missing_price
-16805,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Maret,-,missing_price
-16810,75,Gorontalo,Jagung Tingkat Peternak,2024,Maret,-,missing_price
-16902,17,Bengkulu,Ikan Bandeng,2024,Maret,-,missing_price
-17465,95,Papua Pegunungan ,Minyak Goreng Curah,2024,April,-,missing_price
-17548,17,Bengkulu,Jagung Tingkat Peternak,2024,April,-,missing_price
-17550,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,April,-,missing_price
-17552,31,DKI Jakarta,Jagung Tingkat Peternak,2024,April,-,missing_price
-17570,75,Gorontalo,Jagung Tingkat Peternak,2024,April,-,missing_price
-17662,17,Bengkulu,Ikan Bandeng,2024,April,-,missing_price
-18308,17,Bengkulu,Jagung Tingkat Peternak,2024,Mei,-,missing_price
-18310,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Mei,-,missing_price
-18312,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Mei,-,missing_price
-18330,75,Gorontalo,Jagung Tingkat Peternak,2024,Mei,-,missing_price
-19104,15,Jambi,Jagung Tingkat Peternak,2024,Juni,-,missing_price
-19106,17,Bengkulu,Jagung Tingkat Peternak,2024,Juni,-,missing_price
-19108,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Juni,-,missing_price
-19110,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Juni,-,missing_price
-19123,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Juni,-,missing_price
-19128,75,Gorontalo,Jagung Tingkat Peternak,2024,Juni,-,missing_price
-19220,17,Bengkulu,Ikan Bandeng,2024,Juni,-,missing_price
-19300,31,DKI Jakarta,Beras SPHP,2024,Juli,-,missing_price
-19820,94,Papua Tengah,Minyak Goreng Curah,2024,Juli,-,missing_price
-19902,15,Jambi,Jagung Tingkat Peternak,2024,Juli,-,missing_price
-19904,17,Bengkulu,Jagung Tingkat Peternak,2024,Juli,-,missing_price
-19906,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Juli,-,missing_price
-19908,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Juli,-,missing_price
-19926,75,Gorontalo,Jagung Tingkat Peternak,2024,Juli,-,missing_price
-20018,17,Bengkulu,Ikan Bandeng,2024,Juli,-,missing_price
-20098,31,DKI Jakarta,Beras SPHP,2024,Agustus,-,missing_price
-20618,94,Papua Tengah,Minyak Goreng Curah,2024,Agustus,-,missing_price
-20700,15,Jambi,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
-20702,17,Bengkulu,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
-20704,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
-20706,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
-20724,75,Gorontalo,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
-20816,17,Bengkulu,Ikan Bandeng,2024,Agustus,-,missing_price
-20896,31,DKI Jakarta,Beras SPHP,2024,September,-,missing_price
-20923,95,Papua Pegunungan,Beras SPHP,2024,September,-,missing_price
-21416,94,Papua Tengah,Minyak Goreng Curah,2024,September,-,missing_price
-21455,95,Papua Pegunungan ,Tepung Terigu Curah,2024,September,-,missing_price
-21498,15,Jambi,Jagung Tingkat Peternak,2024,September,-,missing_price
-21500,17,Bengkulu,Jagung Tingkat Peternak,2024,September,-,missing_price
-21502,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,September,-,missing_price
-21504,31,DKI Jakarta,Jagung Tingkat Peternak,2024,September,-,missing_price
-21522,75,Gorontalo,Jagung Tingkat Peternak,2024,September,-,missing_price
-21614,17,Bengkulu,Ikan Bandeng,2024,September,-,missing_price
-21694,31,DKI Jakarta,Beras SPHP,2024,Oktober,-,missing_price
-21721,95,Papua Pegunungan,Beras SPHP,2024,Oktober,-,missing_price
-21835,95,Papua Pegunungan,Kedelai Biji Kering,2024,Oktober,-,missing_price
-22215,95,Papua Pegunungan ,Minyak Goreng Curah,2024,Oktober,-,missing_price
-22253,95,Papua Pegunungan ,Tepung Terigu Curah,2024,Oktober,-,missing_price
-22296,15,Jambi,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
-22298,17,Bengkulu,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
-22300,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
-22302,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
-22315,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
-22320,75,Gorontalo,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
-22412,17,Bengkulu,Ikan Bandeng,2024,Oktober,-,missing_price
-22492,31,DKI Jakarta,Beras SPHP,2024,November,-,missing_price
-22519,95,Papua Pegunungan,Beras SPHP,2024,November,-,missing_price
-22633,95,Papua Pegunungan,Kedelai Biji Kering,2024,November,-,missing_price
-23012,94,Papua Tengah,Minyak Goreng Curah,2024,November,-,missing_price
-23013,95,Papua Pegunungan ,Minyak Goreng Curah,2024,November,-,missing_price
-23051,95,Papua Pegunungan ,Tepung Terigu Curah,2024,November,-,missing_price
-23094,15,Jambi,Jagung Tingkat Peternak,2024,November,-,missing_price
-23096,17,Bengkulu,Jagung Tingkat Peternak,2024,November,-,missing_price
-23098,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,November,-,missing_price
-23100,31,DKI Jakarta,Jagung Tingkat Peternak,2024,November,-,missing_price
-23113,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,November,-,missing_price
-23118,75,Gorontalo,Jagung Tingkat Peternak,2024,November,-,missing_price
-23317,95,Papua Pegunungan,Beras SPHP,2024,Desember,-,missing_price
-23431,95,Papua Pegunungan,Kedelai Biji Kering,2024,Desember,-,missing_price
-23810,94,Papua Tengah,Minyak Goreng Curah,2024,Desember,-,missing_price
-23894,17,Bengkulu,Jagung Tingkat Peternak,2024,Desember,-,missing_price
-23896,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Desember,-,missing_price
-23898,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Desember,-,missing_price
-23911,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Desember,-,missing_price
-23916,75,Gorontalo,Jagung Tingkat Peternak,2024,Desember,-,missing_price
-24113,93,Papua Selatan,Beras SPHP,2025,Januari,-,missing_price
-24115,95,Papua Pegunungan,Beras SPHP,2025,Januari,-,missing_price
-24151,93,Papua Selatan,Beras Premium,2025,Januari,-,missing_price
-24189,93,Papua Selatan,Beras Medium,2025,Januari,-,missing_price
-24227,93,Papua Selatan,Kedelai Biji Kering,2025,Januari,-,missing_price
-24228,94,Papua Tengah,Kedelai Biji Kering,2025,Januari,,missing_price
-24229,95,Papua Pegunungan,Kedelai Biji Kering,2025,Januari,-,missing_price
-24265,93,Papua Selatan,Bawang Merah,2025,Januari,-,missing_price
-24303,93,Papua Selatan,Bawang Putih (Bonggol),2025,Januari,-,missing_price
-24341,93,Papua Selatan,Cabai Merah Keriting,2025,Januari,-,missing_price
-24379,93,Papua Selatan,Cabai Rawit Merah,2025,Januari,-,missing_price
-24417,93,Papua Selatan,Daging Sapi Murni,2025,Januari,-,missing_price
-24455,93,Papua Selatan,Daging Ayam Ras,2025,Januari,-,missing_price
-24493,93,Papua Selatan,Telur Ayam Ras,2025,Januari,-,missing_price
-24531,93,Papua Selatan,Gula Pasir Lokal/Curah,2025,Januari,-,missing_price
-24569,93,Papua Selatan,Minyak Goreng Kemasan,2025,Januari,-,missing_price
-24607,93,Papua Selatan,Minyak Goreng Curah,2025,Januari,-,missing_price
-24609,95,Papua Pegunungan ,Minyak Goreng Curah,2025,Januari,-,missing_price
-24645,93,Papua Selatan,Tepung Terigu Curah,2025,Januari,-,missing_price
-24647,95,Papua Pegunungan ,Tepung Terigu Curah,2025,Januari,-,missing_price
-24683,93,Papua Selatan,Tepung Terigu Kemasan,2025,Januari,-,missing_price
-24685,95,Papua Pegunungan ,Tepung Terigu Kemasan,2025,Januari,-,missing_price
-24692,17,Bengkulu,Jagung Tingkat Peternak,2025,Januari,-,missing_price
-24696,31,DKI Jakarta,Jagung Tingkat Peternak,2025,Januari,-,missing_price
-24709,65,Kalimantan Utara,Jagung Tingkat Peternak,2025,Januari,-,missing_price
-24721,93,Papua Selatan,Jagung Tingkat Peternak,2025,Januari,-,missing_price
-24723,95,Papua Pegunungan ,Jagung Tingkat Peternak,2025,Januari,-,missing_price
-24759,93,Papua Selatan,Ikan Kembung,2025,Januari,-,missing_price
-24797,93,Papua Selatan,Ikan Tongkol,2025,Januari,-,missing_price
-24806,17,Bengkulu,Ikan Bandeng,2025,Januari,-,missing_price
-24824,71,Sulawesi Utara,Ikan Bandeng,2025,Januari,-,missing_price
-24830,81,Maluku,Ikan Bandeng,2025,Januari,-,missing_price
-24835,93,Papua Selatan,Ikan Bandeng,2025,Januari,-,missing_price
-24873,93,Papua Selatan,Garam Konsumsi,2025,Januari,-,missing_price
-24911,93,Papua Selatan,Beras SPHP,2025,Februari,-,missing_price
-24913,95,Papua Pegunungan,Beras SPHP,2025,Februari,-,missing_price
-24949,93,Papua Selatan,Beras Premium,2025,Februari,-,missing_price
-24987,93,Papua Selatan,Beras Medium,2025,Februari,-,missing_price
-25025,93,Papua Selatan,Kedelai Biji Kering,2025,Februari,-,missing_price
-25027,95,Papua Pegunungan,Kedelai Biji Kering,2025,Februari,-,missing_price
-25063,93,Papua Selatan,Bawang Merah,2025,Februari,-,missing_price
-25101,93,Papua Selatan,Bawang Putih (Bonggol),2025,Februari,-,missing_price
-25139,93,Papua Selatan,Cabai Merah Keriting,2025,Februari,-,missing_price
-25142,11,Aceh,Cabai Rawit Merah,2025,Februari,-,missing_price
-25177,93,Papua Selatan,Cabai Rawit Merah,2025,Februari,-,missing_price
-25215,93,Papua Selatan,Daging Sapi Murni,2025,Februari,-,missing_price
-25253,93,Papua Selatan,Daging Ayam Ras,2025,Februari,-,missing_price
-25291,93,Papua Selatan,Telur Ayam Ras,2025,Februari,-,missing_price
-25329,93,Papua Selatan,Gula Pasir Lokal/Curah,2025,Februari,-,missing_price
-25367,93,Papua Selatan,Minyak Goreng Kemasan,2025,Februari,-,missing_price
-25393,65,Kalimantan Utara,Minyak Goreng Curah,2025,Februari,-,missing_price
-25405,93,Papua Selatan,Minyak Goreng Curah,2025,Februari,-,missing_price
-25406,94,Papua Tengah,Minyak Goreng Curah,2025,Februari,-,missing_price
-25407,95,Papua Pegunungan ,Minyak Goreng Curah,2025,Februari,-,missing_price
-25443,93,Papua Selatan,Tepung Terigu Curah,2025,Februari,-,missing_price
-25481,93,Papua Selatan,Tepung Terigu Kemasan,2025,Februari,-,missing_price
-25490,17,Bengkulu,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25492,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25494,31,DKI Jakarta,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25507,65,Kalimantan Utara,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25512,75,Gorontalo,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25519,93,Papua Selatan,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25521,95,Papua Pegunungan ,Jagung Tingkat Peternak,2025,Februari,-,missing_price
-25557,93,Papua Selatan,Ikan Kembung,2025,Februari,-,missing_price
-25595,93,Papua Selatan,Ikan Tongkol,2025,Februari,-,missing_price
-25604,17,Bengkulu,Ikan Bandeng,2025,Februari,-,missing_price
-25633,93,Papua Selatan,Ikan Bandeng,2025,Februari,-,missing_price
-25671,93,Papua Selatan,Garam Konsumsi,2025,Februari,-,missing_price
-25683,21,Kepulauan Riau,Cabai Merah Besar,2025,Februari,-,missing_price
-25702,75,Gorontalo,Cabai Merah Besar,2025,Februari,-,missing_price
-25709,93,Papua Selatan,Cabai Merah Besar,2025,Februari,-,missing_price
-25747,93,Papua Selatan,Minyak Kita,2025,Februari,-,missing_price
-25755,16,Sumatera Selatan,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25756,17,Bengkulu,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25757,18,Lampung,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25758,19,Kepulauan Bangka Belitung,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25759,21,Kepulauan Riau,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25760,31,DKI Jakarta,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25763,34,DI Yogyakarta,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25764,35,Jawa Timur,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25766,51,Bali,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25767,52,Nusa Tenggara Barat,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25768,53,Nusa Tenggara Timur,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25772,64,Kalimantan Timur,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25774,71,Sulawesi Utara,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25775,72,Sulawesi Tengah,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25777,74,Sulawesi Tenggara,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25778,75,Gorontalo,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25779,76,Sulawesi Barat,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25780,81,Maluku,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25781,82,Maluku Utara,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25782,92,Papua Barat,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25783,91,Papua,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25784,96,Papua Barat Daya,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25785,93,Papua Selatan,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25786,94,Papua Tengah,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25787,95,Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
-25793,16,Sumatera Selatan,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25795,18,Lampung,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25796,19,Kepulauan Bangka Belitung,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25797,21,Kepulauan Riau,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25798,31,DKI Jakarta,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25799,32,Jawa Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25801,34,DI Yogyakarta,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25802,35,Jawa Timur,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25804,51,Bali,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25805,52,Nusa Tenggara Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25806,53,Nusa Tenggara Timur,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25807,61,Kalimantan Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25808,62,Kalimantan Tengah,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25810,64,Kalimantan Timur,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25811,65,Kalimantan Utara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25812,71,Sulawesi Utara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25813,72,Sulawesi Tengah,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25815,74,Sulawesi Tenggara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25816,75,Gorontalo,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25817,76,Sulawesi Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25818,81,Maluku,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25819,82,Maluku Utara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25820,92,Papua Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25821,91,Papua,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25822,96,Papua Barat Daya,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25823,93,Papua Selatan,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25824,94,Papua Tengah,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25825,95,Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
-25860,93, Papua Selatan ,Beras SPHP,2025,Maret,-,missing_price
-25861,94, Papua Tengah ,Beras SPHP,2025,Maret,-,missing_price
-25862,95, Papua Pegunungan ,Beras SPHP,2025,Maret,-,missing_price
-25898,93, Papua Selatan ,Beras Premium,2025,Maret,-,missing_price
-25900,95, Papua Pegunungan ,Beras Premium,2025,Maret,-,missing_price
-25936,93, Papua Selatan ,Beras Medium,2025,Maret,-,missing_price
-25974,93, Papua Selatan ,Kedelai Biji Kering,2025,Maret,-,missing_price
-25976,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Maret,-,missing_price
-26012,93, Papua Selatan ,Bawang Merah,2025,Maret,-,missing_price
-26014,95, Papua Pegunungan ,Bawang Merah,2025,Maret,-,missing_price
-26050,93, Papua Selatan ,Bawang Putih (Bonggol),2025,Maret,-,missing_price
-26052,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,Maret,-,missing_price
-26088,93, Papua Selatan ,Cabai Merah Keriting,2025,Maret,-,missing_price
-26126,93, Papua Selatan ,Cabai Rawit Merah,2025,Maret,-,missing_price
-26164,93, Papua Selatan ,Daging Sapi Murni,2025,Maret,-,missing_price
-26202,93, Papua Selatan ,Daging Ayam Ras,2025,Maret,-,missing_price
-26240,93, Papua Selatan ,Telur Ayam Ras,2025,Maret,-,missing_price
-26278,93, Papua Selatan ,Gula Pasir Lokal/Curah,2025,Maret,-,missing_price
-26316,93, Papua Selatan ,Minyak Goreng Kemasan,2025,Maret,-,missing_price
-26343,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Maret,-,missing_price
-26354,93, Papua Selatan ,Minyak Goreng Curah,2025,Maret,-,missing_price
-26355,94, Papua Tengah ,Minyak Goreng Curah,2025,Maret,-,missing_price
-26356,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Maret,-,missing_price
-26392,93, Papua Selatan ,Tepung Terigu Curah,2025,Maret,-,missing_price
-26394,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Maret,-,missing_price
-26430,93, Papua Selatan ,Tepung Terigu Kemasan,2025,Maret,-,missing_price
-26432,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Maret,-,missing_price
-26440,17, Bengkulu ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26442,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26444,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26457,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26462,75, Gorontalo ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26468,93, Papua Selatan ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26470,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
-26506,93, Papua Selatan ,Ikan Kembung,2025,Maret,-,missing_price
-26544,93, Papua Selatan ,Ikan Tongkol,2025,Maret,-,missing_price
-26554,17, Bengkulu ,Ikan Bandeng,2025,Maret,-,missing_price
-26582,93, Papua Selatan ,Ikan Bandeng,2025,Maret,-,missing_price
-26620,93, Papua Selatan ,Garam Konsumsi,2025,Maret,-,missing_price
-26633,21, Kepulauan Riau ,Cabai Merah Besar,2025,Maret,-,missing_price
-26652,75, Gorontalo ,Cabai Merah Besar,2025,Maret,-,missing_price
-26658,93, Papua Selatan ,Cabai Merah Besar,2025,Maret,-,missing_price
-26660,95, Papua Pegunungan ,Cabai Merah Besar,2025,Maret,-,missing_price
-26696,93, Papua Selatan ,Minyak Kita,2025,Maret,-,missing_price
-26698,95, Papua Pegunungan ,Minyak Kita,2025,Maret,-,missing_price
-26700,11, Aceh ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26702,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26703,14, Riau ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26705,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26706,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26707,18, Lampung ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26708,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26709,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26710,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26713,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26714,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26716,51, Bali ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26717,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26718,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26724,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26725,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26727,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26728,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26729,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26730,81, Maluku ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26731,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26732,91, Papua ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26733,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26734,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26735,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26736,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26737,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
-26741,14, Riau ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26743,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26744,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26745,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26746,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26747,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26748,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26749,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26751,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26752,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26754,51, Bali ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26756,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26757,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26758,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26760,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26761,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26762,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26763,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26764,73, Sulawesi Selatan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26765,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26766,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26767,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26768,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26769,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26770,91, Papua ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26771,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26772,93, Papua Selatan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26773,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26774,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26775,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
-26809,92, Papua Barat ,Beras SPHP,2025,April,,missing_price
-26812,95, Papua Pegunungan ,Beras SPHP,2025,April,,missing_price
-26926,95, Papua Pegunungan ,Kedelai Biji Kering,2025,April,,missing_price
-27278,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,April,,missing_price
-27293,65, Kalimantan Utara ,Minyak Goreng Curah,2025,April,,missing_price
-27305,94, Papua Tengah ,Minyak Goreng Curah,2025,April,,missing_price
-27390,17, Bengkulu ,Jagung Tingkat Peternak,2025,April,,missing_price
-27392,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,April,,missing_price
-27394,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,April,,missing_price
-27404,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,April,,missing_price
-27407,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,April,,missing_price
-27412,75, Gorontalo ,Jagung Tingkat Peternak,2025,April,,missing_price
-27418,93, Papua Selatan ,Jagung Tingkat Peternak,2025,April,,missing_price
-27420,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,April,,missing_price
-27583,21, Kepulauan Riau ,Cabai Merah Besar,2025,April,,missing_price
-27602,75, Gorontalo ,Cabai Merah Besar,2025,April,,missing_price
-27648,95, Papua Pegunungan ,Minyak Kita,2025,April,,missing_price
-27650,11, Aceh ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27652,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27653,14, Riau ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27655,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27656,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27657,18, Lampung ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27658,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27659,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27660,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27663,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27664,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27666,51, Bali ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27667,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27668,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27674,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27675,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27677,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27678,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27679,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27680,81, Maluku ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27681,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27682,91, Papua ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27683,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27684,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27685,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27686,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27687,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,April,,missing_price
-27691,14, Riau ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27693,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27694,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27695,18, Lampung ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27696,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27697,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27698,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27699,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27701,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27702,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27704,51, Bali ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27705,52, Nusa Tenggara Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27706,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27707,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27708,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27710,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27711,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27712,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27713,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27715,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27716,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27717,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27718,81, Maluku ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27719,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27720,91, Papua ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27721,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27722,93, Papua Selatan ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27723,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27724,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27725,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
-27755,76, Sulawesi Barat ,Beras SPHP,2025,Mei,,missing_price
-27759,92, Papua Barat ,Beras SPHP,2025,Mei,,missing_price
-27762,95, Papua Pegunungan ,Beras SPHP,2025,Mei,,missing_price
-27876,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Mei,,missing_price
-27990,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Mei,,missing_price
-28243,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Mei,,missing_price
-28255,94, Papua Tengah ,Minyak Goreng Curah,2025,Mei,,missing_price
-28332,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Mei,,missing_price
-28340,17, Bengkulu ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28342,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28344,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28354,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28357,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28362,75, Gorontalo ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28370,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Mei,,missing_price
-28454,17, Bengkulu ,Ikan Bandeng,2025,Mei,,missing_price
-28533,21, Kepulauan Riau ,Cabai Merah Besar,2025,Mei,,missing_price
-28552,75, Gorontalo ,Cabai Merah Besar,2025,Mei,,missing_price
-28598,95, Papua Pegunungan ,Minyak Kita,2025,Mei,,missing_price
-28600,11, Aceh ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28602,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28603,14, Riau ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28605,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28606,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28607,18, Lampung ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28608,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28609,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28610,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28613,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28614,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28616,51, Bali ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28617,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28618,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28624,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28625,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28628,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28629,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28630,81, Maluku ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28631,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28632,91, Papua ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28633,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28634,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28635,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28636,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28637,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
-28641,14, Riau ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28643,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28644,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28645,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28646,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28647,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28648,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28649,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28651,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28652,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28654,51, Bali ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28656,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28657,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28658,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28660,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28661,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28662,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28663,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28664,73, Sulawesi Selatan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28666,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28667,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28668,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28669,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28670,91, Papua ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28671,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28672,93, Papua Selatan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28673,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28674,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28675,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
-28684,19, Kepulauan Bangka Belitung ,Beras SPHP,2025,Juni,,missing_price
-28693,52, Nusa Tenggara Barat ,Beras SPHP,2025,Juni,,missing_price
-28699,65, Kalimantan Utara ,Beras SPHP,2025,Juni,,missing_price
-28701,72, Sulawesi Tengah ,Beras SPHP,2025,Juni,,missing_price
-28709,92, Papua Barat ,Beras SPHP,2025,Juni,,missing_price
-28711,94, Papua Tengah ,Beras SPHP,2025,Juni,,missing_price
-28712,95, Papua Pegunungan ,Beras SPHP,2025,Juni,,missing_price
-28826,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Juni,,missing_price
-28940,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Juni,,missing_price
-29168,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,Juni,,missing_price
-29178,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Juni,,missing_price
-29193,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Juni,,missing_price
-29205,94, Papua Tengah ,Minyak Goreng Curah,2025,Juni,,missing_price
-29244,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Juni,,missing_price
-29290,17, Bengkulu ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29292,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29294,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29304,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29307,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29312,75, Gorontalo ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29320,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Juni,,missing_price
-29404,17, Bengkulu ,Ikan Bandeng,2025,Juni,,missing_price
-29483,21, Kepulauan Riau ,Cabai Merah Besar,2025,Juni,,missing_price
-29502,75, Gorontalo ,Cabai Merah Besar,2025,Juni,,missing_price
-29548,95, Papua Pegunungan ,Minyak Kita,2025,Juni,,missing_price
-29550,11, Aceh ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29551,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29552,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29553,14, Riau ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29555,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29556,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29557,18, Lampung ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29558,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29559,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29560,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29563,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29564,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29566,51, Bali ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29567,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29568,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29574,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29575,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29577,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29578,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29579,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29580,81, Maluku ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29581,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29582,91, Papua ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29583,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29584,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29585,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29586,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29587,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
-29593,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29595,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29596,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29597,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29598,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29599,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29601,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29602,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29604,51, Bali ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29606,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29607,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29608,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29610,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29611,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29612,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29613,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29615,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29616,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29617,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29618,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29619,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29620,91, Papua ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29621,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29623,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29624,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29625,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
-29636,31, DKI Jakarta ,Beras SPHP,2025,Juli,,missing_price
-29661,94, Papua Tengah ,Beras SPHP,2025,Juli,,missing_price
-29662,95, Papua Pegunungan ,Beras SPHP,2025,Juli,,missing_price
-29776,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Juli,,missing_price
-29890,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Juli,,missing_price
-30128,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Juli,,missing_price
-30143,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Juli,,missing_price
-30155,94, Papua Tengah ,Minyak Goreng Curah,2025,Juli,,missing_price
-30156,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Juli,,missing_price
-30194,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Juli,,missing_price
-30240,17, Bengkulu ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30242,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30244,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30254,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30257,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30262,75, Gorontalo ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30270,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Juli,,missing_price
-30346,95, Papua Pegunungan ,Ikan Tongkol,2025,Juli,,missing_price
-30354,17, Bengkulu ,Ikan Bandeng,2025,Juli,,missing_price
-30433,21, Kepulauan Riau ,Cabai Merah Besar,2025,Juli,,missing_price
-30452,75, Gorontalo ,Cabai Merah Besar,2025,Juli,,missing_price
-30498,95, Papua Pegunungan ,Minyak Kita,2025,Juli,,missing_price
-30500,11, Aceh ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30501,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30502,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30503,14, Riau ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30505,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30506,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30507,18, Lampung ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30508,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30509,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30510,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30513,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30514,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30516,51, Bali ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30517,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30518,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30524,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30525,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30527,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30528,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30529,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30530,81, Maluku ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30531,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30532,91, Papua ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30533,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30534,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30535,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30536,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30537,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
-30543,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30544,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30545,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30546,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30547,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30548,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30549,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30551,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30552,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30554,51, Bali ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30555,52, Nusa Tenggara Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30556,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30557,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30558,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30560,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30561,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30562,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30563,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30565,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30566,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30567,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30568,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30569,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30570,91, Papua ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30571,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30573,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30574,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30575,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
-30586,31, DKI Jakarta ,Beras SPHP,2025,Agustus,,missing_price
-30612,95, Papua Pegunungan ,Beras SPHP,2025,Agustus,,missing_price
-30650,95, Papua Pegunungan ,Beras Premium,2025,Agustus,,missing_price
-30688,95, Papua Pegunungan ,Beras Medium,2025,Agustus,,missing_price
-30726,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Agustus,,missing_price
-30764,95, Papua Pegunungan ,Bawang Merah,2025,Agustus,,missing_price
-30802,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,Agustus,,missing_price
-30840,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Agustus,,missing_price
-30878,95, Papua Pegunungan ,Cabai Rawit Merah,2025,Agustus,,missing_price
-30916,95, Papua Pegunungan ,Daging Sapi Murni,2025,Agustus,,missing_price
-30954,95, Papua Pegunungan ,Daging Ayam Ras,2025,Agustus,,missing_price
-30992,95, Papua Pegunungan ,Telur Ayam Ras,2025,Agustus,,missing_price
-31030,95, Papua Pegunungan ,Gula Pasir Lokal/Curah,2025,Agustus,,missing_price
-31068,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,Agustus,,missing_price
-31078,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Agustus,,missing_price
-31093,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Agustus,,missing_price
-31105,94, Papua Tengah ,Minyak Goreng Curah,2025,Agustus,,missing_price
-31106,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Agustus,,missing_price
-31144,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Agustus,,missing_price
-31182,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Agustus,,missing_price
-31190,17, Bengkulu ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31192,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31194,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31204,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31207,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31212,75, Gorontalo ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31220,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
-31258,95, Papua Pegunungan ,Ikan Kembung,2025,Agustus,,missing_price
-31296,95, Papua Pegunungan ,Ikan Tongkol,2025,Agustus,,missing_price
-31304,17, Bengkulu ,Ikan Bandeng,2025,Agustus,,missing_price
-31334,95, Papua Pegunungan ,Ikan Bandeng,2025,Agustus,,missing_price
-31372,95, Papua Pegunungan ,Garam Konsumsi,2025,Agustus,,missing_price
-31383,21, Kepulauan Riau ,Cabai Merah Besar,2025,Agustus,,missing_price
-31402,75, Gorontalo ,Cabai Merah Besar,2025,Agustus,,missing_price
-31410,95, Papua Pegunungan ,Cabai Merah Besar,2025,Agustus,,missing_price
-31448,95, Papua Pegunungan ,Minyak Kita,2025,Agustus,,missing_price
-31450,11, Aceh ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31451,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31452,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31453,14, Riau ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31455,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31456,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31457,18, Lampung ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31458,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31459,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31460,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31463,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31466,51, Bali ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31467,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31468,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31474,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31475,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31477,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31478,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31479,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31480,81, Maluku ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31481,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31482,91, Papua ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31483,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31484,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31485,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31486,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31487,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
-31493,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31494,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31495,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31496,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31497,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31498,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31501,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31504,51, Bali ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31505,52, Nusa Tenggara Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31506,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31507,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31508,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31510,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31511,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31512,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31513,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31515,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31516,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31517,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31518,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31519,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31520,91, Papua ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31521,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31523,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31524,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31525,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
-31536,31, DKI Jakarta ,Beras SPHP,2025,September,,missing_price
-31562,95, Papua Pegunungan ,Beras SPHP,2025,September,,missing_price
-31600,95, Papua Pegunungan ,Beras Premium,2025,September,,missing_price
-31638,95, Papua Pegunungan ,Beras Medium,2025,September,,missing_price
-31676,95, Papua Pegunungan ,Kedelai Biji Kering,2025,September,,missing_price
-31714,95, Papua Pegunungan ,Bawang Merah,2025,September,,missing_price
-31752,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,September,,missing_price
-31790,95, Papua Pegunungan ,Cabai Merah Keriting,2025,September,,missing_price
-31828,95, Papua Pegunungan ,Cabai Rawit Merah,2025,September,,missing_price
-31866,95, Papua Pegunungan ,Daging Sapi Murni,2025,September,,missing_price
-31904,95, Papua Pegunungan ,Daging Ayam Ras,2025,September,,missing_price
-31942,95, Papua Pegunungan ,Telur Ayam Ras,2025,September,,missing_price
-31980,95, Papua Pegunungan ,Gula Pasir Lokal/Curah,2025,September,,missing_price
-32018,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,September,,missing_price
-32028,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,September,,missing_price
-32043,65, Kalimantan Utara ,Minyak Goreng Curah,2025,September,,missing_price
-32055,94, Papua Tengah ,Minyak Goreng Curah,2025,September,,missing_price
-32056,95, Papua Pegunungan ,Minyak Goreng Curah,2025,September,,missing_price
-32094,95, Papua Pegunungan ,Tepung Terigu Curah,2025,September,,missing_price
-32132,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,September,,missing_price
-32140,17, Bengkulu ,Jagung Tingkat Peternak,2025,September,,missing_price
-32142,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,September,,missing_price
-32144,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,September,,missing_price
-32154,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,September,,missing_price
-32157,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,September,,missing_price
-32162,75, Gorontalo ,Jagung Tingkat Peternak,2025,September,,missing_price
-32170,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,September,,missing_price
-32208,95, Papua Pegunungan ,Ikan Kembung,2025,September,,missing_price
-32246,95, Papua Pegunungan ,Ikan Tongkol,2025,September,,missing_price
-32254,17, Bengkulu ,Ikan Bandeng,2025,September,,missing_price
-32284,95, Papua Pegunungan ,Ikan Bandeng,2025,September,,missing_price
-32322,95, Papua Pegunungan ,Garam Konsumsi,2025,September,,missing_price
-32333,21, Kepulauan Riau ,Cabai Merah Besar,2025,September,,missing_price
-32352,75, Gorontalo ,Cabai Merah Besar,2025,September,,missing_price
-32360,95, Papua Pegunungan ,Cabai Merah Besar,2025,September,,missing_price
-32398,95, Papua Pegunungan ,Minyak Kita,2025,September,,missing_price
-32400,11, Aceh ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32401,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32403,14, Riau ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32405,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32406,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32407,18, Lampung ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32408,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32409,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32410,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32413,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32416,51, Bali ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32417,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32418,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32424,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32425,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32427,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32428,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32429,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32430,81, Maluku ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32431,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32432,91, Papua ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32433,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32434,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32435,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32436,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32437,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,September,,missing_price
-32443,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32444,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32445,18, Lampung ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32446,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32447,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32448,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32449,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32451,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32454,51, Bali ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32456,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32457,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32458,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32460,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32461,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32462,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32463,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32464,73, Sulawesi Selatan ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32465,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32466,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32467,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32468,81, Maluku ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32469,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32470,91, Papua ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32471,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32473,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32474,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32475,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
-32486,31, DKI Jakarta ,Beras SPHP,2025,Oktober,,missing_price
-32512,95, Papua Pegunungan ,Beras SPHP,2025,Oktober,,missing_price
-32550,95, Papua Pegunungan ,Beras Premium,2025,Oktober,,missing_price
-32588,95, Papua Pegunungan ,Beras Medium,2025,Oktober,,missing_price
-32626,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Oktober,,missing_price
-32664,95, Papua Pegunungan ,Bawang Merah,2025,Oktober,,missing_price
-32702,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,Oktober,,missing_price
-32740,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Oktober,,missing_price
-32778,95, Papua Pegunungan ,Cabai Rawit Merah,2025,Oktober,,missing_price
-32816,95, Papua Pegunungan ,Daging Sapi Murni,2025,Oktober,,missing_price
-32854,95, Papua Pegunungan ,Daging Ayam Ras,2025,Oktober,,missing_price
-32892,95, Papua Pegunungan ,Telur Ayam Ras,2025,Oktober,,missing_price
-32930,95, Papua Pegunungan ,Gula Pasir Lokal/Curah,2025,Oktober,,missing_price
-32968,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,Oktober,,missing_price
-32978,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Oktober,,missing_price
-32993,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Oktober,,missing_price
-33005,94, Papua Tengah ,Minyak Goreng Curah,2025,Oktober,,missing_price
-33006,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Oktober,,missing_price
-33044,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Oktober,,missing_price
-33082,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Oktober,,missing_price
-33090,17, Bengkulu ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33092,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33094,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33104,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33107,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33112,75, Gorontalo ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33120,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
-33158,95, Papua Pegunungan ,Ikan Kembung,2025,Oktober,,missing_price
-33196,95, Papua Pegunungan ,Ikan Tongkol,2025,Oktober,,missing_price
-33234,95, Papua Pegunungan ,Ikan Bandeng,2025,Oktober,,missing_price
-33272,95, Papua Pegunungan ,Garam Konsumsi,2025,Oktober,,missing_price
-33302,75, Gorontalo ,Cabai Merah Besar,2025,Oktober,,missing_price
-33310,95, Papua Pegunungan ,Cabai Merah Besar,2025,Oktober,,missing_price
-33348,95, Papua Pegunungan ,Minyak Kita,2025,Oktober,,missing_price
-33350,11, Aceh ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33351,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33352,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33353,14, Riau ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33355,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33356,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33357,18, Lampung ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33358,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33359,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33360,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33363,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33366,51, Bali ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33367,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33368,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33374,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33375,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33377,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33379,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33380,81, Maluku ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33381,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33382,91, Papua ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33383,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33384,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33385,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33386,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
-33393,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33394,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33395,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33396,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33397,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33398,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33401,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33406,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33408,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33410,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33411,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33412,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33415,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33416,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33417,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33418,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33419,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33420,91, Papua ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33421,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33423,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33424,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
-33425,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+98,75,Gorontalo,Kedelai Biji Kering,2021,Januari,-,missing_price
+101,82,Maluku Utara,Kedelai Biji Kering,2021,Januari,-,missing_price
+399,65,Kalimantan Utara,Minyak Goreng Kemasan,2021,Januari,-,missing_price
+506,75,Gorontalo,Kedelai Biji Kering,2021,Februari,-,missing_price
+616,13,Sumatera Barat,Cabai Rawit Merah,2021,Februari,-,missing_price
+807,65,Kalimantan Utara,Minyak Goreng Kemasan,2021,Februari,-,missing_price
+914,75,Gorontalo,Kedelai Biji Kering,2021,Maret,-,missing_price
+1024,13,Sumatera Barat,Cabai Rawit Merah,2021,Maret,-,missing_price
+1322,75,Gorontalo,Kedelai Biji Kering,2021,April,-,missing_price
+1430,11,Aceh,Cabai Rawit Merah,2021,April,-,missing_price
+1730,75,Gorontalo,Kedelai Biji Kering,2021,Mei,-,missing_price
+1840,13,Sumatera Barat,Cabai Rawit Merah,2021,Mei,-,missing_price
+2138,75,Gorontalo,Kedelai Biji Kering,2021,Juni,-,missing_price
+2248,13,Sumatera Barat,Cabai Rawit Merah,2021,Juni,-,missing_price
+2546,75,Gorontalo,Kedelai Biji Kering,2021,Juli,-,missing_price
+2654,11,Aceh,Cabai Rawit Merah,2021,Juli,-,missing_price
+2954,75,Gorontalo,Kedelai Biji Kering,2021,Agustus,-,missing_price
+3362,75,Gorontalo,Kedelai Biji Kering,2021,September,-,missing_price
+3470,11,Aceh,Cabai Rawit Merah,2021,September,-,missing_price
+3472,13,Sumatera Barat,Cabai Rawit Merah,2021,September,-,missing_price
+3770,75,Gorontalo,Kedelai Biji Kering,2021,Oktober,-,missing_price
+3880,13,Sumatera Barat,Cabai Rawit Merah,2021,Oktober,-,missing_price
+4178,75,Gorontalo,Kedelai Biji Kering,2021,November,-,missing_price
+4586,75,Gorontalo,Kedelai Biji Kering,2021,Desember,-,missing_price
+4694,11,Aceh,Cabai Rawit Merah,2021,Desember,-,missing_price
+4994,75,Gorontalo,Kedelai Biji Kering,2022,Januari,-,missing_price
+5402,75,Gorontalo,Kedelai Biji Kering,2022,Februari,-,missing_price
+5810,75,Gorontalo,Kedelai Biji Kering,2022,Maret,-,missing_price
+6218,75,Gorontalo,Kedelai Biji Kering,2022,April,-,missing_price
+6326,11,Aceh,Cabai Rawit Merah,2022,April,-,missing_price
+6626,75,Gorontalo,Kedelai Biji Kering,2022,Mei,-,missing_price
+6734,11,Aceh,Cabai Rawit Merah,2022,Mei,-,missing_price
+6932,75,Gorontalo,Minyak Goreng Kemasan,2022,Mei,-,missing_price
+7850,75,Gorontalo,Kedelai Biji Kering,2022,Agustus,-,missing_price
+7958,11,Aceh,Cabai Rawit Merah,2022,Agustus,-,missing_price
+8258,75,Gorontalo,Kedelai Biji Kering,2022,September,-,missing_price
+8366,11,Aceh,Cabai Rawit Merah,2022,September,-,missing_price
+8666,75,Gorontalo,Kedelai Biji Kering,2022,Oktober,-,missing_price
+9074,75,Gorontalo,Kedelai Biji Kering,2022,November,-,missing_price
+9890,75,Gorontalo,Kedelai Biji Kering,2023,Januari,-,missing_price
+10298,75,Gorontalo,Kedelai Biji Kering,2023,Februari,-,missing_price
+10406,11,Aceh,Cabai Rawit Merah,2023,Februari,-,missing_price
+10706,75,Gorontalo,Kedelai Biji Kering,2023,Maret,-,missing_price
+10814,11,Aceh,Cabai Rawit Merah,2023,Maret,-,missing_price
+11451,72,Sulawesi Tengah,Beras Premium,2023,Mei,-,missing_price
+11485,72,Sulawesi Tengah,Beras Medium,2023,Mei,-,missing_price
+11519,72,Sulawesi Tengah,Kedelai Biji Kering,2023,Mei,-,missing_price
+11553,72,Sulawesi Tengah,Bawang Merah,2023,Mei,-,missing_price
+11587,72,Sulawesi Tengah,Bawang Putih (Bonggol),2023,Mei,-,missing_price
+11621,72,Sulawesi Tengah,Cabai Merah Keriting,2023,Mei,-,missing_price
+11655,72,Sulawesi Tengah,Cabai Rawit Merah,2023,Mei,-,missing_price
+11689,72,Sulawesi Tengah,Daging Sapi Murni,2023,Mei,-,missing_price
+11723,72,Sulawesi Tengah,Daging Ayam Ras,2023,Mei,-,missing_price
+11757,72,Sulawesi Tengah,Telur Ayam Ras,2023,Mei,-,missing_price
+11791,72,Sulawesi Tengah,Gula Pasir Lokal/Curah,2023,Mei,-,missing_price
+11825,72,Sulawesi Tengah,Minyak Goreng Kemasan,2023,Mei,-,missing_price
+12038,11,Aceh,Cabai Rawit Merah,2023,Juni,-,missing_price
+13670,11,Aceh,Cabai Rawit Merah,2023,Oktober,-,missing_price
+14486,11,Aceh,Cabai Rawit Merah,2023,Desember,-,missing_price
+15270,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Januari,Rp0,non_positive_price
+15283,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Januari,Rp0,non_positive_price
+15295,93,Papua Selatan,Jagung Tingkat Peternak,2024,Januari,Rp0,non_positive_price
+15380,17,Bengkulu,Ikan Bandeng,2024,Januari,Rp0,non_positive_price
+15942,94,Papua Tengah,Minyak Goreng Curah,2024,Februari,-,missing_price
+16026,17,Bengkulu,Jagung Tingkat Peternak,2024,Februari,-,missing_price
+16028,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Februari,-,missing_price
+16030,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Februari,-,missing_price
+16043,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Februari,-,missing_price
+16048,75,Gorontalo,Jagung Tingkat Peternak,2024,Februari,-,missing_price
+16055,93,Papua Selatan,Jagung Tingkat Peternak,2024,Februari,-,missing_price
+16786,17,Bengkulu,Jagung Tingkat Peternak,2024,Maret,-,missing_price
+16788,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Maret,-,missing_price
+16790,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Maret,-,missing_price
+16803,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Maret,-,missing_price
+16808,75,Gorontalo,Jagung Tingkat Peternak,2024,Maret,-,missing_price
+16900,17,Bengkulu,Ikan Bandeng,2024,Maret,-,missing_price
+17463,95,Papua Pegunungan ,Minyak Goreng Curah,2024,April,-,missing_price
+17546,17,Bengkulu,Jagung Tingkat Peternak,2024,April,-,missing_price
+17548,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,April,-,missing_price
+17550,31,DKI Jakarta,Jagung Tingkat Peternak,2024,April,-,missing_price
+17568,75,Gorontalo,Jagung Tingkat Peternak,2024,April,-,missing_price
+17660,17,Bengkulu,Ikan Bandeng,2024,April,-,missing_price
+18306,17,Bengkulu,Jagung Tingkat Peternak,2024,Mei,-,missing_price
+18308,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Mei,-,missing_price
+18310,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Mei,-,missing_price
+18328,75,Gorontalo,Jagung Tingkat Peternak,2024,Mei,-,missing_price
+19102,15,Jambi,Jagung Tingkat Peternak,2024,Juni,-,missing_price
+19104,17,Bengkulu,Jagung Tingkat Peternak,2024,Juni,-,missing_price
+19106,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Juni,-,missing_price
+19108,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Juni,-,missing_price
+19121,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Juni,-,missing_price
+19126,75,Gorontalo,Jagung Tingkat Peternak,2024,Juni,-,missing_price
+19218,17,Bengkulu,Ikan Bandeng,2024,Juni,-,missing_price
+19298,31,DKI Jakarta,Beras SPHP,2024,Juli,-,missing_price
+19818,94,Papua Tengah,Minyak Goreng Curah,2024,Juli,-,missing_price
+19900,15,Jambi,Jagung Tingkat Peternak,2024,Juli,-,missing_price
+19902,17,Bengkulu,Jagung Tingkat Peternak,2024,Juli,-,missing_price
+19904,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Juli,-,missing_price
+19906,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Juli,-,missing_price
+19924,75,Gorontalo,Jagung Tingkat Peternak,2024,Juli,-,missing_price
+20016,17,Bengkulu,Ikan Bandeng,2024,Juli,-,missing_price
+20096,31,DKI Jakarta,Beras SPHP,2024,Agustus,-,missing_price
+20616,94,Papua Tengah,Minyak Goreng Curah,2024,Agustus,-,missing_price
+20698,15,Jambi,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
+20700,17,Bengkulu,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
+20702,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
+20704,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
+20722,75,Gorontalo,Jagung Tingkat Peternak,2024,Agustus,-,missing_price
+20814,17,Bengkulu,Ikan Bandeng,2024,Agustus,-,missing_price
+20894,31,DKI Jakarta,Beras SPHP,2024,September,-,missing_price
+20921,95,Papua Pegunungan,Beras SPHP,2024,September,-,missing_price
+21414,94,Papua Tengah,Minyak Goreng Curah,2024,September,-,missing_price
+21453,95,Papua Pegunungan ,Tepung Terigu Curah,2024,September,-,missing_price
+21496,15,Jambi,Jagung Tingkat Peternak,2024,September,-,missing_price
+21498,17,Bengkulu,Jagung Tingkat Peternak,2024,September,-,missing_price
+21500,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,September,-,missing_price
+21502,31,DKI Jakarta,Jagung Tingkat Peternak,2024,September,-,missing_price
+21520,75,Gorontalo,Jagung Tingkat Peternak,2024,September,-,missing_price
+21612,17,Bengkulu,Ikan Bandeng,2024,September,-,missing_price
+21692,31,DKI Jakarta,Beras SPHP,2024,Oktober,-,missing_price
+21719,95,Papua Pegunungan,Beras SPHP,2024,Oktober,-,missing_price
+21833,95,Papua Pegunungan,Kedelai Biji Kering,2024,Oktober,-,missing_price
+22213,95,Papua Pegunungan ,Minyak Goreng Curah,2024,Oktober,-,missing_price
+22251,95,Papua Pegunungan ,Tepung Terigu Curah,2024,Oktober,-,missing_price
+22294,15,Jambi,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
+22296,17,Bengkulu,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
+22298,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
+22300,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
+22313,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
+22318,75,Gorontalo,Jagung Tingkat Peternak,2024,Oktober,-,missing_price
+22410,17,Bengkulu,Ikan Bandeng,2024,Oktober,-,missing_price
+22490,31,DKI Jakarta,Beras SPHP,2024,November,-,missing_price
+22517,95,Papua Pegunungan,Beras SPHP,2024,November,-,missing_price
+22631,95,Papua Pegunungan,Kedelai Biji Kering,2024,November,-,missing_price
+23010,94,Papua Tengah,Minyak Goreng Curah,2024,November,-,missing_price
+23011,95,Papua Pegunungan ,Minyak Goreng Curah,2024,November,-,missing_price
+23049,95,Papua Pegunungan ,Tepung Terigu Curah,2024,November,-,missing_price
+23092,15,Jambi,Jagung Tingkat Peternak,2024,November,-,missing_price
+23094,17,Bengkulu,Jagung Tingkat Peternak,2024,November,-,missing_price
+23096,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,November,-,missing_price
+23098,31,DKI Jakarta,Jagung Tingkat Peternak,2024,November,-,missing_price
+23111,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,November,-,missing_price
+23116,75,Gorontalo,Jagung Tingkat Peternak,2024,November,-,missing_price
+23315,95,Papua Pegunungan,Beras SPHP,2024,Desember,-,missing_price
+23429,95,Papua Pegunungan,Kedelai Biji Kering,2024,Desember,-,missing_price
+23808,94,Papua Tengah,Minyak Goreng Curah,2024,Desember,-,missing_price
+23892,17,Bengkulu,Jagung Tingkat Peternak,2024,Desember,-,missing_price
+23894,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2024,Desember,-,missing_price
+23896,31,DKI Jakarta,Jagung Tingkat Peternak,2024,Desember,-,missing_price
+23909,65,Kalimantan Utara,Jagung Tingkat Peternak,2024,Desember,-,missing_price
+23914,75,Gorontalo,Jagung Tingkat Peternak,2024,Desember,-,missing_price
+24111,93,Papua Selatan,Beras SPHP,2025,Januari,-,missing_price
+24113,95,Papua Pegunungan,Beras SPHP,2025,Januari,-,missing_price
+24149,93,Papua Selatan,Beras Premium,2025,Januari,-,missing_price
+24187,93,Papua Selatan,Beras Medium,2025,Januari,-,missing_price
+24225,93,Papua Selatan,Kedelai Biji Kering,2025,Januari,-,missing_price
+24226,94,Papua Tengah,Kedelai Biji Kering,2025,Januari,,missing_price
+24227,95,Papua Pegunungan,Kedelai Biji Kering,2025,Januari,-,missing_price
+24263,93,Papua Selatan,Bawang Merah,2025,Januari,-,missing_price
+24301,93,Papua Selatan,Bawang Putih (Bonggol),2025,Januari,-,missing_price
+24339,93,Papua Selatan,Cabai Merah Keriting,2025,Januari,-,missing_price
+24377,93,Papua Selatan,Cabai Rawit Merah,2025,Januari,-,missing_price
+24415,93,Papua Selatan,Daging Sapi Murni,2025,Januari,-,missing_price
+24453,93,Papua Selatan,Daging Ayam Ras,2025,Januari,-,missing_price
+24491,93,Papua Selatan,Telur Ayam Ras,2025,Januari,-,missing_price
+24529,93,Papua Selatan,Gula Pasir Lokal/Curah,2025,Januari,-,missing_price
+24567,93,Papua Selatan,Minyak Goreng Kemasan,2025,Januari,-,missing_price
+24605,93,Papua Selatan,Minyak Goreng Curah,2025,Januari,-,missing_price
+24607,95,Papua Pegunungan ,Minyak Goreng Curah,2025,Januari,-,missing_price
+24643,93,Papua Selatan,Tepung Terigu Curah,2025,Januari,-,missing_price
+24645,95,Papua Pegunungan ,Tepung Terigu Curah,2025,Januari,-,missing_price
+24681,93,Papua Selatan,Tepung Terigu Kemasan,2025,Januari,-,missing_price
+24683,95,Papua Pegunungan ,Tepung Terigu Kemasan,2025,Januari,-,missing_price
+24690,17,Bengkulu,Jagung Tingkat Peternak,2025,Januari,-,missing_price
+24694,31,DKI Jakarta,Jagung Tingkat Peternak,2025,Januari,-,missing_price
+24707,65,Kalimantan Utara,Jagung Tingkat Peternak,2025,Januari,-,missing_price
+24719,93,Papua Selatan,Jagung Tingkat Peternak,2025,Januari,-,missing_price
+24721,95,Papua Pegunungan ,Jagung Tingkat Peternak,2025,Januari,-,missing_price
+24757,93,Papua Selatan,Ikan Kembung,2025,Januari,-,missing_price
+24795,93,Papua Selatan,Ikan Tongkol,2025,Januari,-,missing_price
+24804,17,Bengkulu,Ikan Bandeng,2025,Januari,-,missing_price
+24822,71,Sulawesi Utara,Ikan Bandeng,2025,Januari,-,missing_price
+24828,81,Maluku,Ikan Bandeng,2025,Januari,-,missing_price
+24833,93,Papua Selatan,Ikan Bandeng,2025,Januari,-,missing_price
+24871,93,Papua Selatan,Garam Konsumsi,2025,Januari,-,missing_price
+24909,93,Papua Selatan,Beras SPHP,2025,Februari,-,missing_price
+24911,95,Papua Pegunungan,Beras SPHP,2025,Februari,-,missing_price
+24947,93,Papua Selatan,Beras Premium,2025,Februari,-,missing_price
+24985,93,Papua Selatan,Beras Medium,2025,Februari,-,missing_price
+25023,93,Papua Selatan,Kedelai Biji Kering,2025,Februari,-,missing_price
+25025,95,Papua Pegunungan,Kedelai Biji Kering,2025,Februari,-,missing_price
+25061,93,Papua Selatan,Bawang Merah,2025,Februari,-,missing_price
+25099,93,Papua Selatan,Bawang Putih (Bonggol),2025,Februari,-,missing_price
+25137,93,Papua Selatan,Cabai Merah Keriting,2025,Februari,-,missing_price
+25140,11,Aceh,Cabai Rawit Merah,2025,Februari,-,missing_price
+25175,93,Papua Selatan,Cabai Rawit Merah,2025,Februari,-,missing_price
+25213,93,Papua Selatan,Daging Sapi Murni,2025,Februari,-,missing_price
+25251,93,Papua Selatan,Daging Ayam Ras,2025,Februari,-,missing_price
+25289,93,Papua Selatan,Telur Ayam Ras,2025,Februari,-,missing_price
+25327,93,Papua Selatan,Gula Pasir Lokal/Curah,2025,Februari,-,missing_price
+25365,93,Papua Selatan,Minyak Goreng Kemasan,2025,Februari,-,missing_price
+25391,65,Kalimantan Utara,Minyak Goreng Curah,2025,Februari,-,missing_price
+25403,93,Papua Selatan,Minyak Goreng Curah,2025,Februari,-,missing_price
+25404,94,Papua Tengah,Minyak Goreng Curah,2025,Februari,-,missing_price
+25405,95,Papua Pegunungan ,Minyak Goreng Curah,2025,Februari,-,missing_price
+25441,93,Papua Selatan,Tepung Terigu Curah,2025,Februari,-,missing_price
+25479,93,Papua Selatan,Tepung Terigu Kemasan,2025,Februari,-,missing_price
+25488,17,Bengkulu,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25490,19,Kepulauan Bangka Belitung,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25492,31,DKI Jakarta,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25505,65,Kalimantan Utara,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25510,75,Gorontalo,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25517,93,Papua Selatan,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25519,95,Papua Pegunungan ,Jagung Tingkat Peternak,2025,Februari,-,missing_price
+25555,93,Papua Selatan,Ikan Kembung,2025,Februari,-,missing_price
+25593,93,Papua Selatan,Ikan Tongkol,2025,Februari,-,missing_price
+25602,17,Bengkulu,Ikan Bandeng,2025,Februari,-,missing_price
+25631,93,Papua Selatan,Ikan Bandeng,2025,Februari,-,missing_price
+25669,93,Papua Selatan,Garam Konsumsi,2025,Februari,-,missing_price
+25681,21,Kepulauan Riau,Cabai Merah Besar,2025,Februari,-,missing_price
+25700,75,Gorontalo,Cabai Merah Besar,2025,Februari,-,missing_price
+25707,93,Papua Selatan,Cabai Merah Besar,2025,Februari,-,missing_price
+25745,93,Papua Selatan,Minyak Kita,2025,Februari,-,missing_price
+25753,16,Sumatera Selatan,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25754,17,Bengkulu,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25755,18,Lampung,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25756,19,Kepulauan Bangka Belitung,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25757,21,Kepulauan Riau,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25758,31,DKI Jakarta,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25761,34,DI Yogyakarta,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25762,35,Jawa Timur,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25764,51,Bali,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25765,52,Nusa Tenggara Barat,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25766,53,Nusa Tenggara Timur,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25770,64,Kalimantan Timur,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25772,71,Sulawesi Utara,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25773,72,Sulawesi Tengah,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25775,74,Sulawesi Tenggara,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25776,75,Gorontalo,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25777,76,Sulawesi Barat,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25778,81,Maluku,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25779,82,Maluku Utara,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25780,92,Papua Barat,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25781,91,Papua,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25782,96,Papua Barat Daya,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25783,93,Papua Selatan,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25784,94,Papua Tengah,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25785,95,Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Februari,-,missing_price
+25791,16,Sumatera Selatan,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25793,18,Lampung,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25794,19,Kepulauan Bangka Belitung,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25795,21,Kepulauan Riau,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25796,31,DKI Jakarta,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25797,32,Jawa Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25799,34,DI Yogyakarta,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25800,35,Jawa Timur,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25802,51,Bali,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25803,52,Nusa Tenggara Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25804,53,Nusa Tenggara Timur,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25805,61,Kalimantan Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25806,62,Kalimantan Tengah,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25808,64,Kalimantan Timur,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25809,65,Kalimantan Utara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25810,71,Sulawesi Utara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25811,72,Sulawesi Tengah,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25813,74,Sulawesi Tenggara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25814,75,Gorontalo,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25815,76,Sulawesi Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25816,81,Maluku,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25817,82,Maluku Utara,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25818,92,Papua Barat,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25819,91,Papua,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25820,96,Papua Barat Daya,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25821,93,Papua Selatan,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25822,94,Papua Tengah,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25823,95,Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Februari,-,missing_price
+25858,93, Papua Selatan ,Beras SPHP,2025,Maret,-,missing_price
+25859,94, Papua Tengah ,Beras SPHP,2025,Maret,-,missing_price
+25860,95, Papua Pegunungan ,Beras SPHP,2025,Maret,-,missing_price
+25896,93, Papua Selatan ,Beras Premium,2025,Maret,-,missing_price
+25898,95, Papua Pegunungan ,Beras Premium,2025,Maret,-,missing_price
+25934,93, Papua Selatan ,Beras Medium,2025,Maret,-,missing_price
+25972,93, Papua Selatan ,Kedelai Biji Kering,2025,Maret,-,missing_price
+25974,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Maret,-,missing_price
+26010,93, Papua Selatan ,Bawang Merah,2025,Maret,-,missing_price
+26012,95, Papua Pegunungan ,Bawang Merah,2025,Maret,-,missing_price
+26048,93, Papua Selatan ,Bawang Putih (Bonggol),2025,Maret,-,missing_price
+26050,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,Maret,-,missing_price
+26086,93, Papua Selatan ,Cabai Merah Keriting,2025,Maret,-,missing_price
+26124,93, Papua Selatan ,Cabai Rawit Merah,2025,Maret,-,missing_price
+26162,93, Papua Selatan ,Daging Sapi Murni,2025,Maret,-,missing_price
+26200,93, Papua Selatan ,Daging Ayam Ras,2025,Maret,-,missing_price
+26238,93, Papua Selatan ,Telur Ayam Ras,2025,Maret,-,missing_price
+26276,93, Papua Selatan ,Gula Pasir Lokal/Curah,2025,Maret,-,missing_price
+26314,93, Papua Selatan ,Minyak Goreng Kemasan,2025,Maret,-,missing_price
+26341,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Maret,-,missing_price
+26352,93, Papua Selatan ,Minyak Goreng Curah,2025,Maret,-,missing_price
+26353,94, Papua Tengah ,Minyak Goreng Curah,2025,Maret,-,missing_price
+26354,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Maret,-,missing_price
+26390,93, Papua Selatan ,Tepung Terigu Curah,2025,Maret,-,missing_price
+26392,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Maret,-,missing_price
+26428,93, Papua Selatan ,Tepung Terigu Kemasan,2025,Maret,-,missing_price
+26430,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Maret,-,missing_price
+26438,17, Bengkulu ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26440,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26442,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26455,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26460,75, Gorontalo ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26466,93, Papua Selatan ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26468,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Maret,-,missing_price
+26504,93, Papua Selatan ,Ikan Kembung,2025,Maret,-,missing_price
+26542,93, Papua Selatan ,Ikan Tongkol,2025,Maret,-,missing_price
+26552,17, Bengkulu ,Ikan Bandeng,2025,Maret,-,missing_price
+26580,93, Papua Selatan ,Ikan Bandeng,2025,Maret,-,missing_price
+26618,93, Papua Selatan ,Garam Konsumsi,2025,Maret,-,missing_price
+26631,21, Kepulauan Riau ,Cabai Merah Besar,2025,Maret,-,missing_price
+26650,75, Gorontalo ,Cabai Merah Besar,2025,Maret,-,missing_price
+26656,93, Papua Selatan ,Cabai Merah Besar,2025,Maret,-,missing_price
+26658,95, Papua Pegunungan ,Cabai Merah Besar,2025,Maret,-,missing_price
+26694,93, Papua Selatan ,Minyak Kita,2025,Maret,-,missing_price
+26696,95, Papua Pegunungan ,Minyak Kita,2025,Maret,-,missing_price
+26698,11, Aceh ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26700,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26701,14, Riau ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26703,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26704,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26705,18, Lampung ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26706,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26707,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26708,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26711,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26712,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26714,51, Bali ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26715,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26716,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26722,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26723,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26725,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26726,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26727,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26728,81, Maluku ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26729,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26730,91, Papua ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26731,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26732,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26733,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26734,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26735,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Maret,-,missing_price
+26739,14, Riau ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26741,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26742,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26743,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26744,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26745,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26746,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26747,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26749,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26750,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26752,51, Bali ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26754,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26755,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26756,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26758,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26759,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26760,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26761,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26762,73, Sulawesi Selatan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26763,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26764,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26765,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26766,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26767,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26768,91, Papua ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26769,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26770,93, Papua Selatan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26771,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26772,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26773,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Maret,-,missing_price
+26807,92, Papua Barat ,Beras SPHP,2025,April,,missing_price
+26810,95, Papua Pegunungan ,Beras SPHP,2025,April,,missing_price
+26924,95, Papua Pegunungan ,Kedelai Biji Kering,2025,April,,missing_price
+27276,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,April,,missing_price
+27291,65, Kalimantan Utara ,Minyak Goreng Curah,2025,April,,missing_price
+27303,94, Papua Tengah ,Minyak Goreng Curah,2025,April,,missing_price
+27388,17, Bengkulu ,Jagung Tingkat Peternak,2025,April,,missing_price
+27390,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,April,,missing_price
+27392,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,April,,missing_price
+27402,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,April,,missing_price
+27405,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,April,,missing_price
+27410,75, Gorontalo ,Jagung Tingkat Peternak,2025,April,,missing_price
+27416,93, Papua Selatan ,Jagung Tingkat Peternak,2025,April,,missing_price
+27418,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,April,,missing_price
+27581,21, Kepulauan Riau ,Cabai Merah Besar,2025,April,,missing_price
+27600,75, Gorontalo ,Cabai Merah Besar,2025,April,,missing_price
+27646,95, Papua Pegunungan ,Minyak Kita,2025,April,,missing_price
+27648,11, Aceh ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27650,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27651,14, Riau ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27653,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27654,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27655,18, Lampung ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27656,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27657,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27658,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27661,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27662,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27664,51, Bali ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27665,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27666,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27672,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27673,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27675,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27676,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27677,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27678,81, Maluku ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27679,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27680,91, Papua ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27681,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27682,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27683,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27684,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27685,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,April,,missing_price
+27689,14, Riau ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27691,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27692,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27693,18, Lampung ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27694,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27695,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27696,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27697,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27699,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27700,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27702,51, Bali ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27703,52, Nusa Tenggara Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27704,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27705,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27706,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27708,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27709,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27710,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27711,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27713,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27714,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27715,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27716,81, Maluku ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27717,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27718,91, Papua ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27719,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27720,93, Papua Selatan ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27721,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27722,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27723,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,April,,missing_price
+27753,76, Sulawesi Barat ,Beras SPHP,2025,Mei,,missing_price
+27757,92, Papua Barat ,Beras SPHP,2025,Mei,,missing_price
+27760,95, Papua Pegunungan ,Beras SPHP,2025,Mei,,missing_price
+27874,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Mei,,missing_price
+27988,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Mei,,missing_price
+28241,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Mei,,missing_price
+28253,94, Papua Tengah ,Minyak Goreng Curah,2025,Mei,,missing_price
+28330,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Mei,,missing_price
+28338,17, Bengkulu ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28340,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28342,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28352,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28355,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28360,75, Gorontalo ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28368,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Mei,,missing_price
+28452,17, Bengkulu ,Ikan Bandeng,2025,Mei,,missing_price
+28531,21, Kepulauan Riau ,Cabai Merah Besar,2025,Mei,,missing_price
+28550,75, Gorontalo ,Cabai Merah Besar,2025,Mei,,missing_price
+28596,95, Papua Pegunungan ,Minyak Kita,2025,Mei,,missing_price
+28598,11, Aceh ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28600,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28601,14, Riau ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28603,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28604,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28605,18, Lampung ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28606,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28607,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28608,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28611,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28612,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28614,51, Bali ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28615,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28616,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28622,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28623,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28626,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28627,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28628,81, Maluku ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28629,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28630,91, Papua ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28631,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28632,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28633,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28634,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28635,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Mei,,missing_price
+28639,14, Riau ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28641,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28642,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28643,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28644,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28645,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28646,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28647,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28649,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28650,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28652,51, Bali ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28654,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28655,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28656,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28658,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28659,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28660,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28661,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28662,73, Sulawesi Selatan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28664,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28665,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28666,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28667,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28668,91, Papua ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28669,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28670,93, Papua Selatan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28671,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28672,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28673,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Mei,,missing_price
+28682,19, Kepulauan Bangka Belitung ,Beras SPHP,2025,Juni,,missing_price
+28691,52, Nusa Tenggara Barat ,Beras SPHP,2025,Juni,,missing_price
+28697,65, Kalimantan Utara ,Beras SPHP,2025,Juni,,missing_price
+28699,72, Sulawesi Tengah ,Beras SPHP,2025,Juni,,missing_price
+28707,92, Papua Barat ,Beras SPHP,2025,Juni,,missing_price
+28709,94, Papua Tengah ,Beras SPHP,2025,Juni,,missing_price
+28710,95, Papua Pegunungan ,Beras SPHP,2025,Juni,,missing_price
+28824,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Juni,,missing_price
+28938,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Juni,,missing_price
+29166,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,Juni,,missing_price
+29176,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Juni,,missing_price
+29191,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Juni,,missing_price
+29203,94, Papua Tengah ,Minyak Goreng Curah,2025,Juni,,missing_price
+29242,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Juni,,missing_price
+29288,17, Bengkulu ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29290,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29292,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29302,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29305,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29310,75, Gorontalo ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29318,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Juni,,missing_price
+29402,17, Bengkulu ,Ikan Bandeng,2025,Juni,,missing_price
+29481,21, Kepulauan Riau ,Cabai Merah Besar,2025,Juni,,missing_price
+29500,75, Gorontalo ,Cabai Merah Besar,2025,Juni,,missing_price
+29546,95, Papua Pegunungan ,Minyak Kita,2025,Juni,,missing_price
+29548,11, Aceh ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29549,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29550,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29551,14, Riau ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29553,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29554,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29555,18, Lampung ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29556,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29557,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29558,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29561,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29562,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29564,51, Bali ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29565,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29566,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29572,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29573,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29575,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29576,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29577,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29578,81, Maluku ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29579,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29580,91, Papua ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29581,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29582,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29583,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29584,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29585,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Juni,,missing_price
+29591,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29593,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29594,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29595,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29596,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29597,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29599,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29600,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29602,51, Bali ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29604,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29605,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29606,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29608,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29609,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29610,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29611,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29613,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29614,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29615,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29616,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29617,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29618,91, Papua ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29619,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29621,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29622,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29623,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Juni,,missing_price
+29634,31, DKI Jakarta ,Beras SPHP,2025,Juli,,missing_price
+29659,94, Papua Tengah ,Beras SPHP,2025,Juli,,missing_price
+29660,95, Papua Pegunungan ,Beras SPHP,2025,Juli,,missing_price
+29774,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Juli,,missing_price
+29888,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Juli,,missing_price
+30126,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Juli,,missing_price
+30141,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Juli,,missing_price
+30153,94, Papua Tengah ,Minyak Goreng Curah,2025,Juli,,missing_price
+30154,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Juli,,missing_price
+30192,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Juli,,missing_price
+30238,17, Bengkulu ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30240,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30242,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30252,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30255,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30260,75, Gorontalo ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30268,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Juli,,missing_price
+30344,95, Papua Pegunungan ,Ikan Tongkol,2025,Juli,,missing_price
+30352,17, Bengkulu ,Ikan Bandeng,2025,Juli,,missing_price
+30431,21, Kepulauan Riau ,Cabai Merah Besar,2025,Juli,,missing_price
+30450,75, Gorontalo ,Cabai Merah Besar,2025,Juli,,missing_price
+30496,95, Papua Pegunungan ,Minyak Kita,2025,Juli,,missing_price
+30498,11, Aceh ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30499,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30500,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30501,14, Riau ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30503,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30504,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30505,18, Lampung ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30506,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30507,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30508,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30511,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30512,35, Jawa Timur ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30514,51, Bali ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30515,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30516,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30522,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30523,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30525,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30526,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30527,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30528,81, Maluku ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30529,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30530,91, Papua ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30531,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30532,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30533,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30534,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30535,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Juli,,missing_price
+30541,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30542,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30543,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30544,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30545,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30546,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30547,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30549,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30550,35, Jawa Timur ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30552,51, Bali ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30553,52, Nusa Tenggara Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30554,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30555,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30556,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30558,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30559,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30560,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30561,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30563,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30564,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30565,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30566,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30567,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30568,91, Papua ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30569,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30571,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30572,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30573,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Juli,,missing_price
+30584,31, DKI Jakarta ,Beras SPHP,2025,Agustus,,missing_price
+30610,95, Papua Pegunungan ,Beras SPHP,2025,Agustus,,missing_price
+30648,95, Papua Pegunungan ,Beras Premium,2025,Agustus,,missing_price
+30686,95, Papua Pegunungan ,Beras Medium,2025,Agustus,,missing_price
+30724,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Agustus,,missing_price
+30762,95, Papua Pegunungan ,Bawang Merah,2025,Agustus,,missing_price
+30800,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,Agustus,,missing_price
+30838,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Agustus,,missing_price
+30876,95, Papua Pegunungan ,Cabai Rawit Merah,2025,Agustus,,missing_price
+30914,95, Papua Pegunungan ,Daging Sapi Murni,2025,Agustus,,missing_price
+30952,95, Papua Pegunungan ,Daging Ayam Ras,2025,Agustus,,missing_price
+30990,95, Papua Pegunungan ,Telur Ayam Ras,2025,Agustus,,missing_price
+31028,95, Papua Pegunungan ,Gula Pasir Lokal/Curah,2025,Agustus,,missing_price
+31066,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,Agustus,,missing_price
+31076,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Agustus,,missing_price
+31091,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Agustus,,missing_price
+31103,94, Papua Tengah ,Minyak Goreng Curah,2025,Agustus,,missing_price
+31104,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Agustus,,missing_price
+31142,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Agustus,,missing_price
+31180,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Agustus,,missing_price
+31188,17, Bengkulu ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31190,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31192,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31202,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31205,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31210,75, Gorontalo ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31218,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Agustus,,missing_price
+31256,95, Papua Pegunungan ,Ikan Kembung,2025,Agustus,,missing_price
+31294,95, Papua Pegunungan ,Ikan Tongkol,2025,Agustus,,missing_price
+31302,17, Bengkulu ,Ikan Bandeng,2025,Agustus,,missing_price
+31332,95, Papua Pegunungan ,Ikan Bandeng,2025,Agustus,,missing_price
+31370,95, Papua Pegunungan ,Garam Konsumsi,2025,Agustus,,missing_price
+31381,21, Kepulauan Riau ,Cabai Merah Besar,2025,Agustus,,missing_price
+31400,75, Gorontalo ,Cabai Merah Besar,2025,Agustus,,missing_price
+31408,95, Papua Pegunungan ,Cabai Merah Besar,2025,Agustus,,missing_price
+31446,95, Papua Pegunungan ,Minyak Kita,2025,Agustus,,missing_price
+31448,11, Aceh ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31449,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31450,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31451,14, Riau ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31453,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31454,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31455,18, Lampung ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31456,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31457,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31458,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31461,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31464,51, Bali ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31465,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31466,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31472,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31473,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31475,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31476,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31477,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31478,81, Maluku ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31479,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31480,91, Papua ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31481,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31482,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31483,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31484,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31485,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,Agustus,,missing_price
+31491,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31492,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31493,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31494,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31495,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31496,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31499,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31502,51, Bali ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31503,52, Nusa Tenggara Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31504,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31505,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31506,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31508,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31509,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31510,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31511,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31513,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31514,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31515,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31516,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31517,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31518,91, Papua ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31519,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31521,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31522,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31523,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Agustus,,missing_price
+31534,31, DKI Jakarta ,Beras SPHP,2025,September,,missing_price
+31560,95, Papua Pegunungan ,Beras SPHP,2025,September,,missing_price
+31598,95, Papua Pegunungan ,Beras Premium,2025,September,,missing_price
+31636,95, Papua Pegunungan ,Beras Medium,2025,September,,missing_price
+31674,95, Papua Pegunungan ,Kedelai Biji Kering,2025,September,,missing_price
+31712,95, Papua Pegunungan ,Bawang Merah,2025,September,,missing_price
+31750,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,September,,missing_price
+31788,95, Papua Pegunungan ,Cabai Merah Keriting,2025,September,,missing_price
+31826,95, Papua Pegunungan ,Cabai Rawit Merah,2025,September,,missing_price
+31864,95, Papua Pegunungan ,Daging Sapi Murni,2025,September,,missing_price
+31902,95, Papua Pegunungan ,Daging Ayam Ras,2025,September,,missing_price
+31940,95, Papua Pegunungan ,Telur Ayam Ras,2025,September,,missing_price
+31978,95, Papua Pegunungan ,Gula Pasir Lokal/Curah,2025,September,,missing_price
+32016,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,September,,missing_price
+32026,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,September,,missing_price
+32041,65, Kalimantan Utara ,Minyak Goreng Curah,2025,September,,missing_price
+32053,94, Papua Tengah ,Minyak Goreng Curah,2025,September,,missing_price
+32054,95, Papua Pegunungan ,Minyak Goreng Curah,2025,September,,missing_price
+32092,95, Papua Pegunungan ,Tepung Terigu Curah,2025,September,,missing_price
+32130,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,September,,missing_price
+32138,17, Bengkulu ,Jagung Tingkat Peternak,2025,September,,missing_price
+32140,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,September,,missing_price
+32142,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,September,,missing_price
+32152,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,September,,missing_price
+32155,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,September,,missing_price
+32160,75, Gorontalo ,Jagung Tingkat Peternak,2025,September,,missing_price
+32168,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,September,,missing_price
+32206,95, Papua Pegunungan ,Ikan Kembung,2025,September,,missing_price
+32244,95, Papua Pegunungan ,Ikan Tongkol,2025,September,,missing_price
+32252,17, Bengkulu ,Ikan Bandeng,2025,September,,missing_price
+32282,95, Papua Pegunungan ,Ikan Bandeng,2025,September,,missing_price
+32320,95, Papua Pegunungan ,Garam Konsumsi,2025,September,,missing_price
+32331,21, Kepulauan Riau ,Cabai Merah Besar,2025,September,,missing_price
+32350,75, Gorontalo ,Cabai Merah Besar,2025,September,,missing_price
+32358,95, Papua Pegunungan ,Cabai Merah Besar,2025,September,,missing_price
+32396,95, Papua Pegunungan ,Minyak Kita,2025,September,,missing_price
+32398,11, Aceh ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32399,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32401,14, Riau ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32403,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32404,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32405,18, Lampung ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32406,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32407,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32408,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32411,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32414,51, Bali ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32415,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32416,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32422,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32423,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32425,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32426,75, Gorontalo ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32427,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32428,81, Maluku ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32429,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32430,91, Papua ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32431,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32432,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32433,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32434,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32435,96, Papua Barat Daya ,Daging Kerbau Beku (Impor),2025,September,,missing_price
+32441,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32442,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32443,18, Lampung ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32444,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32445,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32446,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32447,32, Jawa Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32449,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32452,51, Bali ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32454,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32455,61, Kalimantan Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32456,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32458,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32459,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32460,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32461,72, Sulawesi Tengah ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32462,73, Sulawesi Selatan ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32463,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32464,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32465,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32466,81, Maluku ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32467,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32468,91, Papua ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32469,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32471,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32472,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32473,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,September,,missing_price
+32484,31, DKI Jakarta ,Beras SPHP,2025,Oktober,,missing_price
+32510,95, Papua Pegunungan ,Beras SPHP,2025,Oktober,,missing_price
+32548,95, Papua Pegunungan ,Beras Premium,2025,Oktober,,missing_price
+32586,95, Papua Pegunungan ,Beras Medium,2025,Oktober,,missing_price
+32624,95, Papua Pegunungan ,Kedelai Biji Kering,2025,Oktober,,missing_price
+32662,95, Papua Pegunungan ,Bawang Merah,2025,Oktober,,missing_price
+32700,95, Papua Pegunungan ,Bawang Putih (Bonggol),2025,Oktober,,missing_price
+32738,95, Papua Pegunungan ,Cabai Merah Keriting,2025,Oktober,,missing_price
+32776,95, Papua Pegunungan ,Cabai Rawit Merah,2025,Oktober,,missing_price
+32814,95, Papua Pegunungan ,Daging Sapi Murni,2025,Oktober,,missing_price
+32852,95, Papua Pegunungan ,Daging Ayam Ras,2025,Oktober,,missing_price
+32890,95, Papua Pegunungan ,Telur Ayam Ras,2025,Oktober,,missing_price
+32928,95, Papua Pegunungan ,Gula Pasir Lokal/Curah,2025,Oktober,,missing_price
+32966,95, Papua Pegunungan ,Minyak Goreng Kemasan,2025,Oktober,,missing_price
+32976,19, Kepulauan Bangka Belitung ,Minyak Goreng Curah,2025,Oktober,,missing_price
+32991,65, Kalimantan Utara ,Minyak Goreng Curah,2025,Oktober,,missing_price
+33003,94, Papua Tengah ,Minyak Goreng Curah,2025,Oktober,,missing_price
+33004,95, Papua Pegunungan ,Minyak Goreng Curah,2025,Oktober,,missing_price
+33042,95, Papua Pegunungan ,Tepung Terigu Curah,2025,Oktober,,missing_price
+33080,95, Papua Pegunungan ,Tepung Terigu Kemasan,2025,Oktober,,missing_price
+33088,17, Bengkulu ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33090,19, Kepulauan Bangka Belitung ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33092,31, DKI Jakarta ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33102,62, Kalimantan Tengah ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33105,65, Kalimantan Utara ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33110,75, Gorontalo ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33118,95, Papua Pegunungan ,Jagung Tingkat Peternak,2025,Oktober,,missing_price
+33156,95, Papua Pegunungan ,Ikan Kembung,2025,Oktober,,missing_price
+33194,95, Papua Pegunungan ,Ikan Tongkol,2025,Oktober,,missing_price
+33232,95, Papua Pegunungan ,Ikan Bandeng,2025,Oktober,,missing_price
+33270,95, Papua Pegunungan ,Garam Konsumsi,2025,Oktober,,missing_price
+33300,75, Gorontalo ,Cabai Merah Besar,2025,Oktober,,missing_price
+33308,95, Papua Pegunungan ,Cabai Merah Besar,2025,Oktober,,missing_price
+33346,95, Papua Pegunungan ,Minyak Kita,2025,Oktober,,missing_price
+33348,11, Aceh ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33349,12, Sumatera Utara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33350,13, Sumatera Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33351,14, Riau ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33353,16, Sumatera Selatan ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33354,17, Bengkulu ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33355,18, Lampung ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33356,19, Kepulauan Bangka Belitung ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33357,21, Kepulauan Riau ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33358,31, DKI Jakarta ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33361,34, D.I Yogyakarta ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33364,51, Bali ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33365,52, Nusa Tenggara Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33366,53, Nusa Tenggara Timur ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33372,71, Sulawesi Utara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33373,72, Sulawesi Tengah ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33375,74, Sulawesi Tenggara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33377,76, Sulawesi Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33378,81, Maluku ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33379,82, Maluku Utara ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33380,91, Papua ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33381,92, Papua Barat ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33382,93, Papua Selatan ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33383,94, Papua Tengah ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33384,95, Papua Pegunungan ,Daging Kerbau Beku (Impor),2025,Oktober,,missing_price
+33391,16, Sumatera Selatan ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33392,17, Bengkulu ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33393,18, Lampung ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33394,19, Kepulauan Bangka Belitung ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33395,21, Kepulauan Riau ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33396,31, DKI Jakarta ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33399,34, D.I Yogyakarta ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33404,53, Nusa Tenggara Timur ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33406,62, Kalimantan Tengah ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33408,64, Kalimantan Timur ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33409,65, Kalimantan Utara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33410,71, Sulawesi Utara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33413,74, Sulawesi Tenggara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33414,75, Gorontalo ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33415,76, Sulawesi Barat ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33416,81, Maluku ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33417,82, Maluku Utara ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33418,91, Papua ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33419,92, Papua Barat ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33421,94, Papua Tengah ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33422,95, Papua Pegunungan ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price
+33423,96, Papua Barat Daya ,Daging Kerbau Segar (Lokal),2025,Oktober,,missing_price

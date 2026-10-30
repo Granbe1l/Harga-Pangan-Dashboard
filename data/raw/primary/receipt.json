@@ -1,0 +1,44 @@
+{
+  "dataset_kind": "primary_export_user_supplied",
+  "publisher": "Badan Pangan Nasional",
+  "publication_url": "https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi",
+  "acquisition_method": "File CSV dan XLSX diberikan pengguna sebagai unduhan dari publikasi primer tersebut",
+  "imported_at_utc": "2026-10-30T10:22:50.857377+00:00",
+  "files": [
+    {
+      "format": "CSV",
+      "original_filename": "Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi.csv",
+      "path": "data/raw/primary/harga_pangan.csv",
+      "sha256": "561054df5d8b36e7d75d92715fe037031a7e9c7c9f513fd178322cce491845d1",
+      "bytes": 1959872
+    },
+    {
+      "format": "XLSX",
+      "original_filename": "Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi.xlsx",
+      "path": "data/raw/primary/harga_pangan.xlsx",
+      "sha256": "d3e3575de33c01474ee7ae71faf10d4ee00bd51005aa72746841f67ef4e958c6",
+      "bytes": 1008310
+    }
+  ],
+  "active_file": "data/raw/primary/harga_pangan.csv",
+  "csv_xlsx_equal_after_text_normalization": true,
+  "compared_rows": 33422,
+  "compared_columns": [
+    "Kode Provinsi",
+    "Nama Provinsi",
+    "Komoditas",
+    "Tahun",
+    "Bulan",
+    "Harga"
+  ],
+  "direct_website_download_verified": false,
+  "unit_column_present": false,
+  "unit_definitions_verified": false,
+  "license_verified": false,
+  "comparison_with_previous_mirror": {
+    "processed_observations_equal": true,
+    "changed_price_observations": 0,
+    "previous_commit": "d087f097f6507cfcd2304f1b57f63c3ff20b33e9"
+  },
+  "scope": "Penerimaan file dan kecocokan dua format diperiksa; sumber unduhan berdasarkan keterangan pengguna, bukan akses langsung server BPN."
+}

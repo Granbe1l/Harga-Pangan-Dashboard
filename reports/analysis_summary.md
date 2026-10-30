@@ -9,11 +9,11 @@ Ada **2 komoditas** dengan kenaikan MoM ≥ 10%. Ambang ini adalah parameter ana
 
 ## Kenaikan harga bulanan yang teramati
 
-- **Cabai Merah Keriting**: naik **11.16%**, dari Rp50,999 menjadi Rp56,690 per kg.
-- **Cabai Merah Besar**: naik **10.52%**, dari Rp51,727 menjadi Rp57,169 per kg.
-- **Telur Ayam Ras**: naik **5.95%**, dari Rp28,418 menjadi Rp30,109 per kg.
-- **Bawang Merah**: naik **2.60%**, dari Rp37,552 menjadi Rp38,527 per kg.
-- **Jagung Tingkat Peternak**: naik **2.13%**, dari Rp5,971 menjadi Rp6,098 per kg.
+- **Cabai Merah Keriting**: naik **11.16%**, dari Rp50,999 menjadi Rp56,690 per kg (satuan asumsi; tidak tercantum pada ekspor).
+- **Cabai Merah Besar**: naik **10.52%**, dari Rp51,727 menjadi Rp57,169 per kg (satuan asumsi; tidak tercantum pada ekspor).
+- **Telur Ayam Ras**: naik **5.95%**, dari Rp28,418 menjadi Rp30,109 per kg (satuan asumsi; tidak tercantum pada ekspor).
+- **Bawang Merah**: naik **2.60%**, dari Rp37,552 menjadi Rp38,527 per kg (satuan asumsi; tidak tercantum pada ekspor).
+- **Jagung Tingkat Peternak**: naik **2.13%**, dari Rp5,971 menjadi Rp6,098 per kg (satuan asumsi; tidak tercantum pada ekspor).
 
 ## Variasi harga dalam jendela analisis
 
@@ -32,7 +32,7 @@ Keranjang contoh lengkap pada 22 dari 58 bulan; perubahan bulanan lengkap pada 2
 Komoditas dengan kenaikan atau variasi tinggi dapat diprioritaskan untuk evaluasi anggaran. Uji skenario kuantitas dan harga di simulator sebelum menyusun rekomendasi pembelian. Data ini belum cukup untuk membuktikan penghematan, menentukan pemasok termurah, atau memprediksi kenaikan berikutnya.
 
 - Snapshot historis harga konsumen bulanan; bukan harga real-time, transaksi, atau penawaran pemasok.
-- CSV diperoleh dari salinan pihak ketiga yang mencantumkan Badan Pangan Nasional sebagai sumber asal. Kesesuaian dengan versi terbaru sumber asal belum diverifikasi secara independen.
+- Dataset aktif berasal dari ekspor CSV/XLSX BPN yang diberikan pengguna. Kecocokan kedua format diperiksa; pengambilan langsung dari server dan keaslian independen belum diverifikasi.
 - Satuan kg/liter merupakan asumsi kerja per komoditas; CSV asli tidak menyediakan kolom satuan. Verifikasi sebelum penggunaan operasional.
 - MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama tahun sebelumnya. Bulan kosong tidak dilewati dan tidak diimputasi.
 - Peringkat variasi tingkat harga memakai bulan pengamatan bersama untuk seri yang lolos cakupan; perubahan bulanan memakai pasangan bulan kalender yang sama. Tabel penyaringan bukan peringkat akhir.

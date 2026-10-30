@@ -219,3 +219,17 @@ def matched_fluctuation(df, start, end, minimum_coverage=80):
                 "monthly_pairs":len(movements)})
         result = pd.DataFrame(rows).sort_values("monthly_abs_pct",ascending=False,na_position="last")
     return {"summary":result,"screening":screening,"common_months":list(common),"monthly_months":list(monthly_dates),"eligible_count":len(eligible)}
+
+
+def monthly_findings(changes, province, month, threshold=10):
+    """Observed price movements; no quantities or assumed kg/litre units required."""
+    if not np.isfinite(threshold) or threshold < 0:
+        raise ValueError("Ambang kenaikan harus nonnegatif dan terbatas.")
+    snapshot=changes[(changes.province==province)&(changes.date==_month(month))].copy()
+    comparable=snapshot.dropna(subset=["mom_pct"]).copy()
+    alerts=comparable[comparable.mom_pct>=threshold].sort_values("mom_pct",ascending=False)
+    rises=comparable[comparable.mom_pct>0].sort_values("mom_pct",ascending=False)
+    return {"snapshot":snapshot,"comparable":comparable,"alerts":alerts,"rises":rises,
+        "universe":changes.commodity.nunique(),"available":len(snapshot),"comparable_count":len(comparable),
+        "alert_count":len(alerts) if len(comparable) else None,
+        "top_rise":rises.iloc[0].to_dict() if len(rises) else None}

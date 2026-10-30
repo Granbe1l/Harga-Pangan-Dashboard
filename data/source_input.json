@@ -1,0 +1,5 @@
+{
+  "dataset_kind": "primary_export_user_supplied",
+  "raw_path": "data/raw/primary/harga_pangan.csv",
+  "receipt_path": "data/raw/primary/receipt.json"
+}

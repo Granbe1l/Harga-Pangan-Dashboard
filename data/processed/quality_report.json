@@ -424,7 +424,7 @@
   "geography_note": "Skema wilayah Papua pada snapshot berubah mulai 2024. Seri sebelum perubahan dipisahkan; bukan rekonstruksi batas administratif.",
   "province_note": "Jumlah seri wilayah mencakup dua seri Papua historis terpisah; bukan jumlah provinsi Indonesia pada satu waktu.",
   "normalization": [
-    "Buang dua baris judul CSV; trim/collapse whitespace",
+    "Baca header CSV aktual; trim/collapse whitespace",
     "Harga rupiah bulat: pemisah ribuan koma/titik dihapus",
     "DI Yogyakarta diseragamkan",
     "Papua/Papua Barat sebelum 2024 dipisahkan dari seri pascaperubahan",

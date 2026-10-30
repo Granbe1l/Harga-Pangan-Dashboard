@@ -1,5 +1,8 @@
 """Exercise the complete recruiter journey, editable scenarios, and empty states."""
 from pathlib import Path
+import json
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import unittest
 import pandas as pd
 from streamlit.testing.v1 import AppTest
@@ -33,35 +36,37 @@ class DashboardTests(unittest.TestCase):
     def test_opening_metrics_follow_one_historical_budget_story(self):
         app=self.open_app();self.good(app)
         self.assertEqual(app.title[0].value,TITLE)
-        self.assertEqual([m.value for m in app.metric[:3]],['Rp 1.118.460','Rp 10.687','6 / 6 bahan'])
-        self.assertEqual(app.metric[1].label,'Perubahan estimasi vs bulan lalu')
+        self.assertEqual([m.value for m in app.metric[:3]],['25 / 25','2','+11,16%'])
+        self.assertEqual(app.metric[3].value,'Rp 1.118.460')
+        self.assertEqual(app.metric[1].label,'Naik ≥10% bulanan')
         self.assertNotIn('Jika seluruh', ' '.join(m.value for m in app.markdown))
 
     def test_first_month_has_unknown_change_and_no_single_point_trend(self):
         app=self.open_app()
         app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run()
         self.good(app)
-        self.assertEqual(app.metric[0].value,'—')
         self.assertEqual(app.metric[1].value,'—')
+        self.assertEqual(app.metric[2].value,'—')
+        self.assertEqual(app.metric[3].value,'—')
         self.assertEqual(len(app.get('plotly_chart')),0)
 
     def test_missing_region_does_not_reuse_old_price(self):
         app=self.open_app()
         app.selectbox(key='filter_province').set_value('Papua Pegunungan').run()
         self.good(app)
-        self.assertEqual(app.metric[0].value,'—')
-        self.assertEqual(app.metric[2].value,'0 / 6 bahan')
+        self.assertEqual(app.metric[0].value,'0 / 25')
+        self.assertEqual(app.metric[5].value,'0 / 6 bahan')
 
     def test_detail_commodity_and_threshold_update_without_changing_historical_budget(self):
         app=self.open_app()
-        baseline=[m.value for m in app.metric[:3]]
+        baseline=[m.value for m in app.metric[3:6]]
         app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run();self.good(app)
         self.assertTrue(any(h.value=='Harga Cabai Rawit Merah' for h in app.subheader))
         text=' '.join(m.value for m in app.markdown)
         self.assertIn('2 dari 24 komoditas',text)
         app.slider(key='filter_threshold').set_value(40).run();self.good(app)
         self.assertIn('Tidak ada komoditas', ' '.join(m.value for m in app.markdown))
-        self.assertEqual([m.value for m in app.metric[:3]],baseline)
+        self.assertEqual([m.value for m in app.metric[3:6]],baseline)
 
     def test_filters_are_contextual_and_preserved_when_hidden(self):
         app=self.open_app()
@@ -75,7 +80,7 @@ class DashboardTests(unittest.TestCase):
 
     def test_cta_navigates_to_simulator(self):
         app=self.open_app()
-        next(b for b in app.button if b.label=='Coba simulasi belanja →').click().run()
+        app.button(key='price_cta').click().run()
         self.good(app)
         self.assertEqual(app.radio(key='page').value,'Simulator anggaran')
 
@@ -158,16 +163,16 @@ class DashboardTests(unittest.TestCase):
         app=self.open_app()
         self.assertTrue(any('22/58' in c.value for c in app.caption))
         app.selectbox(key='filter_basket_profile').set_value('Latihan B').run();self.good(app)
-        self.assertEqual(app.metric[1].value,'Rp 3.923')
+        self.assertEqual(app.metric[4].value,'Rp 3.923')
         self.assertTrue(any('Daging Ayam Ras' in m.value and 'terbesar' in m.value for m in app.markdown))
 
     def test_explicit_five_material_profile_supports_early_period_without_imputation(self):
         app=self.open_app()
         app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run()
         app.selectbox(key='filter_basket_profile').set_value('Latihan C').run();self.good(app)
-        self.assertNotEqual(app.metric[0].value,'—')
-        self.assertEqual(app.metric[2].value,'5 / 5 bahan')
-        self.assertEqual(app.metric[1].value,'—')
+        self.assertNotEqual(app.metric[3].value,'—')
+        self.assertEqual(app.metric[5].value,'5 / 5 bahan')
+        self.assertEqual(app.metric[4].value,'—')
         self.assertTrue(any('58/58' in c.value for c in app.caption))
 
     def test_budget_limit_is_separate_from_raw_scenario_cost(self):
@@ -189,7 +194,11 @@ class DashboardTests(unittest.TestCase):
         app=self.open_app();self.menu(app,'Data & metode')
         text=' '.join(m.value for m in app.markdown)
         self.assertIn('Snapshot dicatat',text)
-        self.assertIn('28/10/2026',text)
+        source=json.loads((ROOT/'data/source.json').read_text())
+        date=datetime.fromisoformat(source['snapshot_recorded_at_utc']).astimezone(ZoneInfo('Asia/Jakarta')).strftime('%d/%m/%Y')
+        self.assertIn(date,text)
+        self.assertIn('CSV dan XLSX',text)
+        self.assertNotIn('salinan CSV publik',text)
         app.button(key='prepare_excel').click().run();self.good(app)
         self.assertTrue(app.session_state['excel_report'][1].startswith(b'PK'))
 

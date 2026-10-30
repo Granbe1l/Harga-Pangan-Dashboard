@@ -1,4 +1,4 @@
-"""Rebuild the auditable local snapshot; use --download to refresh the mirror."""
+"""Rebuild the configured snapshot. Primary-export mode rejects mirror downloads."""
 from pathlib import Path
 import argparse
 import json

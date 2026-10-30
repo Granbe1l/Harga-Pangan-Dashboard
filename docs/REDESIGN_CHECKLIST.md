@@ -5,8 +5,8 @@ Dokumen ini memetakan seluruh rekomendasi review ke implementasi dan bukti pemer
 | Rekomendasi | Implementasi | Bukti / lokasi |
 | --- | --- | --- |
 | Identitas dan tujuan dipahami dalam 30–60 detik | Judul sesuai permintaan, satu kalimat kasus warung makan Jawa Barat, wilayah lain sebagai eksplorasi | `app.py`, screenshot `ringkasan-first-screen.png` |
-| Ringkasan satu layar desktop | Tiga KPI anggaran, satu temuan, grafik kontribusi, tindakan ke simulator | Browser viewport 1440 × 950 memeriksa posisi CTA |
-| KPI menceritakan hal yang sama | Biaya keranjang, perubahan biaya terhadap bulan sebelumnya, harga tersedia dari enam bahan | `historical_budget()`, tes angka snapshot dan kelengkapan |
+| Ringkasan satu layar desktop | Tiga KPI temuan harga tanpa asumsi jumlah; tab latihan terpisah untuk biaya dan sensitivitas | Browser viewport 1440 × 950 memeriksa posisi CTA |
+| KPI menceritakan hal yang sama | Tab depan: harga tersedia, jumlah kenaikan melewati ambang, kenaikan tertinggi; tab latihan: KPI biaya yang sejenis | `historical_budget()`, tes angka snapshot dan kelengkapan |
 | Hasil historis terpisah dari skenario | Tidak ada skenario +10% pada Ringkasan; simulator memiliki banner asumsi dan ekspor terpisah | Menu Ringkasan dan Simulator anggaran |
 | Grafik dampak rupiah | Batang divergen berpusat nol; merah = tambahan, teal = pengurangan; kuantitas contoh tetap | `historical_impact`, teks dan label rupiah |
 | Tabel dan penjelasan tidak mendominasi | Detail tren, tabel, pemantauan dan keranjang di expander; tabel pratinjau ringkas | Menu Ringkasan dan Data & metode |
@@ -22,9 +22,9 @@ Dokumen ini memetakan seluruh rekomendasi review ke implementasi dan bukti pemer
 | Wilayah ringkas dan bermakna | Harga pilihan, median, deviasi; empat tertinggi/terendah + wilayah pilihan; toggle semua | Tes toggle dan screenshot `wilayah.png` |
 | Tidak merekomendasikan pemasok tanpa data | Catatan ongkir, kualitas, dan ketersediaan | Menu Perbandingan wilayah |
 | Metode tersedia bertingkat | Sumber/masa data/unduhan terlihat; rumus/kualitas/geografi/hash di expander | Menu Data & metode |
-| Tanggal snapshot dibedakan dari bulan harga | Oktober 2025 sebagai harga terakhir; pencatatan snapshot 28 Oktober 2026 dari metadata dengan timezone WIB | Tes tanggal pada menu data |
+| Tanggal snapshot dibedakan dari bulan harga | Oktober 2025 sebagai harga terakhir; tanggal impor ekspor pengguna dari metadata dengan timezone WIB | Tes tanggal pada menu data |
 | Format dan hierarki profesional | Navy–teal, kartu konsisten, tema responsif, kontras caption/sidebar, format ID pada tabel hasil | `assets/dashboard.css`, `analyst/presentation.py` |
-| Filter sesuai halaman | Global wilayah/bulan; bahan dan window hanya saat relevan; ambang di detail pemantauan | Tes contextual filters dan state preservation |
+| Filter sesuai halaman | Global wilayah/bulan; bahan dan window hanya saat relevan; ambang di sidebar pada Ringkasan | Tes contextual filters dan state preservation |
 | Kode sumber mudah ditemukan | Link GitHub di sidebar/footer; metode, pengujian dan penjelasan proyek | Menu data dan footer |
 | Unduhan sesuai isi yang dilihat | CSV pilihan berbeda dari dataset penuh; Excel analisis berbeda dari skenario pengguna | Tes workbook dan unduhan browser |
 | Tampilan ponsel | Lima menu, sidebar buka/tutup, kartu responsif, tanpa overflow badan pada lebar 390 px | `scripts/verify_browser.py`, screenshot `*-mobile.png` |
@@ -60,6 +60,14 @@ Runner berhenti dengan exit code nonnol bila asersi gagal. Pada keberhasilan, `b
 - Label biaya menyatakan estimasi latihan. Harga dan satuan input pengguna dicatat per baris; tanpa pernyataan bahwa sumber telah terverifikasi.
 - Batas anggaran dibandingkan hanya dengan total skenario lengkap, tidak dengan subtotal.
 - Peringkat fluktuasi memakai bulan bersama dan pasangan perubahan bulanan bersama. Saringan awal tetap dapat diperiksa.
-- Pencocokan mirror dilakukan dan direkam. Primer/satuan/lisensi tetap belum terverifikasi.
+- Pemeriksaan mirror lama diarsipkan. Dataset aktif kini ekspor primer unggahan pengguna dengan kecocokan CSV–XLSX; satuan/lisensi dan akses server independen tetap belum terkonfirmasi.
 - CI ditambahkan untuk push dan pull request. Status eksekusi remote tidak diasumsikan dari keberadaan workflow.
 - Studi kasus satu halaman dan rencana uji pengguna tersedia. Hasil peserta manusia belum tersedia dan tidak diganti dengan hasil browser otomatis.
+
+## Migrasi unggahan primer
+
+- CSV dan XLSX asli dipertahankan, hash dicatat, seluruh 33.422 baris cocok setelah normalisasi teks.
+- Konfigurasi input aktif mengarah ke `data/raw/primary/`; mirror lama diarsipkan dan unduh mirror diblokir dalam mode primer.
+- Halaman depan menampilkan temuan harga tanpa asumsi kuantitas/satuan. Keranjang latihan berada pada tab terpisah.
+- Temuan bulanan diperiksa dengan kalkulasi Decimal independen dari CSV. Nomor baris karantina mengikuti header di baris pertama.
+- Kecocokan ekspor tidak dipakai untuk mengklaim pengambilan server atau satuan telah diverifikasi.

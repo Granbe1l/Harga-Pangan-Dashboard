@@ -23,7 +23,7 @@ Dua komoditas tersebut adalah cabai merah keriting (**11,16%**) dan cabai merah 
 
 ## Cara menjelaskan proyek
 
-Mulai dari kebutuhan sederhana: saat harga bahan berubah, berapa tambahan anggaran untuk jumlah belanja yang sama? Tunjukkan pilihan wilayah dan bulan, jelaskan satu perubahan harga, kemudian coba satu bahan dalam simulator.
+Mulai dari tab Temuan harga yang membandingkan harga tanpa asumsi jumlah, lalu jelaskan tab latihan dengan kebutuhan sederhana: saat harga bahan berubah, berapa tambahan anggaran untuk jumlah belanja yang sama? Tunjukkan pilihan wilayah dan bulan, jelaskan satu perubahan harga, kemudian coba satu bahan dalam simulator.
 
 Contoh warung makan adalah kasus latihan. Dataset tidak memuat stok, penjualan, laba, atau transaksi pembelian usaha. Satuan kg/liter juga masih berupa asumsi. Hasil simulator adalah perkiraan anggaran, bukan klaim penghematan yang sudah terjadi.
 
@@ -35,5 +35,5 @@ Jika perlu contoh angka saat demo, gunakan keranjang awal pada Jawa Barat, Oktob
 - Jelaskan mengapa harga kosong tidak diubah menjadi nol dan mengapa Maret tidak dibandingkan dengan Januari sebagai MoM jika Februari kosong.
 - Tunjukkan bagaimana total simulator berubah saat jumlah dan skenario harga diubah.
 - Jelaskan CV sebagai ukuran variasi historis dan median wilayah sebagai nilai tengah tanpa bobot.
-- Tunjukkan sumber, batas verifikasi salinan, dan perubahan seri Papua.
+- Tunjukkan sumber, bukti CSV/XLSX unggahan dan batas verifikasi sumber, dan perubahan seri Papua.
 - Jika memakai bantuan alat dalam pengembangan, jelaskan penggunaannya dan pastikan bisa menerangkan serta mengubah kode yang ditampilkan.

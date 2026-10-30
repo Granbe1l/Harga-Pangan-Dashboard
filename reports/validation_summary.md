@@ -1,16 +1,13 @@
-# Validasi revisi audit
+# Validasi rilis ekspor primer pengguna
 
-- **68 tes lulus**, meliputi pipeline, perbandingan harga kalender, anggaran, sumber harga/satuan pengguna, batas anggaran, format, laporan, dan navigasi.
-- Bug harga bulan sebelumnya diuji: total bulan lalu tetap tersedia ketika harga bulan berjalan kosong; perubahan total tetap belum diketahui.
-- Keranjang A/B Jawa Barat lengkap 22/58 bulan; perubahan total lengkap 21/58 bulan. Profil C lima bahan dipilih eksplisit dan mendukung 58/58 bulan tanpa mengisi harga yang hilang.
-- Profil B mengubah kebutuhan telur menjadi 1 kg: perubahan estimasi Rp3.923 dan kontributor terbesar bergeser ke ayam pada Oktober 2025.
-- Grafik fluktuasi memakai irisan bulan harga dan pasangan bulanan yang sama. Ekspor analisis mencatat saringan dan bulan pembanding.
-- Chromium desktop 1440 × 950: KPI, temuan, grafik, dan tombol simulator terlihat pada layar pembuka.
-- Chromium ponsel 390 px: lima menu dan sidebar dapat digunakan tanpa overflow horizontal badan halaman.
-- Edit jumlah pecahan/harga manual dengan mouse dan keyboard, penyimpanan input lintas menu, batas anggaran, reset, dan pemulihan bulan lengkap diperiksa melalui browser.
-- CSV/Excel skenario memuat sumber harga dan status satuan per baris. Ekspor analisis memuat 32.480 observasi, cakupan, dan sensitivitas profil.
-- Tidak ada error JavaScript pada pemeriksaan browser yang tercatat di `browser_validation.json`.
-- CI untuk push dan pull request tersedia. Keberadaan workflow bukan bukti bahwa eksekusi GitHub Actions remote sudah lulus.
-- Mirror publik diunduh ulang dan hash cocok. Sumber primer gagal diakses melalui proxy; satuan dan hak penggunaan ulang belum terverifikasi.
+- **83 tes lulus**: pipeline, analitik, sumber input aktif, normalisasi primer, laporan, state antarmuka, kuantitas/satuan pengguna, dan batas anggaran.
+- **Dua berkas asli dipertahankan:** CSV aktif dan XLSX pembanding dari unggahan pengguna. SHA-256 kedua file diperiksa; seluruh 33.422 baris dan enam kolom cocok setelah normalisasi teks.
+- **32.480 observasi** lolos aturan pembersihan. Harga bersih sama dengan versi sebelumnya: tidak ada observasi harga berubah. 942 baris dipisahkan; rujukan baris karantina kini mengikuti ekspor header-pertama.
+- **Perhitungan independen dari CSV:** Decimal menghasilkan 24 pembanding, dua kenaikan ≥10%, dan cabai merah keriting +11,16% untuk Jawa Barat Oktober 2025.
+- **Perlindungan input:** hash CSV dan XLSX serta kesamaan isinya diperiksa sebelum pembangunan ulang. File pembanding yang diubah ditolak sebelum output ditulis. Unduhan mirror ditolak pada mode primer.
+- **Halaman depan:** temuan harga tanpa asumsi kuantitas/satuan. Tab terpisah mempertahankan estimasi keranjang latihan, profil, dan sensitivitas.
+- **Chromium desktop 1440 × 950 dan ponsel 390 px:** lima menu, kedua tab Ringkasan, perubahan profil, edit tabel mouse/keyboard, sumber harga/satuan, batas anggaran, reset, dan pemulihan bulan diperiksa. Tidak ada error JavaScript atau overflow badan halaman pada rangkaian pemeriksaan.
+- **Unduhan browser:** CSV/Excel skenario sesuai input. Excel analisis memuat 32.480 observasi, hash CSV primer aktif, cakupan, dan sensitivitas.
+- **Reproduksibilitas:** konfigurasi input, receipt, file asli, pembersihan, arsip mirror, dependency lock, workflow CI, dan screenshot tersedia. `.gitattributes` mempertahankan byte asli ekspor lintas sistem operasi.
 
-Verifikasi bersifat lokal. Uji peserta manusia, manfaat finansial, URL hosting publik, dan pemulihan setelah sleep hosting belum dibuktikan. Angka rupiah dari harga/satuan asumsi tetap berlabel estimasi latihan. Data mentah dan hasil pembersihan tidak diubah.
+Pemeriksaan tidak membuktikan pengambilan langsung dari server BPN: file disediakan pengguna sebagai unduhan dari publikasi tersebut. Satuan dan lisensi tidak tercantum di kedua file; biaya tetap latihan/input pengguna. Uji manusia, manfaat usaha, akses URL hosting publik, dan pemulihan sleep hosting belum dibuktikan. Kelulusan lokal tidak otomatis membuktikan eksekusi CI remote terbaru atau skor rekrutmen tertentu.

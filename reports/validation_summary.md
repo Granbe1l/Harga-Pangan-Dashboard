@@ -1,12 +1,14 @@
 # Validasi rilis ekspor primer pengguna
 
-- **83 tes lulus**: pipeline, analitik, sumber input aktif, normalisasi primer, laporan, state antarmuka, kuantitas/satuan pengguna, dan batas anggaran.
+- **84 tes lulus**: pipeline, analitik, sumber input aktif, normalisasi primer, laporan, state antarmuka, kuantitas/satuan pengguna, dan batas anggaran.
 - **Dua berkas asli dipertahankan:** CSV aktif dan XLSX pembanding dari unggahan pengguna. SHA-256 kedua file diperiksa; seluruh 33.422 baris dan enam kolom cocok setelah normalisasi teks.
 - **32.480 observasi** lolos aturan pembersihan. Harga bersih sama dengan versi sebelumnya: tidak ada observasi harga berubah. 942 baris dipisahkan; rujukan baris karantina kini mengikuti ekspor header-pertama.
 - **Perhitungan independen dari CSV:** Decimal menghasilkan 24 pembanding, dua kenaikan ≥10%, dan cabai merah keriting +11,16% untuk Jawa Barat Oktober 2025.
 - **Perlindungan input:** hash CSV dan XLSX serta kesamaan isinya diperiksa sebelum pembangunan ulang. File pembanding yang diubah ditolak sebelum output ditulis. Unduhan mirror ditolak pada mode primer.
+- **Navigasi ringkas:** Ringkasan, Tren & fluktuasi, Perbandingan wilayah, dan Simulator anggaran. Sumber & cara menghitung dapat dibuka di bawah setiap halaman; laporan Excel tetap tersedia.
+- **Konteks historis:** cabai merah keriting naik ≥10% pada 4 dari 12 pasangan bulan November 2024–Oktober 2025 di Jawa Barat; bukan probabilitas masa depan. Tren bahan pilihan tidak menyambungkan bulan kosong.
 - **Halaman depan:** temuan harga tanpa asumsi kuantitas/satuan. Tab terpisah mempertahankan estimasi keranjang latihan, profil, dan sensitivitas.
-- **Chromium desktop 1440 × 950 dan ponsel 390 px:** lima menu, kedua tab Ringkasan, perubahan profil, edit tabel mouse/keyboard, sumber harga/satuan, batas anggaran, reset, dan pemulihan bulan diperiksa. Tidak ada error JavaScript atau overflow badan halaman pada rangkaian pemeriksaan.
+- **Chromium desktop 1440 × 950 dan ponsel 390 px:** empat menu, kedua tab Ringkasan, perubahan profil, edit tabel mouse/keyboard, sumber harga/satuan, batas anggaran, reset, dan pemulihan bulan diperiksa. Tidak ada error JavaScript atau overflow badan halaman pada rangkaian pemeriksaan.
 - **Unduhan browser:** CSV/Excel skenario sesuai input. Excel analisis memuat 32.480 observasi, hash CSV primer aktif, cakupan, dan sensitivitas.
 - **Reproduksibilitas:** konfigurasi input, receipt, file asli, pembersihan, arsip mirror, dependency lock, workflow CI, dan screenshot tersedia. `.gitattributes` mempertahankan byte asli ekspor lintas sistem operasi.
 

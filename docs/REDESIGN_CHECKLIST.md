@@ -9,7 +9,7 @@ Dokumen ini memetakan seluruh rekomendasi review ke implementasi dan bukti pemer
 | KPI menceritakan hal yang sama | Tab depan: harga tersedia, jumlah kenaikan melewati ambang, kenaikan tertinggi; tab latihan: KPI biaya yang sejenis | `historical_budget()`, tes angka snapshot dan kelengkapan |
 | Hasil historis terpisah dari skenario | Tidak ada skenario +10% pada Ringkasan; simulator memiliki banner asumsi dan ekspor terpisah | Menu Ringkasan dan Simulator anggaran |
 | Grafik dampak rupiah | Batang divergen berpusat nol; merah = tambahan, teal = pengurangan; kuantitas contoh tetap | `historical_impact`, teks dan label rupiah |
-| Tabel dan penjelasan tidak mendominasi | Detail tren, tabel, pemantauan dan keranjang di expander; tabel pratinjau ringkas | Menu Ringkasan dan Data & metode |
+| Tabel dan penjelasan tidak mendominasi | Detail tren, tabel, pemantauan dan keranjang di expander; tabel pratinjau ringkas | Menu Ringkasan dan Sumber & cara menghitung |
 | Nol dibedakan dari belum diketahui | Total dan perubahan yang tidak lengkap tampil —; nol dipakai untuk hasil atau jumlah aktual | Tes `test_planning.py`, keadaan Januari 2021 dan tanpa harga |
 | Pengguna diberi jalan keluar | Subtotal bertanda, harga manual, hapus bahan, tombol bulan lengkap, petunjuk riwayat | Browser reset dan recovery bulan |
 | Simulator mudah dicoba | Kuantitas per periode, petunjuk klik sel, +0/+10/+20%, reset | Browser mouse/keyboard, tes skenario dan reset |
@@ -17,11 +17,11 @@ Dokumen ini memetakan seluruh rekomendasi review ke implementasi dan bukti pemer
 | Input tidak menghilang saat berpindah menu | Model keranjang terpisah dari lifecycle widget; filter relevan disimpan terpisah | Tes lintas halaman dan browser editor |
 | Asal harga manual akurat | Sumber per bahan: Snapshot historis / Diubah pengguna / Belum tersedia | CSV/Excel browser dan tes per baris |
 | Rumus menyesuaikan harga yang dipakai | Biaya acuan = jumlah × harga acuan yang digunakan; label periode bukan konversi kuantitas | Expander simulasi dan workbook skenario |
-| Risiko dijelaskan tanpa klaim prediksi | Menu Fluktuasi historis, minimal tiga observasi, minimum cakupan, tooltip jumlah bulan, status cakupan rendah | Tes risk dan screenshot `risiko.png` |
+| Risiko dijelaskan tanpa klaim prediksi | Menu Tren & fluktuasi, minimal tiga observasi, minimum cakupan, tooltip jumlah bulan, status cakupan rendah | Tes risk dan screenshot `risiko.png` |
 | Tren/musiman tidak disalahartikan | Penjelasan eksplisit bahwa CV belum memisahkan tren dan musiman | Menu fluktuasi dan metodologi |
 | Wilayah ringkas dan bermakna | Harga pilihan, median, deviasi; empat tertinggi/terendah + wilayah pilihan; toggle semua | Tes toggle dan screenshot `wilayah.png` |
 | Tidak merekomendasikan pemasok tanpa data | Catatan ongkir, kualitas, dan ketersediaan | Menu Perbandingan wilayah |
-| Metode tersedia bertingkat | Sumber/masa data/unduhan terlihat; rumus/kualitas/geografi/hash di expander | Menu Data & metode |
+| Metode tersedia bertingkat | Sumber/masa data/unduhan terlihat; rumus/kualitas/geografi/hash di expander | Menu Sumber & cara menghitung |
 | Tanggal snapshot dibedakan dari bulan harga | Oktober 2025 sebagai harga terakhir; tanggal impor ekspor pengguna dari metadata dengan timezone WIB | Tes tanggal pada menu data |
 | Format dan hierarki profesional | Navy–teal, kartu konsisten, tema responsif, kontras caption/sidebar, format ID pada tabel hasil | `assets/dashboard.css`, `analyst/presentation.py` |
 | Filter sesuai halaman | Global wilayah/bulan; bahan dan window hanya saat relevan; ambang di sidebar pada Ringkasan | Tes contextual filters dan state preservation |
@@ -71,3 +71,12 @@ Runner berhenti dengan exit code nonnol bila asersi gagal. Pada keberhasilan, `b
 - Halaman depan menampilkan temuan harga tanpa asumsi kuantitas/satuan. Keranjang latihan berada pada tab terpisah.
 - Temuan bulanan diperiksa dengan kalkulasi Decimal independen dari CSV. Nomor baris karantina mengikuti header di baris pertama.
 - Kecocokan ekspor tidak dipakai untuk mengklaim pengambilan server atau satuan telah diverifikasi.
+
+## Penyederhanaan navigasi, 30 Oktober 2026
+
+- Empat menu: Ringkasan, Tren & fluktuasi, Perbandingan wilayah, Simulator anggaran.
+- Judul tetap menyebut simulasi karena fitur tersebut dipertahankan.
+- Menu Data & metode diganti bagian Sumber & cara menghitung yang tertutup pada awal, tersedia di bawah setiap halaman. Unduhan laporan Excel, dataset bersih, dan baris yang dipisahkan tetap tersedia; detail metode, lisensi, dan jejak sumber ditautkan ke dokumentasi.
+- Ringkasan menambahkan frekuensi kenaikan bahan tertinggi pada pasangan bulan tersedia; tidak ditafsirkan sebagai probabilitas masa depan.
+- Tren bahan pilihan memakai kalender bulanan penuh dan tidak menyambungkan harga yang kosong.
+- README mendahulukan pertanyaan, hasil, cakupan pekerjaan, dan status akses publik. Tidak mengarang URL aplikasi atau pengalaman usaha nyata.

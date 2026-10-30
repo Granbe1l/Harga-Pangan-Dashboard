@@ -4,11 +4,23 @@
 
 **[Baca studi kasus dalam satu menit](docs/CASE_STUDY.md)** · [Checklist bukti](docs/REVIEW_CHECKLIST.md) · [Lihat dashboard](reports/screenshots/ringkasan-first-screen.png) · [Bukti pengujian](reports/validation_summary.md)
 
-Studi kasus portofolio **data analyst**: menghubungkan perubahan harga pangan historis dengan estimasi biaya bahan baku warung makan di Jawa Barat. Wilayah lain tersedia sebagai eksplorasi tambahan.
+Studi kasus **data analyst** untuk menjawab: bahan apa yang berubah harganya, bagaimana pola historisnya, dan bagaimana perubahan harga memengaruhi contoh anggaran belanja?
 
-**Python 3.12 · Pandas · SQL/SQLite · Streamlit · Plotly · Excel**
+**Fokus awal:** Jawa Barat · **Data:** Januari 2021–Oktober 2025 · **Python · Pandas · SQL/SQLite · Streamlit · Plotly · Excel**
 
-![Ringkasan dashboard](reports/screenshots/ringkasan.png)
+![Ringkasan dashboard](reports/screenshots/ringkasan-first-screen.png)
+
+### Hasil utama — Jawa Barat, Oktober 2025
+
+- Harga tersedia untuk **25 dari 25 komoditas**; **24** memiliki pembanding bulan sebelumnya.
+- **Dua komoditas naik ≥10%**; kenaikan tertinggi pada **cabai merah keriting, 11,16%**. Ambang 10% adalah pilihan pemantauan, bukan batas resmi.
+- Keranjang enam bahan contoh bertambah **Rp10.687** terhadap September dengan jumlah tetap. Ini **estimasi latihan dengan satuan asumsi**, bukan biaya atau penghematan usaha nyata.
+
+### Cakupan pekerjaan dalam proyek
+
+Merapikan ekspor BPN, memisahkan harga kosong/nol, menyusun perbandingan kalender dan query SQL, membuat visualisasi interaktif, serta memeriksa hasil perhitungan dan ekspor. Kode dan bukti pemeriksaan tersedia agar proses dapat ditelusuri. Penjelasan kontribusi di CV harus mengikuti bagian yang benar-benar dikuasai pemilik portofolio.
+
+**Akses aplikasi:** belum ada URL deployment publik yang terverifikasi. [Lihat tampilan](reports/screenshots/ringkasan-first-screen.png) · [Cara menerbitkan aplikasi](docs/DEPLOYMENT.md). Link GitHub bukan link aplikasi yang sudah dihosting.
 
 ## Apa yang dijawab?
 
@@ -47,9 +59,9 @@ Windows PowerShell: `py -3.12 -m venv .venv`, lalu `.venv\Scripts\Activate.ps1` 
 | --- | --- |
 | Ringkasan | Temuan harga tanpa asumsi jumlah; tab terpisah untuk dampak biaya latihan, profil dan sensitivitas |
 | Simulator anggaran | Kuantitas per periode, harga/satuan per bahan dengan asal input, batas anggaran, penerapan massal, reset, CSV dan Excel |
-| Fluktuasi historis | Perbandingan perubahan bulanan dan CV pada bulan pengamatan bersama; filter cakupan, jumlah bulan/pasangan, dan pemeriksaan seri yang dikeluarkan |
+| Tren & fluktuasi | Tren bahan pilihan serta perbandingan perubahan bulanan dan CV pada bulan pengamatan bersama; filter cakupan, jumlah bulan/pasangan, dan pemeriksaan seri yang dikeluarkan |
 | Perbandingan wilayah | Harga wilayah pilihan, median tanpa bobot, selisih terhadap median, grafik ringkas atau seluruh wilayah |
-| Data & metode | Sumber, bulan harga terakhir, tanggal pencatatan snapshot, laporan analisis, rumus, pembersihan, dan jejak sumber |
+
 
 Filter ditampilkan sesuai menu dan pilihan disimpan selama sesi browser. Input keranjang, perubahan harga, harga manual, dan periode belanja bertahan saat berpindah menu. Mengubah bulan memperbarui harga snapshot; harga yang diubah pengguna dipertahankan sampai direset dan hanya digunakan selama mode harga sendiri aktif. Input tidak disimpan permanen di server atau dibagikan ke sesi pengunjung lain.
 
@@ -83,7 +95,7 @@ Tes memeriksa perbandingan bulan kalender, total tidak lengkap, sumber harga per
 
 `scripts/prepare_data.py` dapat membangun ulang CSV dan SQLite, tetapi **menulis ulang artefak data**. Untuk pemeriksaan tanpa mengubah snapshot checkout, panggil `analyst.pipeline.prepare_data()` pada direktori sementara dengan konfigurasi `data/source_input.json`, receipt, dan file dalam `data/raw/primary/`.
 
-Ekspor analisis di menu Data & metode mengikuti filter analisis. Ekspor simulator adalah file terpisah yang memuat kebutuhan dan harga yang sedang digunakan, asal harga per baris, periode, status kelengkapan, dan total/subtotal.
+Bagian **Sumber & cara menghitung** dapat dibuka di bawah setiap halaman: sumber BPN, periode, pembersihan, rumus ringkas, batas satuan, tautan metode lengkap, serta unduhan data/laporan. Ekspor analisis pada bagian ini mengikuti filter analisis. Ekspor simulator adalah file terpisah yang memuat kebutuhan dan harga yang sedang digunakan, asal harga per baris, periode, status kelengkapan, dan total/subtotal.
 
 ## Tautan publik untuk CV
 
@@ -91,6 +103,6 @@ Lihat [panduan deployment](docs/DEPLOYMENT.md). Antarmuka bergaya BI dibuat lang
 
 ## Kualitas dan batas bukti
 
-Workflow GitHub Actions menjalankan pengujian pada push/pull request. Hasil browser lokal tetap dibedakan dari uji manusia dan deployment publik. [Rencana uji pengguna](docs/USER_TESTING.md) dan formulir unduhan sukarela tersedia; **belum ada hasil peserta manusia**. Tidak ada klaim aplikasi sudah dipakai UMKM atau meningkatkan laba.
+Workflow GitHub Actions menjalankan pengujian pada push/pull request. Hasil browser lokal tetap dibedakan dari uji manusia dan deployment publik. [Rencana uji pengguna](docs/USER_TESTING.md) tersedia sebagai panduan wawancara singkat; **belum ada hasil peserta manusia**. Tidak ada klaim aplikasi sudah dipakai UMKM atau meningkatkan laba.
 
 Pada simulator, harga yang diedit dan satuan yang dinyatakan pengguna diberi sumber masing-masing. Semua bahan aktif harus memiliki harga input dan satuan yang dinyatakan agar dasar hasil disebut input pengguna; ini pun belum diaudit. Nilai lain tetap berlabel estimasi latihan. Batas anggaran hanya dibandingkan dengan total lengkap.

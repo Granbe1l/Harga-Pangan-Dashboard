@@ -9,7 +9,7 @@ from streamlit.testing.v1 import AppTest
 
 ROOT=Path(__file__).resolve().parents[1]
 TITLE='Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner'
-PAGES=['Ringkasan','Simulator anggaran','Fluktuasi historis','Perbandingan wilayah','Data & metode']
+PAGES=['Ringkasan','Tren & fluktuasi','Perbandingan wilayah','Simulator anggaran']
 
 
 class DashboardTests(unittest.TestCase):
@@ -32,6 +32,7 @@ class DashboardTests(unittest.TestCase):
         for name in PAGES:
             self.menu(app,name)
             self.assertGreaterEqual(len(app.metric),3)
+            self.assertTrue(any(e.label=="Sumber & cara menghitung" for e in app.expander))
 
     def test_opening_metrics_follow_one_historical_budget_story(self):
         app=self.open_app();self.good(app)
@@ -144,10 +145,10 @@ class DashboardTests(unittest.TestCase):
         self.assertFalse(any('Total belum lengkap' in w.value for w in app.warning))
 
     def test_risk_first_month_and_minimum_coverage(self):
-        app=self.open_app();self.menu(app,'Fluktuasi historis')
+        app=self.open_app();self.menu(app,'Tren & fluktuasi')
         app.select_slider(key='filter_coverage').set_value(100).run();self.good(app)
         self.assertEqual(app.metric[1].value,'100%')
-        self.menu(app,'Ringkasan');self.menu(app,'Fluktuasi historis')
+        self.menu(app,'Ringkasan');self.menu(app,'Tren & fluktuasi')
         self.assertEqual(app.select_slider(key='filter_coverage').value,100)
         app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run();self.good(app)
         self.assertEqual(app.metric[0].value,'0')
@@ -190,8 +191,20 @@ class DashboardTests(unittest.TestCase):
         self.edit(app,{'Harga acuan (Rp)':20000,'Satuan':'kg'})
         self.assertTrue(any('Input pengguna; belum diaudit' in c.value for c in app.caption))
 
+    def test_historical_context_and_selected_trend_follow_filters(self):
+        app=self.open_app();self.good(app)
+        self.assertTrue(any('4 dari 12 pasangan bulan' in m.value for m in app.markdown))
+        self.menu(app,'Tren & fluktuasi')
+        before=app.get('plotly_chart')[0].proto.spec
+        app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run();self.good(app)
+        self.assertNotEqual(before,app.get('plotly_chart')[0].proto.spec)
+        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run();self.good(app)
+        self.assertTrue(any('Minimal dua bulan' in i.value for i in app.info))
+
     def test_data_page_distinguishes_recorded_date_and_last_price_and_exports_excel(self):
-        app=self.open_app();self.menu(app,'Data & metode')
+        app=self.open_app()
+        self.assertNotIn('Data & metode',app.radio(key='page').options)
+        self.assertTrue(any(e.label=='Sumber & cara menghitung' for e in app.expander))
         text=' '.join(m.value for m in app.markdown)
         self.assertIn('Snapshot dicatat',text)
         source=json.loads((ROOT/'data/source.json').read_text())

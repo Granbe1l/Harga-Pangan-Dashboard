@@ -13,7 +13,7 @@ from openpyxl import load_workbook
 import pandas as pd
 
 TITLE = 'Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner'
-MENUS = [('Ringkasan','ringkasan'),('Simulator anggaran','simulator'),('Fluktuasi historis','risiko'),('Perbandingan wilayah','wilayah'),('Data & metode','data')]
+MENUS = [('Ringkasan','ringkasan'),('Simulator anggaran','simulator'),('Tren & fluktuasi','risiko'),('Perbandingan wilayah','wilayah')]
 
 
 def main():
@@ -133,7 +133,7 @@ def main():
         page.get_by_role('button',name=re.compile('Gunakan Oktober 2025')).click();settle(page)
         expect(page.locator('[data-testid="stMetricValue"]:visible').first).to_have_text('Rp 1.118.460')
         report['checks'].append('reset and missing-price recovery button restore complete scenario')
-        menu(page,'Fluktuasi historis')
+        menu(page,'Tren & fluktuasi')
         assert 'Bulan bersama' in page.get_by_test_id('stMain').inner_text()
         assert 'pasangan bulanan yang sama' in page.get_by_test_id('stMain').inner_text()
         report['checks'].append('fluctuation ranking explicitly shares observation months and monthly comparison pairs')
@@ -146,7 +146,8 @@ def main():
         select(page,'Bahan pilihan','Cabai Rawit Merah')
         page.get_by_text('Lihat seluruh wilayah',exact=True).click();settle(page)
         screenshot(page,'wilayah-lengkap',1440,950)
-        menu(page,'Data & metode')
+        page.get_by_text('Sumber & cara menghitung',exact=True).click();settle(page)
+        screenshot(page,'sumber-metode',1440,950)
         page.get_by_role('button',name='Siapkan laporan Excel',exact=True).click()
         button=page.get_by_role('button',name='Unduh laporan Excel',exact=True);button.wait_for(timeout=60000)
         with page.expect_download() as download:button.click()
@@ -168,7 +169,7 @@ def main():
         for label,name in MENUS:
             if label!='Ringkasan':menu(mobile,label,True)
             screenshot(mobile,name+'-mobile',390,844)
-        report['checks'].append('all five menus render on 390 px mobile; sidebar works; no body horizontal overflow')
+        report['checks'].append('all four menus render on 390 px mobile; sidebar works; no body horizontal overflow')
         # A fresh anonymous context must not inherit the first visitor's choices.
         fresh=browser.new_page(viewport={'width':1280,'height':900})
         fresh.goto(opt.url);ready(fresh)

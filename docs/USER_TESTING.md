@@ -20,7 +20,7 @@ Ajak 3–5 orang secara sukarela; minimal satu yang belum pernah melihat proyek.
 | Pilih Januari 2021 | Menjelaskan total belum lengkap dan subtotal bukan total |
 | Unduh hasil skenario | File mengikuti input yang dipakai dan mencatat dasar harga/satuan |
 
-Menu Data & metode menyediakan form pemahaman dan unduhan CSV sukarela. Jawaban diproses sementara dalam sesi Streamlit untuk membuat CSV. Aplikasi tidak menulisnya ke penyimpanan permanen atau mengirimkannya ke layanan lain. Peserta dapat menyerahkan file secara terpisah bila setuju.
+Form uji pengguna tidak ditampilkan di aplikasi agar kunjungan singkat tetap fokus pada hasil analisis. Gunakan pertanyaan di dokumen ini saat wawancara singkat dan catat jawaban secara sukarela tanpa identitas pribadi. Belum ada hasil peserta yang dikumpulkan.
 
 ## Lembar hasil kosong
 

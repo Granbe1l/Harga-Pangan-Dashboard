@@ -1,5 +1,5 @@
 {
-  "target": "http://127.0.0.1:8503",
+  "target": "http://127.0.0.1:8504",
   "scope": "local browser acceptance; not proof of public hosting readiness",
   "checks": [
     "desktop first screen contains observed price findings without assumed basket units and a simulator CTA",
@@ -9,7 +9,7 @@
     "reset and missing-price recovery button restore complete scenario",
     "fluctuation ranking explicitly shares observation months and monthly comparison pairs",
     "analysis Excel includes 32,480 rows, primary-upload receipt hash, coverage, and sensitivity profiles",
-    "all five menus render on 390 px mobile; sidebar works; no body horizontal overflow",
+    "all four menus render on 390 px mobile; sidebar works; no body horizontal overflow",
     "fresh anonymous browser context starts at default data without another session inputs"
   ],
   "screenshots": [
@@ -17,7 +17,6 @@
     "simulator.png",
     "risiko.png",
     "wilayah.png",
-    "data.png",
     "keranjang-latihan.png",
     "profil-b-sensitivitas.png",
     "profil-c-riwayat-panjang.png",
@@ -27,13 +26,13 @@
     "ringkasan-riwayat-terbatas.png",
     "ringkasan-tanpa-harga.png",
     "wilayah-lengkap.png",
+    "sumber-metode.png",
     "ringkasan-mobile.png",
     "simulator-mobile.png",
     "risiko-mobile.png",
-    "wilayah-mobile.png",
-    "data-mobile.png"
+    "wilayah-mobile.png"
   ],
-  "local_initial_ready_seconds": 4.17,
+  "local_initial_ready_seconds": 3.17,
   "javascript_page_errors": [],
   "status": "passed"
 }

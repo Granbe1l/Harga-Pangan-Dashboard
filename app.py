@@ -21,7 +21,7 @@ from analyst.presentation import (TEAL, RED, NAVY, AMBER, rupiah, percent, month
 
 ROOT = Path(__file__).resolve().parent
 TITLE = "Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner"
-PAGES = ["Ringkasan", "Simulator anggaran", "Fluktuasi historis", "Perbandingan wilayah", "Data & metode"]
+PAGES = ["Ringkasan", "Tren & fluktuasi", "Perbandingan wilayah", "Simulator anggaran"]
 REPO = "https://github.com/Granbe1l/Harga-Pangan-Dashboard"
 st.set_page_config(page_title=TITLE, page_icon="📊", layout="wide", initial_sidebar_state="auto")
 st.html('<style>' + (ROOT / "assets/dashboard.css").read_text() + '</style>')
@@ -138,7 +138,7 @@ def price_overview(data, changes, province, commodity, as_of, start, threshold):
                 marker_color=[RED if n>0 else TEAL for n in ranked.mom_pct],text=[percent(n) for n in ranked.mom_pct],textposition='auto',
                 hovertemplate='%{y}<br>Perubahan: %{x:.2f}%<extra></extra>'))
             fig.add_vline(x=0,line_color='#879bae',line_width=1)
-            fig.update_layout(xaxis_title='Perubahan terhadap bulan kalender sebelumnya (%)')
+            fig.update_layout(xaxis_title='Perubahan bulanan (%)')
             chart(fig,'price_movements',275)
         st.caption(f"Pembanding tersedia untuk {observed['comparable_count']} dari {observed['available']} bahan bulan pilihan. Delapan perubahan absolut terbesar; merah naik, teal turun.")
     with right,st.container(border=True):
@@ -148,6 +148,11 @@ def price_overview(data, changes, province, commodity, as_of, start, threshold):
         else:st.write("Kenaikan belum terlihat atau belum bisa dihitung dari pasangan bulan yang tersedia.")
         st.write("Buka tab **Dampak keranjang latihan** untuk melihat perubahan biaya dan sensitivitas komposisi, atau coba kebutuhanmu di simulator.")
         st.button("Coba simulasi belanja →",type="primary",width="stretch",on_click=navigate,args=("Simulator anggaran",),key="price_cta")
+    if top:
+        history_changes=changes[(changes.province==province)&(changes.commodity==top['commodity'])&changes.date.between(start,as_of)].dropna(subset=['mom_pct'])
+        if len(history_changes)>=2:
+            repeats=int((history_changes.mom_pct>=threshold).sum())
+            st.write(f"**Apakah kenaikan ini berulang?** {top['commodity']} naik ≥{threshold}% pada **{repeats} dari {len(history_changes)} pasangan bulan** dengan pembanding, dalam rentang {month_label(start)}–{month_label(as_of)}. Ini frekuensi historis pada data tersedia, bukan peluang kenaikan berikutnya.")
     st.caption("Persentase membandingkan seri bahan yang sama pada dua bulan. File sumber tidak mencantumkan satuan; angka biaya pada tab latihan memakai asumsi yang dinyatakan.")
     with st.expander("Detail bahan pilihan & riwayat"):
         selected=observed['snapshot'][observed['snapshot'].commodity==commodity]
@@ -351,6 +356,17 @@ def budget_page(data, changes, province, commodity, as_of, start, threshold):
 
 def risk_page(data, changes, province, commodity, as_of, start, threshold):
     st.html('<div class="section-tag">03 / FLUKTUASI HARGA HISTORIS</div>')
+    st.subheader("Tren bahan pilihan")
+    history = data[(data.province==province)&(data.commodity==commodity)&data.date.between(start,as_of)][["date","price"]].sort_values("date")
+    st.caption(f"{commodity} · harga mengikuti file sumber; satuan belum dikonfirmasi.")
+    if len(history)>=2:
+        calendar=pd.date_range(start,as_of,freq="MS")
+        series=history.set_index("date").reindex(calendar).rename_axis("date").reset_index()
+        fig=px.line(series,x="date",y="price",markers=True,labels={"date":"Bulan","price":"Harga sumber (Rp)"},color_discrete_sequence=[TEAL])
+        fig.update_traces(connectgaps=False)
+        chart(fig,"selected_price_trend",260)
+    else:
+        st.info("Minimal dua bulan harga diperlukan untuk menampilkan tren. Harga kosong tidak diisi.")
     st.subheader("Bahan mana yang paling berubah-ubah?")
     st.caption(f"{month_label(start)}–{month_label(as_of)} · Seluruh bahan di {province}")
     if "filter_coverage" not in st.session_state: st.session_state.filter_coverage = st.session_state.filters["coverage"]
@@ -417,70 +433,27 @@ def regions_page(data, changes, province, commodity, as_of, start, threshold):
         st.download_button("Unduh perbandingan wilayah",csv_bytes(clean),"perbandingan_wilayah.csv","text/csv")
 
 
-def data_page(data, changes, province, commodity, as_of, start, threshold, quality, source):
-    st.html('<div class="section-tag">05 / SUMBER, METODE & LAPORAN</div>')
-    cols = st.columns(3)
-    cols[0].metric("Observasi valid",f"{quality['clean_rows']:,}".replace(",","."))
-    cols[1].metric("Komoditas",str(quality["commodity_count"]))
-    cols[2].metric("Harga terakhir",month_label(data.date.max()))
-    recorded = datetime.fromisoformat(source["snapshot_recorded_at_utc"]).astimezone(ZoneInfo("Asia/Jakarta"))
-    st.write(f"**Periode harga:** {month_label(data.date.min())}–{month_label(data.date.max())}. **Snapshot dicatat:** {recorded.strftime('%d/%m/%Y %H:%M')} WIB. Tanggal pencatatan bukan bulan harga terbaru.")
-    st.markdown(f"**Sumber primer:** [Badan Pangan Nasional]({source['original_url_cited']}). File ekspor CSV dan XLSX diberikan pengguna dari publikasi tersebut; keduanya cocok pada seluruh 33.422 baris setelah normalisasi teks. Pengambilan langsung dari server belum diverifikasi independen.")
-    finding("Harga konsumen provinsi menjadi acuan analisis historis. Satuan kg/liter adalah asumsi; harga usaha dan pemasok dapat berbeda. Aplikasi tidak memperbarui harga secara otomatis.","BATAS PENGGUNAAN")
-    st.subheader("Unduh laporan analisis")
-    st.caption("Mengikuti wilayah, bahan, bulan, rentang, serta minimum cakupan pada menu Fluktuasi. Skenario yang kamu edit diunduh terpisah dari menu Simulator anggaran.")
-    signature = (province,commodity,str(as_of),str(start),threshold,st.session_state.filters["coverage"])
-    if st.button("Siapkan laporan Excel",type="primary",key="prepare_excel"):
-        from analyst.reporting import workbook_bytes
-        with st.spinner("Menyusun laporan…"):
-            months = (as_of.year-start.year)*12+as_of.month-start.month+1
-            st.session_state.excel_report = (signature,workbook_bytes(data,province,as_of,months,threshold_pct=threshold,commodity=commodity,minimum_coverage=st.session_state.filters["coverage"]))
-    saved = st.session_state.get("excel_report")
-    if saved and saved[0]==signature:
-        st.download_button("Unduh laporan Excel",saved[1],"laporan_analyst.xlsx","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    with st.expander("Pratinjau data dan unduhan CSV"):
-        filtered = data[(data.province==province)&data.date.between(start,as_of)]
-        clean = filtered[["province","commodity","date","price","unit"]].rename(columns={"province":"Wilayah","commodity":"Bahan","date":"Bulan","price":"Harga (Rp)","unit":"Satuan asumsi"})
-        table(clean.head(10))
-        st.caption(f"Pratinjau 10 dari {len(clean):,} baris sesuai wilayah dan rentang. Unduhan pilihan memuat seluruh baris pada filter ini; unduhan dataset memuat seluruh wilayah.")
-        st.download_button("Unduh data sesuai pilihan",csv_bytes(clean),"harga_pilihan.csv","text/csv")
-        st.download_button("Unduh seluruh dataset bersih",(ROOT/"data/processed/prices.csv").read_bytes(),"harga_pangan_bersih.csv","text/csv")
-    with st.expander("Rumus dan aturan perhitungan"):
-        st.markdown("""- **Perubahan bulanan:** harga bulan pilihan ÷ harga bulan kalender sebelumnya − 1. Bulan kosong tidak dilewati.
-- **Perubahan tahunan:** perbandingan dengan bulan yang sama tahun sebelumnya.
-- **Dampak anggaran historis:** selisih harga dua bulan × jumlah contoh tetap. Ini estimasi pada keranjang contoh, bukan transaksi nyata.
-- **Total lengkap:** hanya diterbitkan jika seluruh bahan aktif memiliki harga. Subtotal selalu ditandai.
-- **CV:** standar deviasi sampel ÷ rata-rata × 100%; minimal tiga observasi, dengan pilihan cakupan. Belum memisahkan tren dan musiman.
-- **Cakupan:** bulan dengan harga ÷ bulan dalam rentang efektif. Awal rentang dibatasi awal dataset.
-- **Median wilayah:** nilai tengah tanpa bobot; bukan rata-rata nasional resmi.
-- **Satuan:** kg, atau liter untuk minyak goreng, merupakan asumsi karena CSV sumber tidak memiliki kolom satuan.""")
-    with st.expander("Pembersihan, kualitas, dan wilayah historis"):
-        st.write(f"{quality['raw_rows']:,} baris mentah → {quality['clean_rows']:,} observasi valid; {quality['rejected_rows']:,} baris dipisahkan. Harga hilang tidak diisi dan harga nol tidak menjadi harga belanja.")
-        st.write("38 seri modern dan dua seri historis Papua bukan jumlah provinsi pada satu waktu. Seri sebelum perubahan skema 2024 dipisahkan agar wilayah dengan cakupan berbeda tidak disambungkan.")
-        st.download_button("Unduh baris yang dipisahkan",(ROOT/"data/processed/rejected.csv").read_bytes(),"harga_dipisahkan.csv","text/csv")
-        st.download_button("Unduh laporan kualitas",json.dumps(quality,ensure_ascii=False,indent=2).encode(),"kualitas_data.json","application/json")
-    with st.expander("Jejak sumber dan lisensi"):
-        st.write(source["license_status"])
-        st.code(source["raw_sha256"],language=None)
-        st.caption("SHA-256 snapshot CSV mentah; tanggal pencatatan disimpan dalam metadata, tidak mengikuti jam saat dashboard dibuka.")
-        st.json(source)
-    verification = json.loads((ROOT/"data/verification.json").read_text())
-    with st.expander("Hasil pemeriksaan sumber dan satuan"):
-        st.write("Dataset aktif menggunakan CSV primer yang diberikan pengguna, dengan XLSX sebagai pembanding. Hash kedua berkas dicatat; isi 33.422 baris cocok. File tidak memuat satuan atau lisensi, sehingga dua hal tersebut belum dapat dikonfirmasi dari unggahan.")
-        st.json(verification)
-    with st.expander("Tentang proyek dan kode sumber"):
-        st.write("Studi kasus portofolio data analyst untuk anggaran warung makan di Jawa Barat; wilayah lain tersedia untuk eksplorasi. Dibangun dengan Python, Pandas, SQL/SQLite, Streamlit, Plotly, dan Excel.")
-        st.markdown(f"[Kode sumber]({REPO}) · [Metodologi]({REPO}/blob/main/docs/METHODOLOGY.md) · [Pengujian]({REPO}/tree/main/tests)")
-        st.caption("Tampilan bergaya BI dibangun langsung di Streamlit. Proyek ini tidak memerlukan akun atau lisensi Power BI.")
-        st.markdown(f"[Studi kasus satu halaman]({REPO}/blob/main/docs/CASE_STUDY.md) · [Rencana uji pengguna]({REPO}/blob/main/docs/USER_TESTING.md)")
-    with st.expander("Uji pemahaman dashboard — sukarela"):
-        st.caption("Belum ada hasil uji pengguna nyata. Jawaban diproses sementara dalam sesi untuk membuat CSV; aplikasi tidak menyimpannya permanen atau mengirimkannya ke layanan lain. Unduh untuk dibagikan secara sukarela. Jangan isi nama atau informasi pribadi.")
-        answer = st.selectbox("Rp10.687 pada contoh awal berarti apa?",["Pilih jawaban","Perubahan estimasi keranjang antara dua bulan","Penghematan usaha yang sudah terjadi","Prediksi pengeluaran bulan depan"],key="usability_meaning")
-        missing = st.selectbox("Jika satu harga bahan aktif kosong, bagaimana membaca hasilnya?",["Pilih jawaban","Total belum lengkap; subtotal diberi label","Bahan tersebut gratis","Anggap harganya sama dengan bulan lalu"],key="usability_missing")
-        difficulty = st.selectbox("Apakah kamu berhasil mengubah satu jumlah di simulator?",["Belum mencoba","Berhasil tanpa bantuan","Berhasil dengan bantuan","Belum berhasil"],key="usability_task")
-        if answer != "Pilih jawaban" and missing != "Pilih jawaban":
-            feedback = pd.DataFrame([{"arti_angka":answer,"harga_kosong":missing,"tugas_edit":difficulty}])
-            st.download_button("Unduh jawaban uji penggunaan",csv_bytes(feedback),"jawaban_uji_penggunaan.csv","text/csv")
+def source_panel(data, changes, province, commodity, as_of, start, threshold, quality, source):
+    with st.expander("Sumber & cara menghitung", expanded=False):
+        st.markdown(f"**Sumber:** [Badan Pangan Nasional]({source['original_url_cited']}). Ekspor CSV dan XLSX diberikan pengguna; seluruh 33.422 baris cocok. Pengambilan langsung dari server belum diverifikasi independen.")
+        recorded = datetime.fromisoformat(source["snapshot_recorded_at_utc"]).astimezone(ZoneInfo("Asia/Jakarta"))
+        st.write(f"**Periode harga:** {month_label(data.date.min())}–{month_label(data.date.max())}. **Snapshot dicatat:** {recorded.strftime('%d/%m/%Y %H:%M')} WIB; berbeda dari bulan harga terakhir. Tidak diperbarui otomatis.")
+        st.write(f"**Pembersihan:** {quality['raw_rows']:,} baris mentah → {quality['clean_rows']:,} observasi valid; {quality['rejected_rows']:,} baris dipisahkan. Harga kosong tidak diisi; harga nol tidak dianggap gratis. Tanda — berarti belum dapat dihitung.")
+        st.markdown("**Cara menghitung:** perubahan bulanan = (harga bulan pilihan ÷ harga bulan kalender sebelumnya − 1) × 100%. Bulan kosong tidak dilewati. Median wilayah tidak berbobot. Fluktuasi membandingkan bulan pengamatan bersama; bukan prediksi harga.")
+        st.info("Harga konsumen provinsi dapat berbeda dari harga pemasok. File tidak memuat satuan: kg/liter pada simulasi adalah asumsi atau pernyataan pengguna. Keranjang contoh bukan transaksi nyata; total hanya lengkap jika seluruh bahan aktif memiliki harga.")
+        st.markdown(f"[Metode lengkap]({REPO}/blob/main/docs/METHODOLOGY.md) · [Jejak sumber & lisensi]({REPO}/blob/main/docs/SOURCES.md) · [Studi kasus]({REPO}/blob/main/docs/CASE_STUDY.md) · [Kode & pengujian]({REPO})")
+        st.caption(f"Laporan: {province} · {commodity} · {month_label(start)}–{month_label(as_of)}; ambang {threshold}%, minimum cakupan {st.session_state.filters['coverage']}%. Skenario belanja diunduh terpisah dari Simulator anggaran.")
+        signature = (province,commodity,str(as_of),str(start),threshold,st.session_state.filters["coverage"])
+        if st.button("Siapkan laporan Excel",type="primary",key="prepare_excel"):
+            from analyst.reporting import workbook_bytes
+            with st.spinner("Menyusun laporan…"):
+                months = (as_of.year-start.year)*12+as_of.month-start.month+1
+                st.session_state.excel_report = (signature,workbook_bytes(data,province,as_of,months,threshold_pct=threshold,commodity=commodity,minimum_coverage=st.session_state.filters["coverage"]))
+        saved = st.session_state.get("excel_report")
+        if saved and saved[0]==signature:
+            st.download_button("Unduh laporan Excel",saved[1],"laporan_analyst.xlsx","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        st.download_button("Unduh seluruh dataset bersih", (ROOT/"data/processed/prices.csv").read_bytes(), "harga_pangan_bersih.csv", "text/csv")
+        st.download_button("Unduh baris yang dipisahkan", (ROOT/"data/processed/rejected.csv").read_bytes(), "harga_dipisahkan.csv", "text/csv")
 
 
 def main():
@@ -498,9 +471,9 @@ def main():
         st.caption("KONTEKS ANALISIS")
         province = select_filter("province","Wilayah acuan",sorted(data.province.unique()))
         as_of = select_filter("as_of","Bulan referensi",list(pd.date_range(data.date.min(),data.date.max(),freq="MS")),month_label)
-        if page in ["Ringkasan","Perbandingan wilayah","Data & metode"]:
+        if page in ["Ringkasan","Perbandingan wilayah","Tren & fluktuasi"]:
             select_filter("commodity","Bahan untuk detail" if page=="Ringkasan" else "Bahan pilihan",sorted(data.commodity.unique()))
-        if page in ["Ringkasan","Fluktuasi historis","Data & metode"]:
+        if page in ["Ringkasan","Tren & fluktuasi"]:
             select_filter("window","Rentang analisis",[6,12,24,36],lambda v:f"{v} bulan")
         if page=="Ringkasan":
             if "filter_threshold" not in st.session_state: st.session_state.filter_threshold=st.session_state.filters["threshold"]
@@ -508,19 +481,17 @@ def main():
         st.divider()
         st.caption(f"HARGA TERAKHIR\n\n{month_label(data.date.max())}\n\nDataset historis · bukan harga hari ini")
         st.markdown(f"[Kode sumber ↗]({REPO})")
-        st.button("Tentang proyek",on_click=navigate,args=("Data & metode",),width="stretch")
+        st.caption("Sumber & cara menghitung tersedia di bawah setiap halaman.")
     filters = st.session_state.filters
     commodity, window, threshold = filters["commodity"],filters["window"],filters["threshold"]
     start = max(as_of-pd.DateOffset(months=window-1),data.date.min())
     st.title(TITLE)
     st.caption("33.422 baris ekspor harga pangan BPN → temuan perubahan harga → simulasi dampak biaya. Jelajahi hasilnya dalam satu menit.")
     st.html(f'<div class="context"><span class="chip">{html.escape(province)}</span><span class="chip">{month_label(as_of)}</span><span class="chip">Ekspor BPN · unggahan pengguna</span><span class="chip accent">{"Skenario asumsi" if page=="Simulator anggaran" else "Data historis"}</span></div>')
-    if page in ["Ringkasan","Fluktuasi historis","Data & metode"] and start>as_of-pd.DateOffset(months=window-1):
+    if page in ["Ringkasan","Tren & fluktuasi"] and start>as_of-pd.DateOffset(months=window-1):
         st.caption(f"Rentang efektif dimulai {month_label(start)} sesuai awal dataset; riwayat sebelumnya tidak tersedia.")
-    if page=="Data & metode":
-        data_page(data,changes,province,commodity,as_of,start,threshold,quality,source)
-    else:
-        {"Ringkasan":overview,"Simulator anggaran":budget_page,"Fluktuasi historis":risk_page,"Perbandingan wilayah":regions_page}[page](data,changes,province,commodity,as_of,start,threshold)
+    {"Ringkasan":overview,"Simulator anggaran":budget_page,"Tren & fluktuasi":risk_page,"Perbandingan wilayah":regions_page}[page](data,changes,province,commodity,as_of,start,threshold)
+    source_panel(data,changes,province,commodity,as_of,start,threshold,quality,source)
     st.html(f'<div class="footer"><span>Studi kasus portofolio · Satuan kg/liter asumsi · Harga terakhir {month_label(data.date.max())}</span><span><a href="{REPO}" target="_blank" rel="noopener noreferrer">Kode sumber ↗</a> · <a href="{REPO}/blob/main/docs/METHODOLOGY.md" target="_blank" rel="noopener noreferrer">Metodologi ↗</a></span></div>')
 
 

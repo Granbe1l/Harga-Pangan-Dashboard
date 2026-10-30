@@ -6,7 +6,7 @@ import unittest
 from openpyxl import load_workbook
 import pandas as pd
 
-from panganwatch.reporting import build_summary, summary_markdown, workbook_bytes
+from analyst.reporting import build_summary, summary_markdown, workbook_bytes
 
 
 def fixture():

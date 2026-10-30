@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from panganwatch.pipeline import clean_source, normalize_province, parse_month, parse_price
+from analyst.pipeline import clean_source, normalize_province, parse_month, parse_price
 
 
 def row(price="Rp12,072", month="Januari", province=" Jawa Barat ", code="32", year="2025"):

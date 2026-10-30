@@ -36,7 +36,7 @@ class DashboardTests(unittest.TestCase):
     def test_opening_dashboard_has_original_name_and_price_metrics(self):
         app = self.open_app()
         self.assert_no_errors(app)
-        self.assertEqual(app.title[0].value, "PanganWatch")
+        self.assertEqual(app.title[0].value, "Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner")
         self.assertEqual(len(app.metric), 4)
         self.assertTrue(app.metric[0].value.startswith("Rp "))
         self.assertNotEqual(app.metric[1].value, "—")
@@ -108,6 +108,57 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(app.metric[1].value, "—")
         self.assertEqual(app.metric[2].value, "—")
         self.assertIn("Perubahan bulanan belum bisa dihitung", self.rendered_copy(app))
+
+    def test_risk_first_month_has_unknown_growth_and_effective_window(self):
+        app = self.open_app()
+        app.sidebar.selectbox(key="as_of").set_value(pd.Timestamp("2021-01-01")).run()
+        self.assertEqual(len(app.get("plotly_chart")), 0)
+        app.sidebar.radio(key="page").set_value("Risiko harga").run()
+        self.assert_no_errors(app)
+        self.assertEqual(app.metric[0].value, "—")
+        self.assertEqual(app.metric[1].value, "—")
+        table = app.dataframe[0].value
+        self.assertTrue((table["Bulan dalam rentang"] == 1).all())
+        self.assertTrue(app.sidebar.selectbox(key="commodity").disabled)
+
+    def test_incomplete_budget_has_subtotal_and_recovery_month(self):
+        app = self.open_app()
+        app.sidebar.selectbox(key="as_of").set_value(pd.Timestamp("2021-01-01")).run()
+        app.sidebar.radio(key="page").set_value("Simulator anggaran").run()
+        self.assert_no_errors(app)
+        self.assertEqual(app.metric[0].value, "—")
+        self.assertIn("Subtotal bahan", self.rendered_copy(app))
+        self.assertTrue(any("Harga seluruh bahan aktif tersedia" in i.value for i in app.info))
+
+    def test_manual_prices_are_labelled_and_render_without_exception(self):
+        app = self.open_app()
+        app.sidebar.radio(key="page").set_value("Simulator anggaran").run()
+        app.checkbox(key="manual_prices").check().run()
+        self.assert_no_errors(app)
+        self.assertTrue(any("input pengguna" in i.value for i in app.info))
+        self.assertNotEqual(app.metric[0].value, "—")
+
+    def test_manual_price_changes_budget_without_changing_snapshot(self):
+        before = (ROOT / "data/processed/prices.csv").read_bytes()
+        app = self.open_app()
+        app.sidebar.radio(key="page").set_value("Simulator anggaran").run()
+        app.multiselect(key="basket_commodities").set_value(["Beras Medium"]).run()
+        app.checkbox(key="manual_prices").check().run()
+        app.session_state["basket_editor"] = {"edited_rows": {0: {"Harga input pengguna (Rp)": 20000}}, "added_rows": [], "deleted_rows": []}
+        app.run()
+        self.assert_no_errors(app)
+        self.assertEqual(app.metric[0].value, "Rp 500.000")
+        self.assertEqual(app.metric[1].value, "Rp 550.000")
+        self.assertEqual((ROOT / "data/processed/prices.csv").read_bytes(), before)
+
+    def test_complete_basket_month_button_recovers_missing_prices(self):
+        app = self.open_app()
+        app.sidebar.selectbox(key="as_of").set_value(pd.Timestamp("2021-01-01")).run()
+        app.sidebar.radio(key="page").set_value("Simulator anggaran").run()
+        app.button(key="complete_basket_month").click().run()
+        self.assert_no_errors(app)
+        self.assertNotEqual(app.metric[0].value, "—")
+        self.assertEqual(len(app.warning), 0)
 
     def test_excel_download_generated_in_data_page(self):
         app = self.open_app()

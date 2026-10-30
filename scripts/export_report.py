@@ -14,8 +14,8 @@ sys.path.insert(0, str(ROOT))
 
 import pandas as pd
 
-from panganwatch.analytics import create_sql_views
-from panganwatch.reporting import build_summary, summary_markdown, workbook_bytes
+from analyst.analytics import create_sql_views
+from analyst.reporting import build_summary, summary_markdown, workbook_bytes
 
 
 def main() -> None:

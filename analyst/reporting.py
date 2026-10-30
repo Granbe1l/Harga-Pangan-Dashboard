@@ -11,7 +11,7 @@ import pandas as pd
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-from panganwatch.analytics import (
+from analyst.analytics import (
     basket_simulation,
     comparison_frame,
     province_comparison,

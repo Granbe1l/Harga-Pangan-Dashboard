@@ -1,12 +1,12 @@
-# PanganWatch
+# Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner
 
-Dashboard harga pangan dan simulasi anggaran belanja untuk UMKM kuliner.
+Studi kasus analisis harga historis dan dampaknya terhadap anggaran warung makan di Jawa Barat. Wilayah lain tersedia sebagai eksplorasi tambahan.
 
 Pertanyaan awalnya sederhana: bahan apa yang sedang naik, dan berapa tambahan anggaran jika jumlah belanja tetap? Contoh penggunaan memakai bahan warung makan di Jawa Barat. Pilih wilayah, komoditas, dan bulan untuk melihat harga, kemudian coba skenario belanja. Harga konsumen provinsi dipakai sebagai acuan; harga pembelian usaha dapat berbeda.
 
 PanganWatch dibuat dengan Python, Pandas, SQL/SQLite, Streamlit, Plotly, dan ekspor Excel.
 
-![Tampilan dashboard PanganWatch](reports/screenshots/ringkasan.png)
+Tangkapan layar di `reports/screenshots/` merupakan dokumentasi versi awal. Jalankan aplikasi untuk melihat alur terbaru yang berfokus pada dampak anggaran.
 
 ## Unduh proyek
 
@@ -89,3 +89,11 @@ python -m unittest discover -s tests -v
 Tes mencakup parsing harga, data kosong, perubahan bulan kalender, simulator, perpindahan halaman, dan pembuatan Excel.
 
 [Catatan CV dan wawancara](docs/CV.md) membantu menjelaskan proyek berdasarkan hasil yang dapat diperiksa ulang. Repositori proyek: [Granbe1l/Harga-Pangan-Dashboard](https://github.com/Granbe1l/Harga-Pangan-Dashboard).
+
+## Alur penggunaan
+
+Buka Ringkasan untuk melihat kenaikan bahan dan dampak rupiahnya pada keranjang contoh. Gunakan Simulator anggaran untuk memasukkan kebutuhan sendiri, melihat kontributor biaya terbesar, dan mencoba perubahan harga. Harga pembelian sendiri dapat diisi melalui opsi **Gunakan harga pembelian sendiri**; unduhan membedakan sumber harga ini dari snapshot historis.
+
+Tanda — berarti perhitungan belum tersedia, bukan nol. Subtotal keranjang yang belum lengkap ditandai secara eksplisit. Rentang analisis dibatasi awal dataset; CV memerlukan minimal tiga observasi. Metode lengkap tersedia dalam panel yang dapat dibuka.
+
+Modul Python berada di folder `analyst/`; gunakan `from analyst.analytics import ...`. Folder luar paket ZIP juga bernama `analyst`.

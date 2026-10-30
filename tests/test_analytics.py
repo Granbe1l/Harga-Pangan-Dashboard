@@ -4,7 +4,7 @@ import unittest
 
 import pandas as pd
 
-from panganwatch.analytics import (
+from analyst.analytics import (
     basket_simulation,
     comparison_frame,
     create_sql_views,

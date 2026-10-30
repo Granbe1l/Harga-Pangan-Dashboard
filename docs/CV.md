@@ -2,7 +2,7 @@
 
 ## Judul proyek
 
-**PanganWatch — Dashboard Harga Pangan dan Simulasi Anggaran UMKM**
+**Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner**
 
 Python · Pandas · SQL/SQLite · Streamlit · Excel
 

@@ -17,6 +17,14 @@ CSV dan XLSX diterima sebagai ekspor dari publikasi ini. CSV menjadi input aktif
 
 Nama asli, ukuran, waktu impor, jalur akuisisi, dan hasil pencocokan dicatat di `data/raw/primary/receipt.json`. Konfigurasi input aktif: `data/source_input.json`. Metadata hasil pemrosesan: `data/source.json`. Ringkasan pemeriksaan: `data/verification.json`.
 
+## Status verifikasi
+
+| Pemeriksaan | Status |
+| --- | --- |
+| Hash dan kecocokan isi CSV–XLSX lokal | Diperiksa; 33.422 baris cocok |
+| Pengambilan langsung dari server BPN | Belum diverifikasi independen |
+| Satuan harga dan lisensi pada ekspor | Tidak tercantum |
+
 ## Pemeriksaan berkas
 
 - Kedua berkas memiliki 33.422 baris data dan enam kolom yang sama.

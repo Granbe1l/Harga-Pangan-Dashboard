@@ -6,7 +6,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "reports" / "analyst.zip"
-DIRECTORIES = [".github", "assets", "analyst", "scripts", "sql", "tests", "docs", "data", "reports"]
+DIRECTORIES = [".github", "assets", "analyst", "scripts", "tests", "docs", "data", "reports"]
 TOP_FILES = ["app.py", "README.md", "requirements.txt", "requirements.lock.txt", ".gitignore", ".gitattributes", ".streamlit/config.toml"]
 
 
@@ -21,7 +21,7 @@ def main():
                 continue
             if any(part in {"__pycache__", ".venv", ".git", ".pytest_cache"} for part in path.parts):
                 continue
-            if path.suffix in {".pyc", ".zip", ".log"} or path.name in {"secrets.toml", ".env"}:
+            if path.suffix in {".pyc", ".zip", ".log", ".sqlite"} or path.name in {"secrets.toml", ".env"}:
                 continue
             archive.write(path, Path("analyst") / path.relative_to(ROOT))
     print(f"Paket siap: {OUTPUT} ({OUTPUT.stat().st_size:,} bytes)")

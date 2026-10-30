@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sqlite3
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,7 +13,6 @@ sys.path.insert(0, str(ROOT))
 
 import pandas as pd
 
-from analyst.analytics import create_sql_views
 from analyst.reporting import build_summary, summary_markdown, workbook_bytes
 
 
@@ -40,10 +38,6 @@ def main() -> None:
     (args.output_dir / "harga_pangan_report.xlsx").write_bytes(report)
     (args.output_dir / "analysis_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     (args.output_dir / "analysis_summary.md").write_text(summary_markdown(summary), encoding="utf-8")
-    database = ROOT / "data" / "panganwatch.sqlite"
-    if database.exists():
-        with sqlite3.connect(database) as connection:
-            create_sql_views(connection)
     print(f"Laporan dibuat: {args.output_dir.resolve()}")
     print(f"Pilihan: {args.province}, {summary['as_of'][:7]}, {args.months} bulan; {summary['snapshot']['observed_commodities']} komoditas teramati.")
 

@@ -14,7 +14,7 @@ Data berasal dari ekspor publikasi BPN untuk Januari 2021–Oktober 2025. Fokus 
 | Konteks historis cabai merah keriting | Naik ≥10% pada 4 dari 12 pasangan bulan November 2024–Oktober 2025 |
 | Data mentah → valid | 33.422 → 32.480 observasi; 942 baris dipisahkan |
 
-Ambang 10% merupakan parameter analisis. Frekuensi kenaikan menggambarkan riwayat pengamatan, bukan peluang kenaikan berikutnya. Satu komoditas tanpa pembanding tidak dimasukkan dalam jumlah kenaikan.
+Batas kenaikan 10% merupakan parameter analisis. Frekuensi kenaikan menggambarkan riwayat pengamatan, bukan peluang kenaikan berikutnya. Satu komoditas tanpa pembanding tidak dimasukkan dalam jumlah kenaikan.
 
 ## Proses analisis
 
@@ -23,7 +23,7 @@ Ambang 10% merupakan parameter analisis. Frekuensi kenaikan menggambarkan riwaya
 3. Membandingkan bulan kalender yang tepat, tanpa mengisi harga hilang.
 4. Membandingkan fluktuasi pada bulan dan pasangan bulanan yang sama.
 5. Membandingkan harga antarwilayah dengan median tanpa bobot.
-6. Menyediakan dashboard, laporan Excel, query SQL, dan pengujian otomatis.
+6. Menyediakan dashboard, laporan Excel, dan pengujian otomatis.
 
 ## Interpretasi
 

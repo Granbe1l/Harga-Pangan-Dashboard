@@ -8,7 +8,7 @@ from streamlit.testing.v1 import AppTest
 
 ROOT=Path(__file__).resolve().parents[1]
 TITLE='Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi'
-PAGES=['Ringkasan','Tren & fluktuasi','Perbandingan wilayah']
+PAGES=['Ringkasan','Tren & fluktuasi','Perbandingan provinsi']
 
 class DashboardTests(unittest.TestCase):
     def open_app(self):
@@ -38,6 +38,8 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(app.title[0].value,TITLE)
         self.assertEqual([m.value for m in app.metric],['25 / 25','2','+11,16%'])
         self.assertIn('Cabai Merah Keriting',app.metric[2].label)
+        self.assertTrue(any('Daging Kerbau Segar (Lokal)' in c.value and 'tidak tersedia' in c.value for c in app.caption))
+        self.assertEqual(app.slider(key='filter_threshold').label,'Batas kenaikan bulanan (%)')
         self.assertTrue(any('4 dari 12 pasangan bulan' in m.value for m in app.markdown))
         self.assertTrue(any('Studi historis Januari 2021–Oktober 2025' in c.value for c in app.caption))
 
@@ -58,7 +60,7 @@ class DashboardTests(unittest.TestCase):
         app=self.open_app()
         app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run()
         app.selectbox(key='filter_window').set_value(36).run()
-        self.menu(app,'Perbandingan wilayah')
+        self.menu(app,'Perbandingan provinsi')
         self.assertFalse(any(s.key=='filter_window' for s in app.selectbox))
         self.menu(app,'Ringkasan')
         self.assertEqual(app.selectbox(key='filter_commodity').value,'Cabai Rawit Merah')
@@ -78,10 +80,13 @@ class DashboardTests(unittest.TestCase):
         self.assertTrue(any('Minimal dua bulan' in i.value for i in app.info))
 
     def test_regions_toggle_changes_displayed_series(self):
-        app=self.open_app();self.menu(app,'Perbandingan wilayah')
+        app=self.open_app();self.menu(app,'Perbandingan provinsi')
         before=app.get('plotly_chart')[0].proto.spec
         app.toggle(key='filter_all_regions').set_value(True).run();self.good(app)
         self.assertNotEqual(before,app.get('plotly_chart')[0].proto.spec)
+        columns=[str(c) for df in app.dataframe for c in df.value.columns]
+        self.assertNotIn('Satuan asumsi',columns)
+        self.assertNotIn('unit',columns)
 
     def test_report_has_analysis_without_budget_or_assumed_units(self):
         app=self.open_app()

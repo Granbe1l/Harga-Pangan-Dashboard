@@ -7,8 +7,6 @@ an official national price.
 
 from __future__ import annotations
 
-from pathlib import Path
-import sqlite3
 from typing import Any
 
 import numpy as np
@@ -116,14 +114,6 @@ def province_comparison(df: pd.DataFrame, commodity: str, as_of: Any) -> pd.Data
     result["median_price"] = median
     result["deviation_pct"] = (result["price"] / median - 1.0) * 100.0
     return result.sort_values("price", ascending=False).reset_index(drop=True)
-
-
-
-
-def create_sql_views(connection: sqlite3.Connection, sql_path: str | Path | None = None) -> None:
-    """Register the reviewable SQL views in an existing prepared database."""
-    path = Path(sql_path) if sql_path is not None else Path(__file__).resolve().parents[1] / "sql" / "analytics.sql"
-    connection.executescript(path.read_text(encoding="utf-8"))
 
 
 def matched_fluctuation(df, start, end, minimum_coverage=80):

@@ -1,5 +1,5 @@
 {
-  "target": "http://127.0.0.1:8506",
+  "target": "http://127.0.0.1:8507",
   "scope": "local browser checks; public deployment not verified",
   "checks": [
     "three menus and default findings; no budget controls or tabs",
@@ -12,16 +12,17 @@
     "ringkasan-first-screen.png",
     "ringkasan.png",
     "tren.png",
-    "wilayah.png",
-    "tren-bahan-pilihan.png",
+    "provinsi.png",
+    "tren-komoditas-pilihan.png",
     "tren-riwayat-terbatas.png",
     "ringkasan-riwayat-terbatas.png",
     "ringkasan-tanpa-harga.png",
-    "wilayah-lengkap.png",
+    "provinsi-lengkap.png",
+    "tabel-perbandingan-provinsi.png",
     "sumber-metode.png",
     "ringkasan-mobile.png",
     "tren-mobile.png",
-    "wilayah-mobile.png"
+    "provinsi-mobile.png"
   ],
   "javascript_page_errors": [],
   "status": "passed"

@@ -1,12 +1,10 @@
 """Meaningful calendar, and coverage invariants (unittest/pytest)."""
-import sqlite3
 import unittest
 
 import pandas as pd
 
 from analyst.analytics import (
     comparison_frame,
-    create_sql_views,
     province_comparison,
     volatility_summary,
 )
@@ -61,32 +59,6 @@ class AnalyticsTests(unittest.TestCase):
         result = province_comparison(pd.concat([self.df, extra]), "Beras", "2023-01-15")
         self.assertEqual(len(result), 2)
         self.assertEqual(result["median_price"].iloc[0], 15000.0)
-
-
-
-
-
-
-    def test_sql_and_python_exact_month_calculations_agree(self):
-        with sqlite3.connect(":memory:") as connection:
-            self.df.to_sql("prices", connection, index=False)
-            create_sql_views(connection)
-            sql = pd.read_sql_query("SELECT date, mom_pct, yoy_pct FROM monthly_price_changes ORDER BY date", connection)
-        python = comparison_frame(self.df)
-        pd.testing.assert_series_equal(sql["mom_pct"], python["mom_pct"], check_names=False)
-        pd.testing.assert_series_equal(sql["yoy_pct"], python["yoy_pct"], check_names=False)
-
-    def test_sql_ratios_do_not_use_integer_division(self):
-        frame = prices(
-            ("32", "Jawa Barat", "Beras", "2023-01-01", 10000),
-            ("32", "Jawa Barat", "Beras", "2023-02-01", 12500),
-        )
-        frame["price"] = frame["price"].astype(int)
-        with sqlite3.connect(":memory:") as connection:
-            frame.to_sql("prices", connection, index=False)
-            create_sql_views(connection)
-            value = connection.execute("SELECT mom_pct FROM monthly_price_changes WHERE date = '2023-02-01'").fetchone()[0]
-        self.assertAlmostEqual(value, 25.0)
 
 
 if __name__ == "__main__":

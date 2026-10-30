@@ -10,7 +10,7 @@ Aplikasi dapat dijalankan melalui Streamlit Community Cloud:
 ## Pemeriksaan setelah deploy
 
 - Buka URL melalui incognito untuk memeriksa akses tanpa login.
-- Periksa ketiga menu, filter wilayah/bulan/bahan, dan unduhan Excel pada desktop serta ponsel.
+- Periksa ketiga menu, filter provinsi/bulan/komoditas, dan unduhan Excel pada desktop serta ponsel.
 - Pastikan sesi baru tidak membawa input dari pengunjung lain.
 - Catat waktu muat pada kondisi aktif dan setelah aplikasi sleep.
 - Periksa tautan sumber data, metode, dan repository.

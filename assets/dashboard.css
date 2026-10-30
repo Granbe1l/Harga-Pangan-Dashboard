@@ -33,7 +33,6 @@ p,li {line-height:1.55;}
 .finding {background:#eaf5f5;border-left:3px solid #087f8c;border-radius:0 9px 9px 0;padding:.85rem 1rem;line-height:1.5;color:#173c4c;margin:.2rem 0 .8rem;}
 .finding .label {color:#08717d;font-size:.66rem;font-weight:750;letter-spacing:.1rem;display:block;margin-bottom:.25rem;}
 .section-tag {font-size:.68rem;letter-spacing:.12rem;font-weight:750;color:#64748b;margin-bottom:.3rem;}
-.simulation-banner {border:1px solid #e8d6b5;background:#fffbef;border-radius:10px;padding:.75rem 1rem;color:#775315;margin-bottom:.9rem;font-size:.85rem;}
 .footer {display:flex;gap:1rem;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #e0e7ef;padding-top:1rem;margin-top:1rem;color:#526577;font-size:.75rem;}
 .footer a {color:#08717d;text-decoration:none;}
 @media(max-width:850px) {.block-container{padding:4rem 1rem 1rem;}h1{font-size:1.45rem!important;}[data-testid="stHorizontalBlock"]{flex-wrap:wrap;gap:.75rem;}[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]{min-width:min(100%,250px);flex:1 1 250px;}[data-testid="stMetricValue"]{font-size:1.55rem;}.context{gap:.35rem;}}

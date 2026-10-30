@@ -5,11 +5,12 @@ import argparse
 import json
 from pathlib import Path
 import re
+import pandas as pd
 from playwright.sync_api import sync_playwright, expect
 from openpyxl import load_workbook
 
 TITLE='Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi'
-MENUS=[('Ringkasan','ringkasan'),('Tren & fluktuasi','tren'),('Perbandingan wilayah','wilayah')]
+MENUS=[('Ringkasan','ringkasan'),('Tren & fluktuasi','tren'),('Perbandingan provinsi','provinsi')]
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -24,6 +25,14 @@ def main():
         def settle(page):
             page.wait_for_timeout(700)
             assert page.get_by_test_id('stException').count()==0
+        def download_csv(page,label,filename):
+            with page.expect_download() as result:
+                page.get_by_role('button',name=label,exact=True).click()
+            path=out/filename;result.value.save_as(path)
+            frame=pd.read_csv(path)
+            assert 'Satuan asumsi' not in frame.columns
+            assert 'unit' not in frame.columns
+            return frame
         def ready(page):
             page.goto(opt.url);page.get_by_role('heading',name=TITLE,exact=True).wait_for(timeout=45000);settle(page)
         def menu(page,name):
@@ -44,21 +53,34 @@ def main():
         assert page.get_by_test_id('stMetric').count()==3
         assert 'Cabai Merah Keriting' in page.get_by_test_id('stMetric').nth(2).inner_text()
         assert page.get_by_role('tab').count()==0
+        assert 'Daging Kerbau Segar (Lokal)' in page.get_by_test_id('stMain').inner_text()
+        assert 'Batas kenaikan bulanan (%)' in page.get_by_test_id('stSidebar').inner_text()
         assert 'Simulator anggaran' not in page.get_by_test_id('stSidebar').inner_text()
         page.screenshot(path=str(out/'ringkasan-first-screen.png'));report['screenshots'].append('ringkasan-first-screen.png')
         for label,name in MENUS:
             menu(page,label);screenshot(page,name,1440,950)
-        menu(page,'Tren & fluktuasi');select(page,'Bahan pilihan','Cabai Rawit Merah')
-        screenshot(page,'tren-bahan-pilihan',1440,950)
+        menu(page,'Tren & fluktuasi');select(page,'Komoditas pilihan','Cabai Rawit Merah')
+        page.get_by_text('Variasi tingkat harga (CV)',exact=True).click();settle(page)
+        assert 'CV membandingkan penyebaran' in page.get_by_test_id('stMain').inner_text()
+        page.get_by_text('Perubahan bulanan absolut',exact=True).click();settle(page)
+        assert 'naik 10% dan turun 10%' in page.get_by_test_id('stMain').inner_text()
+        screenshot(page,'tren-komoditas-pilihan',1440,950)
+        page.get_by_text('Bulan pembanding, tabel kelengkapan, dan unduhan',exact=True).click();settle(page)
+        assert len(download_csv(page,'Unduh perbandingan bulan bersama','fluktuasi.csv'))>0
+        assert len(download_csv(page,'Unduh kelengkapan seluruh seri','cakupan.csv'))==25
         select(page,'Bulan referensi','Januari 2021');screenshot(page,'tren-riwayat-terbatas',1440,950)
         menu(page,'Ringkasan');expect(page.get_by_test_id('stMetricValue').nth(1)).to_have_text('—')
         screenshot(page,'ringkasan-riwayat-terbatas',1440,950)
-        select(page,'Bulan referensi','Oktober 2025');select(page,'Wilayah acuan','Papua Pegunungan')
+        select(page,'Bulan referensi','Oktober 2025');select(page,'Provinsi acuan','Papua Pegunungan')
         expect(page.get_by_test_id('stMetricValue').first).to_have_text('0 / 25')
         screenshot(page,'ringkasan-tanpa-harga',1440,950)
-        select(page,'Wilayah acuan','Jawa Barat');menu(page,'Perbandingan wilayah')
-        page.get_by_text('Lihat seluruh wilayah',exact=True).click();settle(page)
-        screenshot(page,'wilayah-lengkap',1440,950)
+        select(page,'Provinsi acuan','Jawa Barat');menu(page,'Perbandingan provinsi')
+        page.get_by_text('Lihat seluruh provinsi',exact=True).click();settle(page)
+        screenshot(page,'provinsi-lengkap',1440,950)
+        page.get_by_text('Tabel seluruh provinsi dan unduhan',exact=True).click();settle(page)
+        comparison=download_csv(page,'Unduh perbandingan provinsi','perbandingan.csv')
+        assert list(comparison.columns)==['Provinsi','Harga (Rp)','Selisih median (%)']
+        screenshot(page,'tabel-perbandingan-provinsi',1440,950)
         page.get_by_text('Sumber & cara menghitung',exact=True).click();settle(page)
         screenshot(page,'sumber-metode',1440,950)
         page.get_by_role('button',name='Siapkan laporan Excel',exact=True).click()
@@ -71,6 +93,8 @@ def main():
         assert 'Satuan asumsi' not in [c.value for c in book['Harga Bersih'][1]]
         summary={r[0]:r[1] for r in book['Ringkasan'].iter_rows(min_row=2,values_only=True)}
         assert summary['Judul']==TITLE
+        assert len(download_csv(page,'Unduh seluruh dataset bersih','harga-bersih.csv'))==32480
+        assert len(download_csv(page,'Unduh baris yang dipisahkan','karantina.csv'))==942
         report['checks']+=['three menus and default findings; no budget controls or tabs','commodity trend, exact-month missing comparisons, and empty province','all-region toggle and expandable source panel','Excel download: 32,480 observations and no budget or assumed-unit sheets']
         for label,name in MENUS:
             mobile=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)

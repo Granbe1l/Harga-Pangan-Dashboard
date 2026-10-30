@@ -13,7 +13,6 @@ import math
 from datetime import datetime, timezone
 from pathlib import Path
 import re
-import sqlite3
 from typing import Any
 import urllib.request
 
@@ -180,7 +179,7 @@ def read_raw(path: Path | str) -> pd.DataFrame:
 
 
 def prepare_data(root: Path | str | None = None, download: bool = False) -> dict[str, Any]:
-    """Build CSV/SQLite/report artifacts; network only when explicitly requested."""
+    """Build CSV and report artifacts; network only when explicitly requested."""
     root = Path(root) if root is not None else ROOT
     input_config = root / "data/source_input.json"
     config = json.loads(input_config.read_text()) if input_config.exists() else {}
@@ -260,11 +259,6 @@ def prepare_data(root: Path | str | None = None, download: bool = False) -> dict
     source["snapshot_recorded_at_utc"] = source["snapshot_recorded_at_utc"] or datetime.now(timezone.utc).isoformat()
     (root / "data/source.json").write_text(json.dumps(source, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (output / "quality_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    with sqlite3.connect(root / "data/panganwatch.sqlite") as connection:
-        serializable.to_sql("prices", connection, if_exists="replace", index=False)
-        connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS prices_series_month ON prices(province_code, commodity, date)")
-        connection.execute("CREATE INDEX IF NOT EXISTS prices_month_commodity ON prices(date, commodity)")
-        pd.DataFrame([{"key": key, "value": json.dumps(value, ensure_ascii=False)} for key, value in source.items()]).to_sql("source_metadata", connection, if_exists="replace", index=False)
     return report
 
 

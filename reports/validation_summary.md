@@ -1,11 +1,10 @@
-# Hasil pengujian analisis harga pangan
+# Hasil pengujian
 
-- **51 tes lulus:** pembersihan, kecocokan CSV/XLSX, kalender bulanan/tahunan, perbandingan wilayah, bulan pengamatan bersama, filter, navigasi, dan laporan.
-- **Data sumber:** 33.422 baris CSV dan XLSX cocok setelah normalisasi teks; hash berkas asli diperiksa. Hasil pembersihan berisi 32.480 observasi; 942 baris dipisahkan.
-- **Perhitungan independen:** data Jawa Barat Oktober 2025 memiliki 24 pembanding, dua kenaikan ≥10%, dan cabai merah keriting tertinggi +11,16%.
-- **Browser Chromium:** tiga menu diperiksa pada desktop 1440 × 950 dan ponsel lebar 390 px. Tidak ditemukan exception aplikasi, error JavaScript, atau overflow badan halaman dalam rangkaian pemeriksaan.
-- **Kondisi data terbatas:** Januari 2021 tidak menghasilkan perubahan bulanan palsu; wilayah tanpa harga menampilkan 0/25 dan perubahan yang belum dapat dihitung.
-- **Ekspor Excel:** unduhan berisi 32.480 observasi dan sheet analisis harga; tidak memuat anggaran, sensitivitas keranjang, atau kolom satuan asumsi.
-- **Sesi lama:** pilihan halaman yang tidak lagi tersedia diarahkan kembali ke Ringkasan.
+- **49 tes lulus:** pembersihan, pencocokan sumber, perbandingan kalender, cakupan bersama, laporan, filter, dan navigasi. Modul serta tes SQL dihapus karena perhitungan dashboard menggunakan Pandas dan CSV.
+- **Ringkasan:** tiga KPI dipertahankan. Pada Jawa Barat Oktober 2025, daging kerbau segar (lokal) tidak memiliki harga September; perubahan hanya dihitung untuk 24 dari 25 komoditas.
+- **Satuan:** tabel dan unduhan perbandingan provinsi tidak memuat satuan asumsi. Laporan Excel dan unduhan data bersih juga tidak menyertakan kolom tersebut.
+- **Browser lokal:** ketiga menu diperiksa pada desktop 1440 × 950 dan ponsel lebar 390 px, termasuk perubahan komoditas, bulan, provinsi, kedua ukuran fluktuasi, dan kondisi harga kosong. Tidak ada exception aplikasi, error JavaScript, atau overflow badan halaman dalam rangkaian pemeriksaan.
+- **Unduhan browser:** CSV perbandingan provinsi, fluktuasi, cakupan, dataset bersih (32.480 observasi), karantina (942 baris), serta laporan Excel berhasil diperiksa.
+- **Akses publik:** browser baru tanpa login/cookie mencoba URL Streamlit, tetapi koneksi gagal pada proxy dengan `ERR_TUNNEL_CONNECTION_FAILED`. Akses tanpa login, seluruh fungsi deployment, dan screenshot deployment belum terverifikasi. Rincian ada pada `public_deployment_check.json`.
 
-File sumber tidak mencantumkan satuan atau lisensi. Pemeriksaan berkas lokal tidak membuktikan unduhan langsung dari server BPN. Akses deployment publik dibatasi proxy lingkungan pengujian; hasil di atas berasal dari server lokal. Hasil uji manusia belum tersedia.
+Screenshot pada `reports/screenshots/` berasal dari server lokal, bukan deployment publik. Dataset historis berakhir Oktober 2025 dan tidak diperbarui otomatis. Pencocokan file lokal tidak membuktikan unduhan langsung dari server BPN atau satuan yang tidak tercantum pada ekspor.

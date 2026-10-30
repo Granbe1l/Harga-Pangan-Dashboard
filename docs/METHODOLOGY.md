@@ -36,7 +36,7 @@ CV memakai simpangan baku sampel (`ddof=1`) dengan minimal tiga observasi per wi
 
 Bandingkan CV bersama jumlah observasi dan cakupannya. Bulan kosong tidak dianggap sebagai harga nol atau harga yang stabil.
 
-## Perbandingan wilayah
+## Perbandingan provinsi
 
 Satu komoditas dibandingkan pada satu bulan yang sama. Median dihitung tanpa bobot dari wilayah yang mempunyai harga valid.
 
@@ -65,3 +65,7 @@ Ekspor sumber tidak memuat satuan. Tampilan harga mengikuti angka rupiah yang te
 Laporan Excel memuat ringkasan, data bersih, snapshot provinsi, fluktuasi, cakupan, bulan pembanding, perbandingan wilayah, dan catatan sumber/metode. Perubahan harga dihitung sebelum filter periode agar pasangan kalender tetap tepat.
 
 Proses pembangunan ulang tersedia pada [Pemrosesan data](DATA_PIPELINE.md).
+
+## Istilah dan warna
+
+Tampilan menggunakan istilah komoditas dan provinsi. Seri Papua historis tetap ditandai karena cakupannya berbeda. Pada grafik perubahan, merah menunjukkan kenaikan dan teal menunjukkan penurunan. Pada grafik tren/fluktuasi, teal adalah warna seri utama. Pada perbandingan provinsi, teal menandai provinsi pilihan, abu-abu provinsi lain, dan garis amber menunjukkan median.

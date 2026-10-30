@@ -1,0 +1,34 @@
+{
+  "target": "http://127.0.0.1:8502",
+  "scope": "local browser acceptance; not proof of public hosting readiness",
+  "checks": [
+    "desktop first screen contains budget KPIs, finding, chart, and simulator CTA",
+    "real mouse/keyboard edits: fractional quantity and manual price persist across navigation",
+    "browser CSV and Excel downloads contain actual edited scenario and row provenance",
+    "reset and missing-price recovery button restore complete scenario",
+    "analysis Excel download contains 32,480 clean observations plus header",
+    "all five menus render on 390 px mobile; sidebar works; no body horizontal overflow",
+    "fresh anonymous browser context starts at default data without another session inputs"
+  ],
+  "screenshots": [
+    "ringkasan.png",
+    "simulator.png",
+    "risiko.png",
+    "wilayah.png",
+    "data.png",
+    "simulator-harga-sendiri.png",
+    "simulator-belum-lengkap.png",
+    "risiko-riwayat-terbatas.png",
+    "ringkasan-riwayat-terbatas.png",
+    "ringkasan-tanpa-harga.png",
+    "wilayah-lengkap.png",
+    "ringkasan-mobile.png",
+    "simulator-mobile.png",
+    "risiko-mobile.png",
+    "wilayah-mobile.png",
+    "data-mobile.png"
+  ],
+  "local_initial_ready_seconds": 2.83,
+  "javascript_page_errors": [],
+  "status": "passed"
+}

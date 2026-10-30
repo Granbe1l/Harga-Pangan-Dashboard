@@ -1,4 +1,4 @@
-"""Offline, reproducible Excel and factual executive summaries for PanganWatch."""
+"""Offline, reproducible Excel and factual executive summaries for the analyst dashboard."""
 
 from __future__ import annotations
 
@@ -78,7 +78,7 @@ def build_summary(
     comparable = snapshot["mom_pct"].notna().sum()
     geography_column = "province_code" if "province_code" in frame else "province"
     return {
-        "title": "PanganWatch — Ringkasan Analisis Harga Pangan",
+        "title": "Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner",
         "province": province,
         "as_of": end.strftime("%Y-%m-%d"),
         "window_start": start.strftime("%Y-%m-%d"),
@@ -95,7 +95,7 @@ def build_summary(
             "observed_commodities": int(len(snapshot)),
             "mom_comparable_commodities": int(comparable),
             "without_previous_month": int(len(snapshot) - comparable),
-            "alert_count": int(len(alerts)),
+            "alert_count": int(len(alerts)) if comparable else None,
         },
         "top_increases": _records(increases, ["commodity", "price", "unit", "previous_price", "mom_pct", "yoy_pct"]),
         "alerts": _records(alerts, ["commodity", "price", "unit", "previous_price", "mom_pct"], len(alerts)),
@@ -283,14 +283,14 @@ def summary_markdown(summary: dict[str, Any]) -> str:
     """A factual, shareable Indonesian report; no invented impact claims."""
     data, snap = summary["dataset"], summary["snapshot"]
     lines = [
-        "# PanganWatch — Ringkasan Analisis",
+        f"# {summary['title']}",
         "",
         f"Provinsi: **{summary['province']}**. Bulan laporan: **{summary['as_of'][:7]}**.",
         f"Jendela volatilitas: {summary['window_start'][:7]}–{summary['as_of'][:7]} ({summary['window_months']} bulan).",
         "",
         f"Data masukan: **{data['rows']:,} observasi**, **{data['commodities']} komoditas**, **{data['geographic_series']} seri geografis** termasuk seri historis; periode {data['period_start'][:7]}–{data['period_end'][:7]}.",
         f"Pada bulan/provinsi terpilih tersedia **{snap['observed_commodities']} komoditas**; **{snap['mom_comparable_commodities']}** memiliki pembanding bulan kalender sebelumnya.",
-        f"Ada **{snap['alert_count']} komoditas** dengan kenaikan MoM ≥ {summary['threshold_pct']:g}%. Ambang ini adalah parameter analisis, bukan batas resmi.",
+        f"Ada **{snap['alert_count']} komoditas** dengan kenaikan MoM ≥ {summary['threshold_pct']:g}%. Ambang ini adalah parameter analisis, bukan batas resmi." if snap["alert_count"] is not None else "Kenaikan melewati ambang belum dapat dihitung karena tidak ada pembanding bulan kalender sebelumnya.",
         "",
         "## Kenaikan harga bulanan yang teramati",
         "",
@@ -299,7 +299,7 @@ def summary_markdown(summary: dict[str, Any]) -> str:
         for item in summary["top_increases"]:
             lines.append(f"- **{item['commodity']}**: naik **{item['mom_pct']:.2f}%**, dari Rp{item['previous_price']:,.0f} menjadi Rp{item['price']:,.0f} per {item.get('unit', 'satuan asumsi')}.")
     else:
-        lines.append("Tidak ada kenaikan positif dengan pembanding MoM yang tersedia pada pilihan ini.")
+        lines.append("Peringkat kenaikan belum dapat dihitung: pembanding MoM tidak tersedia." if not snap["mom_comparable_commodities"] else "Tidak ada kenaikan positif pada pasangan bulan yang tersedia.")
     lines += ["", "## Variasi harga dalam jendela analisis", ""]
     if summary["top_volatility"]:
         for item in summary["top_volatility"]:

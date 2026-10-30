@@ -1,10 +1,16 @@
-# Menjelaskan PanganWatch dalam CV
+# Menjelaskan Analisis Harga Pangan dalam CV
 
 ## Judul proyek
 
 **Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner**
 
 Python · Pandas · SQL/SQLite · Streamlit · Excel
+
+## Temuan historis dan skenario yang harus dibedakan
+
+Pada Jawa Barat Oktober 2025, keranjang enam bahan contoh berbiaya **Rp1.118.460**, bertambah **Rp10.687** dibanding September pada kuantitas tetap. Itu perbandingan harga historis yang diterapkan pada keranjang contoh, bukan catatan pengeluaran usaha. Skenario harga naik seragam 10% menghasilkan tambahan **Rp111.846**; ini hasil hipotetis terpisah.
+
+Demo singkat: tunjukkan KPI biaya keranjang, baca grafik kontributor biaya, lalu buka simulator. Jelaskan asal harga per bahan dan ubah satu jumlah. Tunjukkan bahwa perhitungan tidak lengkap tidak dianggap nol.
 
 ## Contoh butir CV
 

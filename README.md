@@ -1,99 +1,78 @@
 # Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner
 
-Studi kasus analisis harga historis dan dampaknya terhadap anggaran warung makan di Jawa Barat. Wilayah lain tersedia sebagai eksplorasi tambahan.
+Studi kasus portofolio **data analyst**: menghubungkan perubahan harga pangan historis dengan estimasi biaya bahan baku warung makan di Jawa Barat. Wilayah lain tersedia sebagai eksplorasi tambahan.
 
-Pertanyaan awalnya sederhana: bahan apa yang sedang naik, dan berapa tambahan anggaran jika jumlah belanja tetap? Contoh penggunaan memakai bahan warung makan di Jawa Barat. Pilih wilayah, komoditas, dan bulan untuk melihat harga, kemudian coba skenario belanja. Harga konsumen provinsi dipakai sebagai acuan; harga pembelian usaha dapat berbeda.
+**Python 3.12 · Pandas · SQL/SQLite · Streamlit · Plotly · Excel**
 
-PanganWatch dibuat dengan Python, Pandas, SQL/SQLite, Streamlit, Plotly, dan ekspor Excel.
+![Ringkasan dashboard](reports/screenshots/ringkasan.png)
 
-Tangkapan layar di `reports/screenshots/` merupakan dokumentasi versi awal. Jalankan aplikasi untuk melihat alur terbaru yang berfokus pada dampak anggaran.
+## Apa yang dijawab?
 
-## Unduh proyek
+1. Berapa biaya keranjang contoh pada bulan pilihan?
+2. Bahan mana yang paling memengaruhi perubahan biaya terhadap bulan sebelumnya?
+3. Bagaimana anggaran berubah jika kebutuhan, harga pembelian, atau skenario harga diubah?
 
-[Unduh paket analyst.zip](https://github.com/Granbe1l/Harga-Pangan-Dashboard/raw/refs/heads/main/reports/analyst.zip). Ekstrak ZIP tersebut, lalu buka folder **analyst**. Paket berisi kode, dataset lokal, laporan Excel, dan panduan menjalankan proyek.
+Halaman **Ringkasan** hanya menyajikan hasil berdasarkan data historis dan kuantitas contoh tetap. Halaman **Simulator anggaran** menyajikan skenario asumsi pengguna. Keduanya bukan catatan transaksi atau klaim dampak bisnis yang sudah terjadi.
 
-## Menjalankan dashboard
+Pada Jawa Barat, Oktober 2025, keranjang enam bahan contoh bernilai **Rp1.118.460**, bertambah **Rp10.687** terhadap September dengan jumlah tetap. Seluruh bahan memiliki pembanding. Skenario terpisah berupa kenaikan seragam 10% menghasilkan **Rp1.230.306**, tambahan **Rp111.846**. Angka skenario bukan perubahan historis bulan tersebut.
 
-Gunakan Python 3.12 dan jalankan perintah dari folder **analyst** yang sudah diekstrak.
+## Jalankan aplikasi
+
+Dari root checkout, atau folder luar **analyst** setelah mengekstrak [paket unduhan](https://github.com/Granbe1l/Harga-Pangan-Dashboard/raw/refs/heads/main/reports/analyst.zip):
 
 ```bash
-python -m venv .venv
+python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
-python scripts/prepare_data.py
+python -m pip install -r requirements.lock.txt
 streamlit run app.py
 ```
 
-Pada Windows PowerShell, perintah aktivasinya:
+Windows PowerShell: `py -3.12 -m venv .venv`, lalu `.venv\Scripts\Activate.ps1` sebelum instalasi. Dataset lokal sudah disertakan; tidak memerlukan akun, API key, atau unduhan data untuk menjalankan aplikasi. Modul aplikasi berada di `analyst/`, gaya tampilan di `assets/dashboard.css`.
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+## Menu
 
-Versi seluruh dependensi tersedia pada `requirements.lock.txt`. Dataset lokal sudah disertakan, sehingga dashboard tidak membutuhkan akun atau API key. Instalasi dependensi pertama kali memerlukan koneksi Internet.
+| Menu | Kegunaan |
+| --- | --- |
+| Ringkasan | Biaya keranjang, perubahan historis, kelengkapan, grafik kontribusi biaya; detail bahan dan tren dapat dibuka |
+| Simulator anggaran | Kuantitas per periode belanja, perubahan per bahan, penerapan massal yang eksplisit, harga yang dapat diedit, reset, CSV dan Excel |
+| Fluktuasi historis | CV harga dengan minimal tiga observasi, filter minimum cakupan, jumlah bulan pada tooltip, status seri kurang lengkap |
+| Perbandingan wilayah | Harga wilayah pilihan, median tanpa bobot, selisih terhadap median, grafik ringkas atau seluruh wilayah |
+| Data & metode | Sumber, bulan harga terakhir, tanggal pencatatan snapshot, laporan analisis, rumus, pembersihan, dan jejak sumber |
 
-## Halaman yang tersedia
+Filter ditampilkan sesuai menu dan pilihan disimpan selama sesi browser. Input keranjang, perubahan harga, harga manual, dan periode belanja bertahan saat berpindah menu. Mengubah bulan memperbarui harga snapshot; harga yang diubah pengguna dipertahankan sampai direset dan hanya digunakan selama mode harga sendiri aktif. Input tidak disimpan permanen di server atau dibagikan ke sesi pengunjung lain.
 
-1. **Ringkasan:** harga bahan pilihan, perubahan bulanan/tahunan, temuan bulan terpilih, tren harga, dan bahan dengan kenaikan terbesar.
-2. **Risiko harga:** perbandingan fluktuasi harga dan kelengkapan bulan pengamatan.
-3. **Perbandingan wilayah:** harga satu komoditas pada bulan yang sama di wilayah yang datanya tersedia.
-4. **Simulator anggaran:** jumlah kebutuhan dan skenario perubahan harga dapat diubah per bahan.
-5. **Data & metode:** asal data, hasil pembersihan, definisi perhitungan, serta unduhan data dan Excel.
+Pilihan cepat **+0%, +10%, +20%** menerapkan perubahan ke seluruh bahan terpilih. Mengubah angka pada kontrol perubahan seragam baru berlaku setelah menekan **Terapkan ke semua bahan**. Kuantitas dan harga yang sudah diisi tidak diubah. **Kembalikan contoh awal** memulihkan keranjang, kuantitas, skenario 10%, dan sumber snapshot.
 
-Parameter di panel kiri berlaku pada halaman yang dibuka. Ambang kenaikan merupakan pilihan pengguna untuk pemantauan, bukan batas resmi.
+## Interpretasi data
 
-Jawa Barat menjadi pilihan awal agar contoh yang dibuka pertama kali konsisten. Pilihan itu bukan hasil pemeringkatan wilayah. Beras medium dipakai sebagai bahan awal; pengguna dapat menggantinya tanpa mengubah perhitungan bahan lain.
+- **—** berarti belum dapat dihitung; **0** adalah hasil hitungan atau jumlah yang benar-benar nol.
+- Total keranjang hanya ditampilkan jika harga seluruh bahan aktif tersedia. Subtotal bahan tersedia ditandai dan tidak dipresentasikan sebagai total lengkap.
+- MoM memakai bulan kalender sebelumnya. Januari dan Maret tanpa Februari tidak menghasilkan MoM Maret.
+- CV mengukur variasi tingkat harga historis; bukan probabilitas kenaikan dan belum memisahkan tren dari musiman.
+- Sumber harga per bahan: **Snapshot historis**, **Diubah pengguna**, atau **Belum tersedia**. Harga kosong yang diisi pengguna tidak diam-diam diganti snapshot.
+- Satuan kg/liter merupakan asumsi, karena CSV mentah tidak memiliki kolom satuan. Belum mencakup ongkir, stok, susut, biaya operasional, atau margin.
+- Label periode belanja menjelaskan kuantitas pengguna; tidak mengonversi jumlah berdasarkan frekuensi.
 
-## Contoh pembacaan
+## Dataset dan sumber
 
-Pada **Oktober 2025 di Jawa Barat**, 25 komoditas memiliki harga, tetapi hanya **24** yang mempunyai pembanding September. Dari 24 komoditas tersebut, **dua naik setidaknya 10%**: cabai merah keriting **11,16%** dan cabai merah besar **10,52%**. Jumlah pembanding ditampilkan supaya komoditas tanpa harga bulan sebelumnya tidak dianggap stabil.
+Snapshot harga **Januari 2021–Oktober 2025** terdiri dari **33.422 baris mentah**, **32.480 observasi valid**, dan **942 baris yang dipisahkan** (938 harga kosong, empat harga nonpositif). Terdapat 25 komoditas. Sebanyak 38 seri modern dan dua seri historis Papua bukan jumlah provinsi pada satu waktu.
 
-Untuk contoh keranjang enam bahan yang tersedia di simulator, kenaikan seluruh harga sebesar 10% mengubah estimasi belanja dari **Rp1.118.460 menjadi Rp1.230.306**, dengan tambahan **Rp111.846**. Kuantitas dalam contoh merupakan asumsi latihan, bukan data pembelian usaha. Jumlah kebutuhan dan perubahan harga tiap bahan dapat diganti.
+CSV berasal dari [salinan publik Achmad Ichzan](https://github.com/achmadichzan/Prediksi_Harga_Pangan_Nasional/blob/main/harga_pangan.csv), yang mencantumkan Badan Pangan Nasional sebagai sumber asal. Belum diverifikasi terhadap versi resmi terbaru. **Tanggal pencatatan snapshot berbeda dengan bulan harga terakhir.** Aplikasi tidak memperbarui data secara otomatis. Ketentuan sumber dan izin redistribusi perlu diperiksa sebelum pemakaian komersial; lihat [Sumber](docs/SOURCES.md), [Metodologi](docs/METHODOLOGY.md), dan [Kamus data](docs/DATA_DICTIONARY.md).
 
-## Dataset
-
-File mentah memuat **33.422 baris**, dengan **32.480 observasi valid** setelah pembersihan. Sebanyak **938 harga kosong dan 4 harga nol** dipisahkan ke file karantina. Harga yang hilang tidak diisi secara otomatis.
-
-Snapshot berisi **25 komoditas**, dari **Januari 2021 sampai Oktober 2025**, dengan kelengkapan yang berbeda antarseri. Terdapat 38 seri wilayah modern dan dua seri historis Papua; 40 seri tersebut bukan jumlah provinsi pada satu waktu. Seri historis dipisahkan agar perubahan cakupan wilayah tidak tersambung sebagai satu tren.
-
-Sumber file adalah [salinan CSV publik oleh Achmad Ichzan](https://github.com/achmadichzan/Prediksi_Harga_Pangan_Nasional/blob/main/harga_pangan.csv). Penyedia salinan mencantumkan [Badan Pangan Nasional](https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi) sebagai sumber asal. Salinan belum diverifikasi terhadap versi resmi terbaru. Detail sumber, hash file, dan batas penggunaan tersedia di [catatan sumber](docs/SOURCES.md).
-
-## Perhitungan utama
-
-- MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama pada tahun sebelumnya.
-- Jika bulan pembanding tidak tersedia, perubahan dibiarkan kosong.
-- Fluktuasi relatif menggunakan koefisien variasi (CV), minimal tiga observasi pada seri yang sama.
-- Median wilayah dihitung tanpa bobot dari wilayah dengan data pada bulan dan komoditas yang sama; bukan rata-rata nasional resmi.
-- Simulator memakai harga tepat pada bulan pilihan. Jika harga bahan aktif tidak lengkap, total keranjang tidak ditampilkan sebagai total lengkap.
-- Satuan kg/liter adalah asumsi kerja karena CSV sumber tidak memiliki kolom satuan.
-
-Rumus dan contoh pemeriksaan tersedia di [metode perhitungan](docs/METHODOLOGY.md) dan [kamus data](docs/DATA_DICTIONARY.md).
-
-## Menyiapkan data dan Excel
-
-```bash
-python scripts/prepare_data.py
-python scripts/export_report.py
-```
-
-Hasil berada di `data/processed/`, `data/panganwatch.sqlite`, dan `reports/`. [SQL view](sql/analytics.sql) dan [contoh query](sql/analysis_queries.sql) dapat digunakan untuk menelusuri perhitungan.
-
-Ringkasan hasil tersimpan di `reports/analysis_summary.md`. Temuan berlaku pada periode dan data yang disebutkan; angka simulator merupakan skenario, bukan bukti penghematan usaha.
-
-## Pemeriksaan
+## Validasi dan laporan
 
 ```bash
 python -m unittest discover -s tests -v
+python scripts/export_report.py --output-dir /tmp/analyst-report
+python scripts/package_project.py
 ```
 
-Tes mencakup parsing harga, data kosong, perubahan bulan kalender, simulator, perpindahan halaman, dan pembuatan Excel.
+Tes memeriksa perbandingan bulan kalender, total tidak lengkap, sumber harga per bahan, state lintas halaman, penerapan massal, reset, hasil skenario, keamanan formula Excel, dan navigasi. Screenshot desktop/mobile diperbarui melalui pemeriksaan browser opsional; langkah dan batas pengujiannya tersedia di [checklist revisi](docs/REDESIGN_CHECKLIST.md).
 
-[Catatan CV dan wawancara](docs/CV.md) membantu menjelaskan proyek berdasarkan hasil yang dapat diperiksa ulang. Repositori proyek: [Granbe1l/Harga-Pangan-Dashboard](https://github.com/Granbe1l/Harga-Pangan-Dashboard).
+`scripts/prepare_data.py` dapat membangun ulang CSV dan SQLite, tetapi **menulis ulang artefak data**. Untuk pemeriksaan tanpa mengubah snapshot checkout, panggil `analyst.pipeline.prepare_data()` pada direktori sementara dengan salinan `data/raw/harga_pangan.csv` dan `data/source.json`.
 
-## Alur penggunaan
+Ekspor analisis di menu Data & metode mengikuti filter analisis. Ekspor simulator adalah file terpisah yang memuat kebutuhan dan harga yang sedang digunakan, asal harga per baris, periode, status kelengkapan, dan total/subtotal.
 
-Buka Ringkasan untuk melihat kenaikan bahan dan dampak rupiahnya pada keranjang contoh. Gunakan Simulator anggaran untuk memasukkan kebutuhan sendiri, melihat kontributor biaya terbesar, dan mencoba perubahan harga. Harga pembelian sendiri dapat diisi melalui opsi **Gunakan harga pembelian sendiri**; unduhan membedakan sumber harga ini dari snapshot historis.
+## Tautan publik untuk CV
 
-Tanda — berarti perhitungan belum tersedia, bukan nol. Subtotal keranjang yang belum lengkap ditandai secara eksplisit. Rentang analisis dibatasi awal dataset; CV memerlukan minimal tiga observasi. Metode lengkap tersedia dalam panel yang dapat dibuka.
-
-Modul Python berada di folder `analyst/`; gunakan `from analyst.analytics import ...`. Folder luar paket ZIP juga bernama `analyst`.
+Lihat [panduan deployment](docs/DEPLOYMENT.md). Antarmuka bergaya BI dibuat langsung dengan Streamlit dan Plotly; tidak memerlukan lisensi Power BI. Link GitHub adalah kode sumber, bukan link aplikasi yang sudah dihosting. Kecepatan dan akses publik perlu diperiksa pada URL deployment sebenarnya.

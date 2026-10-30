@@ -67,6 +67,14 @@ class ReportingTests(unittest.TestCase):
                     self.assertNotEqual(cell.data_type, "f")
         self.assertEqual(workbook["Harga Bersih"]["C2"].value, '=HYPERLINK("https://example.com","x")')
 
+    def test_no_comparison_is_unknown_in_report_not_zero_alerts(self):
+        summary = build_summary(fixture(), as_of="2024-01")
+        self.assertIsNone(summary["snapshot"]["alert_count"])
+        self.assertIn("belum dapat dihitung", summary_markdown(summary))
+        workbook = load_workbook(BytesIO(workbook_bytes(fixture(), as_of="2024-01")))
+        values = {r[0].value:r[1].value for r in workbook["Ringkasan"].iter_rows(min_row=2)}
+        self.assertIsNone(values["Komoditas melewati ambang peringatan"])
+
     def test_missing_calendar_month_does_not_generate_findings(self):
         data = fixture().query("date != '2024-02-01'")
         summary = build_summary(data, as_of="2024-03")

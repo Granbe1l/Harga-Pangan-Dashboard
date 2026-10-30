@@ -1,0 +1,46 @@
+/* Native controls remain accessible; only presentation is customized. */
+:root {--ink:#122b42;--muted:#526577;--teal:#087f8c;--line:#e0e7ef;}
+.block-container {max-width:1480px;padding:4rem 2.6rem 1.6rem;}
+h1 {font-size:1.85rem!important;line-height:1.22!important;letter-spacing:-.055rem;font-weight:750!important;max-width:1080px;padding:0 0 .6rem!important;}
+h2 {font-size:1.3rem!important;letter-spacing:-.025rem;}
+h3 {font-size:1.05rem!important;letter-spacing:-.01rem;}
+p,li {line-height:1.55;}
+[data-testid="stCaptionContainer"] {color:#526577!important;}
+[data-testid="stSidebar"] {background:#102a43;border-right:0;}
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+[data-testid="stSidebar"] label {color:#e7eff7!important;}
+[data-testid="stSidebar"] hr {border-color:#30485f;}
+[data-testid="stSidebar"] [role="radiogroup"] {gap:.3rem;}
+[data-testid="stSidebar"] [data-testid="stRadio"] label {border-radius:8px;padding:.5rem .65rem;}
+[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {background:#21475d;}
+[data-testid="stSidebar"] [data-baseweb="select"] {color:#122b42;}
+[data-testid="stSidebar"] a {color:#8ee1dd;}
+[data-testid="stMetric"] {background:#fff;border:1px solid #e0e7ef;border-radius:12px;padding:1rem 1.15rem;min-height:112px;box-shadow:0 3px 10px #102a4305;}
+[data-testid="stMetricLabel"] {color:#526577;font-size:.85rem;}
+[data-testid="stMetricValue"] {font-size:1.8rem;letter-spacing:-.045rem;color:#122b42;}
+[data-testid="stVerticalBlockBorderWrapper"]>div {border-color:#e0e7ef!important;border-radius:12px;}
+[data-testid="stButton"] button,[data-testid="stDownloadButton"] button {border-radius:8px;min-height:40px;font-weight:600;}
+[data-testid="stExpander"] {background:#fff;border-radius:10px;}
+[data-testid="stDataFrame"], [data-testid="stDataEditor"] {border-radius:8px;}
+.kicker {font-size:.7rem;letter-spacing:.16rem;color:#087f8c;font-weight:750;margin-bottom:.45rem;}
+.brand {color:#fff;font-size:1.6rem;font-weight:800;letter-spacing:-.06rem;}
+.brand span {color:#5cdbcf;}
+.brand-sub {color:#c3d4e4;font-size:.78rem;margin-top:.2rem;}
+.context {display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;margin:.25rem 0 .95rem;}
+.chip {border:1px solid #dce5ee;background:#fff;color:#3d5267;padding:.3rem .6rem;border-radius:6px;font-size:.76rem;}
+.chip.accent {background:#e7f5f2;border-color:#c4e8df;color:#126456;}
+.finding {background:#eaf5f5;border-left:3px solid #087f8c;border-radius:0 9px 9px 0;padding:.85rem 1rem;line-height:1.5;color:#173c4c;margin:.2rem 0 .8rem;}
+.finding .label {color:#08717d;font-size:.66rem;font-weight:750;letter-spacing:.1rem;display:block;margin-bottom:.25rem;}
+.section-tag {font-size:.68rem;letter-spacing:.12rem;font-weight:750;color:#64748b;margin-bottom:.3rem;}
+.simulation-banner {border:1px solid #e8d6b5;background:#fffbef;border-radius:10px;padding:.75rem 1rem;color:#775315;margin-bottom:.9rem;font-size:.85rem;}
+.footer {display:flex;gap:1rem;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #e0e7ef;padding-top:1rem;margin-top:1rem;color:#526577;font-size:.75rem;}
+.footer a {color:#08717d;text-decoration:none;}
+@media(max-width:850px) {.block-container{padding:4rem 1rem 1rem;}h1{font-size:1.45rem!important;}[data-testid="stHorizontalBlock"]{flex-wrap:wrap;gap:.75rem;}[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]{min-width:min(100%,250px);flex:1 1 250px;}[data-testid="stMetricValue"]{font-size:1.55rem;}.context{gap:.35rem;}}
+@media(max-width:480px) {h1{font-size:1.3rem!important;}[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]{min-width:100%;}.kicker{font-size:.62rem;}.block-container{padding-top:4rem;}}
+[data-testid="stCaptionContainer"] p {color:#526577!important;}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {color:#c3d4e4!important;}
+[data-testid="stSidebar"] button [data-testid="stMarkdownContainer"] p {color:#122b42!important;}
+[data-testid="stSidebar"] [data-testid="stRadio"] label {padding:.45rem .15rem;font-size:.86rem;}
+/* Hover tools obscure labels on touch screens; data exports remain available. */
+.js-plotly-plot .modebar-container {display:none!important;}

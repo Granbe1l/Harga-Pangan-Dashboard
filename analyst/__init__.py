@@ -1,3 +1,3 @@
-"""PanganWatch: transparent monthly food-price analysis for Indonesia."""
+"""Analyst: auditable food-price analysis and budget planning."""
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"

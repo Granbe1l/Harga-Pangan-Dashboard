@@ -1,4 +1,4 @@
-# PanganWatch — Ringkasan Analisis
+# Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner
 
 Provinsi: **Jawa Barat**. Bulan laporan: **2025-10**.
 Jendela volatilitas: 2024-11–2025-10 (12 bulan).

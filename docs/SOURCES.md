@@ -7,7 +7,7 @@
 - URL file mentah: <https://raw.githubusercontent.com/achmadichzan/Prediksi_Harga_Pangan_Nasional/main/harga_pangan.csv>.
 - Sumber primer yang dicantumkan dokumentasi penyedia salinan: [Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi — Badan Pangan Nasional](https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi).
 
-Hanya file data dan dokumentasi sumbernya yang dipakai sebagai rujukan. Keberadaan proyek asal tidak menjadi bukti bahwa algoritma, klaim performa, atau temuan di proyek asal juga berlaku pada PanganWatch.
+Hanya file data dan dokumentasi sumbernya yang dipakai sebagai rujukan. Keberadaan proyek asal tidak menjadi bukti bahwa algoritma, klaim performa, atau temuan di proyek asal juga berlaku pada Analisis Harga Pangan.
 
 ## Status verifikasi
 
@@ -26,7 +26,7 @@ Hak penggunaan ulang dataset belum dikonfirmasi dari sumber primer. Repo publik 
 
 Contoh atribusi pada laporan:
 
-> Data harga konsumen bulanan: salinan publik `harga_pangan.csv` dari repositori Achmad Ichzan, yang mendokumentasikan sumber asal Badan Pangan Nasional. Pengolahan dan analisis dilakukan dalam proyek PanganWatch. Versi data mengikuti metadata yang disertakan; kesesuaian dengan versi terbaru sumber primer belum dikonfirmasi.
+> Data harga konsumen bulanan: salinan publik `harga_pangan.csv` dari repositori Achmad Ichzan, yang mendokumentasikan sumber asal Badan Pangan Nasional. Pengolahan dan analisis dilakukan dalam proyek Analisis Harga Pangan. Versi data mengikuti metadata yang disertakan; kesesuaian dengan versi terbaru sumber primer belum dikonfirmasi.
 
 ## Memperbarui data dengan aman
 

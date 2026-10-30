@@ -1,4 +1,4 @@
-# Metode perhitungan PanganWatch
+# Metode perhitungan Analisis Harga Pangan
 
 ## Tujuan dan data
 
@@ -64,3 +64,13 @@ Satuan **kg** dipakai untuk sebagian besar bahan dan **liter** untuk minyak gore
 Coba satu komoditas dengan dua bulan berurutan dan hitung MoM secara manual. Ulangi pada seri yang mempunyai bulan kosong. Di simulator, gunakan satu bahan dan jumlah sederhana, cocokkan hasil perkalian, lalu coba keadaan saat harga bulan pilihan tidak tersedia.
 
 Ambang kenaikan adalah parameter pengguna. Data historis tidak membuktikan penyebab perubahan harga, hasil simulator bukan penghematan aktual, dan salinan belum diperiksa terhadap versi resmi terbaru.
+
+## Ringkasan anggaran historis dan skenario
+
+Ringkasan utama menggunakan enam jumlah contoh tetap: beras medium 25 kg, ayam ras 10 kg, telur ayam ras 5 kg, minyak goreng curah 5 liter, cabai rawit merah 2 kg, dan bawang merah 2 kg. Ini asumsi latihan untuk satu kali belanja, bukan catatan usaha.
+
+Kontribusi perubahan biaya = (harga bulan pilihan − harga bulan kalender sebelumnya) × jumlah contoh. Perubahan total keranjang hanya diberikan jika seluruh bahan aktif memiliki harga pada kedua bulan. Grafik bahan yang memiliki pembanding dapat tersedia saat total belum lengkap; jumlah pembanding dinyatakan secara eksplisit. Biaya keranjang bulan pilihan sendiri hanya diberikan bila semua harga bulan itu tersedia. Perubahan nol dibedakan dari perhitungan yang belum tersedia.
+
+Simulator adalah hasil hipotetis terpisah. Kuantitas dan persentase dapat diubah per bahan. Penerapan persentase massal tidak mengubah kuantitas atau harga acuan. Sumber per baris membedakan snapshot yang belum diedit, harga yang diubah pengguna, dan harga yang belum tersedia. Harga manual hanya digunakan ketika mode edit harga aktif; data historis tidak berubah.
+
+Minimum cakupan CV adalah filter tampilan pengguna (default 80%), bukan aturan resmi atau jaminan kualitas statistik. CV menggunakan tingkat harga dan belum memisahkan tren dari musiman. Seri dengan kurang dari tiga observasi tidak diberi nilai CV; seri yang tidak memenuhi cakupan tetap dapat ditinjau pada tabel lengkap dengan status yang jelas.

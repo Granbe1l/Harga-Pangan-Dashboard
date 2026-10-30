@@ -1,4 +1,4 @@
-"""Monthly price analytics for PanganWatch.
+"""Monthly price analytics for the analyst dashboard.
 
 Prices are provincial consumer-price observations, not transaction or supplier
 quotes. Missing months stay missing. No function treats an unweighted median as

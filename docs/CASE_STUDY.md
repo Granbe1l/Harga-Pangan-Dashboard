@@ -14,7 +14,11 @@ Data berasal dari ekspor publikasi BPN untuk Januari 2021–Oktober 2025. Fokus 
 | Konteks historis cabai merah keriting | Naik ≥10% pada 4 dari 12 pasangan bulan November 2024–Oktober 2025 |
 | Data mentah → valid | 33.422 → 32.480 observasi; 942 baris dipisahkan |
 
-Batas kenaikan 10% merupakan parameter analisis. Frekuensi kenaikan menggambarkan riwayat pengamatan, bukan peluang kenaikan berikutnya. Satu komoditas tanpa pembanding tidak dimasukkan dalam jumlah kenaikan.
+Batas kenaikan 10% dipilih sebagai penyaring deskriptif untuk menyoroti kenaikan dua digit. Batas ini tetap, bukan hasil optimasi atau standar resmi pemerintah. Dua dari 24 komoditas dengan pembanding (8,3%) mencapai ambang tersebut; penyebutnya bukan seluruh 25 komoditas.
+
+Daging kerbau segar (lokal) memiliki harga Oktober 2025, tetapi tidak memiliki harga September 2025. Karena perubahan bulanan memerlukan kedua bulan kalender tersebut, komoditas ini tidak masuk hitungan kenaikan. Harga Oktober dan riwayatnya tetap ditampilkan; harga kosong tidak diisi atau diganti dengan bulan lain.
+
+Frekuensi kenaikan menggambarkan riwayat pengamatan, bukan peluang kenaikan berikutnya.
 
 ## Proses analisis
 

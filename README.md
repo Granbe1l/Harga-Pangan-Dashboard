@@ -18,7 +18,7 @@ Pada **Jawa Barat, Oktober 2025**:
 - **Dua komoditas naik setidaknya 10%**. Cabai merah keriting mencatat kenaikan tertinggi, **11,16%**.
 - Cabai merah keriting naik setidaknya 10% pada **4 dari 12 pasangan bulan** dalam rentang November 2024–Oktober 2025. Angka ini menggambarkan riwayat yang tersedia, bukan peluang kenaikan berikutnya.
 
-Batas kenaikan 10% dapat diubah dan bukan batas resmi pemerintah. Perincian hasil dan cakupan pengamatan tersedia dalam [studi kasus](docs/CASE_STUDY.md).
+Ringkasan kenaikan dua digit memakai batas tetap 10%, bukan batas resmi pemerintah. Perincian hasil dan cakupan pengamatan tersedia dalam [studi kasus](docs/CASE_STUDY.md).
 
 ![Ringkasan dashboard](reports/screenshots/ringkasan-first-screen.png)
 

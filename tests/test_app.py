@@ -39,7 +39,7 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual([m.value for m in app.metric],['25 / 25','2','+11,16%'])
         self.assertIn('Cabai Merah Keriting',app.metric[2].label)
         self.assertTrue(any('Daging Kerbau Segar (Lokal)' in c.value and 'tidak tersedia' in c.value for c in app.caption))
-        self.assertEqual(app.slider(key='filter_threshold').label,'Batas kenaikan bulanan (%)')
+        self.assertFalse(any(s.key=='filter_threshold' for s in app.slider))
         self.assertTrue(any('4 dari 12 pasangan bulan' in m.value for m in app.markdown))
         self.assertTrue(any('Studi historis Januari 2021–Oktober 2025' in c.value for c in app.caption))
 
@@ -56,7 +56,7 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(app.metric[0].value,'0 / 25')
         self.assertEqual(app.metric[1].value,'—')
 
-    def test_filters_follow_navigation_and_threshold(self):
+    def test_filters_follow_navigation_without_threshold_control(self):
         app=self.open_app()
         app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run()
         app.selectbox(key='filter_window').set_value(36).run()
@@ -65,8 +65,9 @@ class DashboardTests(unittest.TestCase):
         self.menu(app,'Ringkasan')
         self.assertEqual(app.selectbox(key='filter_commodity').value,'Cabai Rawit Merah')
         self.assertEqual(app.selectbox(key='filter_window').value,36)
-        app.slider(key='filter_threshold').set_value(40).run();self.good(app)
-        self.assertEqual(app.metric[1].value,'0')
+        self.assertFalse(any(s.key=='filter_threshold' for s in app.slider))
+        self.assertNotIn('threshold', app.session_state['filters'])
+        self.assertEqual(app.metric[1].value,'2')
 
     def test_selected_trend_changes_and_insufficient_history_is_explained(self):
         app=self.open_app();self.menu(app,'Tren & fluktuasi')
@@ -103,7 +104,11 @@ class DashboardTests(unittest.TestCase):
     def test_old_simulator_session_returns_to_summary(self):
         app=AppTest.from_file(str(ROOT/'app.py'),default_timeout=45)
         app.session_state['page']='Simulator anggaran'
+        app.session_state['filters']={'threshold':40}
+        app.session_state['filter_threshold']=40
         app.run();self.good(app)
         self.assertEqual(app.radio(key='page').value,'Ringkasan')
+        self.assertEqual(app.metric[1].value,'2')
+        self.assertNotIn('threshold', app.session_state['filters'])
 
 if __name__=='__main__':unittest.main()

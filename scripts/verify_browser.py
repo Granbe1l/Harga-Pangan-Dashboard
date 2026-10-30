@@ -54,7 +54,8 @@ def main():
         assert 'Cabai Merah Keriting' in page.get_by_test_id('stMetric').nth(2).inner_text()
         assert page.get_by_role('tab').count()==0
         assert 'Daging Kerbau Segar (Lokal)' in page.get_by_test_id('stMain').inner_text()
-        assert 'Batas kenaikan bulanan (%)' in page.get_by_test_id('stSidebar').inner_text()
+        assert 'Batas kenaikan bulanan (%)' not in page.get_by_test_id('stSidebar').inner_text()
+        assert page.get_by_test_id('stSidebar').get_by_role('slider').count()==0
         assert 'Simulator anggaran' not in page.get_by_test_id('stSidebar').inner_text()
         page.screenshot(path=str(out/'ringkasan-first-screen.png'));report['screenshots'].append('ringkasan-first-screen.png')
         for label,name in MENUS:

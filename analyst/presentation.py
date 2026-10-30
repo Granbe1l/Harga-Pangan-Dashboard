@@ -46,7 +46,7 @@ def csv_bytes(frame):
 def chart(fig, key, height=300):
     fig.update_layout(template="plotly_white", height=height, margin=dict(l=5,r=15,t=20,b=10),
         paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="Arial, sans-serif",size=12,color=NAVY), separators=",.",
+        font=dict(family="Arial, sans-serif",size=14,color=NAVY), separators=",.",
         legend=dict(orientation="h",y=1.12,title_text=""),hoverlabel=dict(bgcolor="white"))
     fig.update_xaxes(showgrid=False,zeroline=False,automargin=True)
     fig.update_yaxes(gridcolor="#e6edf3",automargin=True)

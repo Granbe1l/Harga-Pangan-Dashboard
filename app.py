@@ -43,9 +43,11 @@ def select_filter(name, label, options, formatter=None):
 
 
 def initialize(data):
-    defaults = {"province":"Jawa Barat","as_of":data.date.max(),"commodity":"Beras Medium","window":12,"threshold":10,"coverage":80,"all_regions":False}
+    defaults = {"province":"Jawa Barat","as_of":data.date.max(),"commodity":"Beras Medium","window":12,"coverage":80,"all_regions":False}
     if "filters" not in st.session_state: st.session_state.filters = {}
     for key, value in defaults.items(): st.session_state.filters.setdefault(key,value)
+    st.session_state.filters.pop("threshold", None)
+    st.session_state.pop("filter_threshold", None)
     if st.session_state.get("page") not in PAGES:
         st.session_state.page = PAGES[0]
 
@@ -63,13 +65,15 @@ def price_overview(data, changes, province, commodity, as_of, start, threshold):
         if top: message+=f" Tertinggi: <b>{html.escape(top['commodity'])} {percent(top['mom_pct'],digits=2)}</b>."
         finding(message,"HASIL BERDASARKAN HARGA TERCATAT")
     else:
-        finding("Harga bulan pembanding belum tersedia; kenaikan bulanan belum dapat dihitung." if observed['available'] else "Belum ada harga pada bulan ini. Pilih bulan lain atau provinsi lain.","KELENGKAPAN DATA")
+        finding("Harga bulan pembanding belum tersedia; kenaikan bulanan belum dapat dihitung." if observed['available'] else "Belum ada harga pada bulan pilihan. Pilih bulan lain atau provinsi lain.","KELENGKAPAN DATA")
+    st.caption(f"Ringkasan kenaikan dua digit memakai batas tetap {threshold}% terhadap bulan kalender sebelumnya; bukan standar resmi pemerintah atau prediksi.")
     missing=observed['snapshot'].loc[observed['snapshot'].mom_pct.isna(),'commodity'].tolist()
     if missing:
         st.caption(f"{observed['comparable_count']} dari {observed['available']} komoditas memiliki pembanding {month_label(as_of-pd.DateOffset(months=1))}. Harga bulan sebelumnya tidak tersedia untuk: {', '.join(missing)}. Komoditas tersebut tidak masuk hitungan kenaikan.")
     left,right=st.columns([1.6,1],gap="large")
     with left,st.container(border=True):
-        st.subheader("Perubahan harga bulan ini")
+        st.subheader(f"Perubahan harga · {month_label(as_of)}")
+        st.caption(f"{province} · dibandingkan dengan {month_label(as_of-pd.DateOffset(months=1))}")
         ranked=observed['comparable'].copy()
         if ranked.empty: st.info("Belum ada pasangan bulan yang dapat dibandingkan.")
         else:
@@ -80,12 +84,14 @@ def price_overview(data, changes, province, commodity, as_of, start, threshold):
                 hovertemplate='%{y}<br>Perubahan: %{x:.2f}%<extra></extra>'))
             fig.add_vline(x=0,line_color='#879bae',line_width=1)
             fig.update_layout(xaxis_title='Perubahan bulanan (%)')
-            chart(fig,'price_movements',275)
+            chart(fig,'price_movements',max(300,len(ranked)*38))
         st.caption(f"Pembanding tersedia untuk {observed['comparable_count']} dari {observed['available']} komoditas bulan pilihan. Delapan perubahan absolut terbesar; merah naik, teal turun.")
     with right,st.container(border=True):
         st.subheader("Apa arti temuan ini?")
         if top:
-            st.write(f"**{top['commodity']}** mencatat kenaikan tertinggi pada provinsi dan bulan pilihan. Bandingkan dengan riwayatnya untuk melihat apakah kenaikan serupa pernah terjadi.")
+            st.write(f"**{top['commodity']} naik {percent(top['mom_pct'],digits=2)}**, dari **{rupiah(top['previous_price'])}** pada {month_label(as_of-pd.DateOffset(months=1))} menjadi **{rupiah(top['price'])}** pada {month_label(as_of)} di {province}. Angka harga mengikuti sumber; satuan belum dikonfirmasi.")
+        if observed['comparable_count']:
+            st.write(f"**{observed['alert_count']} dari {observed['comparable_count']} komoditas ({percent(observed['alert_count']/observed['comparable_count']*100,signed=False)})** mencapai ambang ≥{threshold}%. Penyebut hanya komoditas dengan harga pada kedua bulan kalender; komoditas tanpa pembanding tetap tersedia untuk analisis harga dan riwayat.")
         else:st.write("Kenaikan belum terlihat atau belum bisa dihitung dari pasangan bulan yang tersedia.")
         st.write("Gunakan **Tren & fluktuasi** untuk melihat riwayat komoditas, atau **Perbandingan provinsi** untuk menempatkan harga dalam konteks antarprovinsi.")
     if top:
@@ -170,7 +176,7 @@ def regions_page(data, changes, province, commodity, as_of, start, threshold):
     cols[0].metric(f"Harga di {province}",rupiah(selected.price.iloc[0] if len(selected) else None))
     cols[1].metric("Median provinsi tersedia",rupiah(median))
     cols[2].metric("Selisih terhadap median",percent(selected.deviation_pct.iloc[0] if len(selected) else None),help="Median tanpa bobot dari provinsi dengan harga tersedia; bukan harga nasional resmi.")
-    if selected.empty: st.info("Provinsi pilihan belum memiliki harga bulan ini; provinsi lain tetap dapat dibandingkan.")
+    if selected.empty: st.info("Provinsi pilihan belum memiliki harga pada bulan pilihan; provinsi lain tetap dapat dibandingkan.")
     if "filter_all_regions" not in st.session_state: st.session_state.filter_all_regions = st.session_state.filters["all_regions"]
     all_regions = st.toggle("Lihat seluruh provinsi",key="filter_all_regions",on_change=save_filter,args=("all_regions",))
     displayed = compared if all_regions else pd.concat([compared.nlargest(4,"price"),compared.nsmallest(4,"price"),selected]).drop_duplicates("province")
@@ -229,15 +235,12 @@ def main():
             select_filter("commodity","Komoditas untuk detail" if page=="Ringkasan" else "Komoditas pilihan",sorted(data.commodity.unique()))
         if page in ["Ringkasan","Tren & fluktuasi"]:
             select_filter("window","Rentang analisis",[6,12,24,36],lambda v:f"{v} bulan")
-        if page=="Ringkasan":
-            if "filter_threshold" not in st.session_state: st.session_state.filter_threshold=st.session_state.filters["threshold"]
-            st.slider("Batas kenaikan bulanan (%)",1,40,key="filter_threshold",on_change=save_filter,args=("threshold",),help="Nilai awal 10% adalah parameter analisis yang dapat diubah, bukan batas resmi pemerintah.")
         st.divider()
         st.caption(f"AKHIR DATA HISTORIS\n\n{month_label(data.date.max())}\n\nDataset historis · bukan harga hari ini")
         st.markdown(f"[Kode sumber ↗]({REPO})")
         st.caption("Sumber & cara menghitung tersedia di bawah setiap halaman.")
     filters = st.session_state.filters
-    commodity, window, threshold = filters["commodity"],filters["window"],filters["threshold"]
+    commodity, window, threshold = filters["commodity"],filters["window"],10
     start = max(as_of-pd.DateOffset(months=window-1),data.date.min())
     st.title(TITLE)
     st.caption(f"Studi historis {month_label(data.date.min())}–{month_label(data.date.max())} · Tren, fluktuasi, dan perbandingan harga konsumen provinsi. Data tidak diperbarui otomatis.")

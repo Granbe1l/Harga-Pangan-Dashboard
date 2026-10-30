@@ -63,11 +63,11 @@ Satuan **kg** dipakai untuk sebagian besar bahan dan **liter** untuk minyak gore
 
 Coba satu komoditas dengan dua bulan berurutan dan hitung MoM secara manual. Ulangi pada seri yang mempunyai bulan kosong. Di simulator, gunakan satu bahan dan jumlah sederhana, cocokkan hasil perkalian, lalu coba keadaan saat harga bulan pilihan tidak tersedia.
 
-Ambang kenaikan adalah parameter pengguna. Data historis tidak membuktikan penyebab perubahan harga, hasil simulator bukan penghematan aktual, dan file primer diberikan pengguna dan cocok CSV–XLSX; pengambilan server dan satuan belum diverifikasi independen.
+Ambang kenaikan adalah parameter pengguna. Analisis tidak menguji penyebab perubahan harga. Hasil simulator merupakan skenario biaya, bukan penghematan aktual.
 
 ## Ringkasan anggaran historis dan skenario
 
-Ringkasan utama menggunakan enam jumlah contoh tetap: beras medium 25 kg, ayam ras 10 kg, telur ayam ras 5 kg, minyak goreng curah 5 liter, cabai rawit merah 2 kg, dan bawang merah 2 kg. Ini asumsi latihan untuk satu kali belanja, bukan catatan usaha.
+Tab Dampak keranjang latihan menggunakan enam jumlah contoh tetap: beras medium 25 kg, ayam ras 10 kg, telur ayam ras 5 kg, minyak goreng curah 5 liter, cabai rawit merah 2 kg, dan bawang merah 2 kg. Ini asumsi latihan untuk satu kali belanja, bukan catatan usaha.
 
 Kontribusi perubahan biaya = (harga bulan pilihan − harga bulan kalender sebelumnya) × jumlah contoh. Perubahan total keranjang hanya diberikan jika seluruh bahan aktif memiliki harga pada kedua bulan. Grafik bahan yang memiliki pembanding dapat tersedia saat total belum lengkap; jumlah pembanding dinyatakan secara eksplisit. Biaya keranjang bulan pilihan sendiri hanya diberikan bila semua harga bulan itu tersedia. Perubahan nol dibedakan dari perhitungan yang belum tersedia.
 
@@ -85,4 +85,4 @@ Batas anggaran dibandingkan dengan total skenario lengkap saja. Harga/satuan inp
 
 ## Ekspor primer aktif
 
-File CSV unggahan adalah input aktif; XLSX dipertahankan sebagai pembanding. Harga bersih cocok dengan versi sebelumnya, sehingga hasil numerik tidak dibuat berubah tanpa alasan. Nomor baris karantina mengikuti ekspor header-pertama. Halaman Ringkasan memisahkan temuan persentase tanpa asumsi jumlah dari estimasi keranjang yang membutuhkan satuan dan kuantitas.
+CSV menjadi input aktif dan XLSX digunakan sebagai pembanding. Hash dan kesamaan isi diperiksa sebelum pemrosesan. Nomor baris karantina mengacu pada CSV asli. Rincian proses tersedia pada [Pemrosesan data](DATA_PIPELINE.md).

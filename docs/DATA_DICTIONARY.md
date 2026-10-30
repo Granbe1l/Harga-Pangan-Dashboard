@@ -2,9 +2,9 @@
 
 ## Data mentah
 
-File sumber: `data/raw/harga_pangan.csv`.
+File sumber: `data/raw/primary/harga_pangan.csv`.
 
-CSV mempunyai baris pembuka sebelum header data. Nama kolom sumber:
+Header berada pada baris pertama CSV. Nama kolom sumber:
 
 | Kolom sumber | Makna | Perlakuan |
 |---|---|---|
@@ -12,7 +12,7 @@ CSV mempunyai baris pembuka sebelum header data. Nama kolom sumber:
 | `Nama Provinsi` | Label provinsi | Normalisasi penulisan dengan memperhatikan kode dan perubahan administrasi. |
 | `Komoditas` | Jenis komoditas beserta tingkat/spesifikasi yang disebutkan | Pertahankan perbedaan seperti beras premium dan medium. |
 | `Tahun` | Tahun observasi | Validasi sebagai tahun kalender. |
-| `Bulan` | Nama bulan Indonesia | Ubah menjadi bulan kalender; jangan mengandalkan urutan alfabet. |
+| `Bulan` | Nama bulan Indonesia | Dikonversi menjadi bulan kalender. |
 | `Harga` | Harga tercatat dengan format rupiah | Ubah menjadi angka positif; pemisah ribuan harus dibaca dengan benar. |
 
 Contoh `Rp12,072` pada file ini dibaca sebagai **12.072 rupiah**, bukan 12,072 rupiah dalam arti desimal. Format tersebut tidak boleh digeneralisasi untuk semua sumber data Indonesia tanpa pemeriksaan terpisah.
@@ -33,7 +33,7 @@ Satu baris mewakili satu observasi provinsi–komoditas–bulan.
 | `geography_note` | Teks | Catatan perubahan seri wilayah, terutama Papua sebelum perubahan skema pada snapshot. |
 | `unit_assumed` | Boolean | Penanda bahwa satuan berasal dari asumsi kerja aplikasi, bukan kolom satuan dalam CSV mentah. |
 
-Kunci analitis: `province_code + commodity + date`. Jangan menjumlahkan `price` lintas bulan atau komoditas lalu menyebutnya nilai penjualan.
+Kunci analitis: `province_code + commodity + date`. Kolom `price` merupakan harga per observasi, bukan nilai penjualan.
 
 `PAPUA_HIST` dan `PAPUA_BARAT_HIST` adalah identitas analitis untuk seri historis sebelum 2024 pada snapshot ini. Keduanya bukan kode provinsi resmi baru. Pemisahan menjaga agar perubahan skema kode pada file tidak menciptakan sambungan seri yang menyesatkan.
 

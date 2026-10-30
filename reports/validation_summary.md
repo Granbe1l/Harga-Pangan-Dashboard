@@ -1,4 +1,4 @@
-# Validasi rilis ekspor primer pengguna
+# Hasil pengujian
 
 - **84 tes lulus**: pipeline, analitik, sumber input aktif, normalisasi primer, laporan, state antarmuka, kuantitas/satuan pengguna, dan batas anggaran.
 - **Dua berkas asli dipertahankan:** CSV aktif dan XLSX pembanding dari unggahan pengguna. SHA-256 kedua file diperiksa; seluruh 33.422 baris dan enam kolom cocok setelah normalisasi teks.
@@ -12,4 +12,4 @@
 - **Unduhan browser:** CSV/Excel skenario sesuai input. Excel analisis memuat 32.480 observasi, hash CSV primer aktif, cakupan, dan sensitivitas.
 - **Reproduksibilitas:** konfigurasi input, receipt, file asli, pembersihan, arsip mirror, dependency lock, workflow CI, dan screenshot tersedia. `.gitattributes` mempertahankan byte asli ekspor lintas sistem operasi.
 
-Pemeriksaan tidak membuktikan pengambilan langsung dari server BPN: file disediakan pengguna sebagai unduhan dari publikasi tersebut. Satuan dan lisensi tidak tercantum di kedua file; biaya tetap latihan/input pengguna. Uji manusia, manfaat usaha, akses URL hosting publik, dan pemulihan sleep hosting belum dibuktikan. Kelulusan lokal tidak otomatis membuktikan eksekusi CI remote terbaru atau skor rekrutmen tertentu.
+Pemeriksaan tidak membuktikan pengambilan langsung dari server BPN: file disediakan pengguna sebagai unduhan dari publikasi tersebut. Satuan dan lisensi tidak tercantum di kedua file; biaya tetap latihan/input pengguna. Uji manusia, manfaat usaha, akses URL hosting publik, dan pemulihan sleep hosting belum dibuktikan. Kelulusan lokal tidak otomatis membuktikan eksekusi CI remote terbaru.

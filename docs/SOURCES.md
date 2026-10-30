@@ -1,12 +1,12 @@
-# Asal data aktif dan bukti penerimaan
+# Sumber data
 
-## Sumber primer yang dinyatakan pengguna
+## Publikasi
 
 **Badan Pangan Nasional — Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi**
 
 https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi
 
-Pengguna mengunduh dan memberikan dua ekspor dari publikasi tersebut melalui percakapan pengembangan: CSV dan XLSX. Aplikasi sekarang memakai **CSV unggahan itu**, bukan file dari repository pihak ketiga. XLSX disimpan sebagai pembanding. Pengambilan langsung dari server BPN masih belum dapat diverifikasi di lingkungan pengembangan; asal unduhan dinyatakan oleh pengguna.
+CSV dan XLSX diterima sebagai ekspor dari publikasi ini. CSV menjadi input aktif dan XLSX digunakan sebagai pembanding. Asal unduhan mengikuti keterangan pemberi berkas; pengambilan langsung dari server BPN tidak diverifikasi secara independen.
 
 ## Berkas asli yang dipertahankan
 
@@ -17,22 +17,22 @@ Pengguna mengunduh dan memberikan dua ekspor dari publikasi tersebut melalui per
 
 Nama asli, ukuran, waktu impor, jalur akuisisi, dan hasil pencocokan dicatat di `data/raw/primary/receipt.json`. Konfigurasi input aktif: `data/source_input.json`. Metadata hasil pemrosesan: `data/source.json`. Ringkasan pemeriksaan: `data/verification.json`.
 
-## Yang benar-benar diperiksa
+## Pemeriksaan berkas
 
 - Kedua berkas memiliki 33.422 baris data dan enam kolom yang sama.
 - Seluruh baris cocok pada urutan yang sama setelah penyeragaman spasi dan nilai kosong.
-- 32.480 observasi hasil pembersihan memiliki harga yang sama dengan versi mirror sebelumnya; tidak ada harga berubah. Karena itu, angka temuan tetap sama, bukan direkayasa agar terlihat sebagai hasil baru.
+- 32.480 observasi hasil pembersihan memiliki harga yang sama dengan versi mirror sebelumnya; tidak ada harga berubah.
 - Sebanyak 938 harga kosong dan empat harga nol dipisahkan. Nomor baris karantina mengikuti file CSV primer: baris header 1, observasi pertama baris 2.
 - Harga tetap kosong bila tidak tersedia, konflik tidak dirata-ratakan, dan tidak ada pemakaian harga lama secara diam-diam.
 
-## Yang tidak dibuktikan oleh kedua file
+## Satuan dan penggunaan
 
 CSV dan XLSX **tidak mencantumkan kolom satuan**, definisi rinci satuan harga, atau ketentuan lisensi. Kecocokan dua format bukan tanda tangan digital sumber dan tidak membuktikan pengambilan langsung dari server. Metadata karena itu membedakan penerimaan ekspor pengguna, konsistensi isi, dan verifikasi independen.
 
 Persentase perubahan harga pada halaman depan tidak membutuhkan asumsi jumlah belanja atau satuan kg/liter. Perhitungan rupiah pada keranjang diberi label latihan karena membutuhkan asumsi satuan dan kuantitas. Satuan/harga yang dimasukkan pengguna dicatat sebagai pernyataan pengguna, bukan verifikasi eksternal.
 
-Hak penggunaan ulang perlu diperiksa pada ketentuan publikasi sebelum pemakaian komersial. Jangan menyatakan aplikasi sebagai produk resmi BPN atau membuktikan penghematan usaha.
+Ketentuan lisensi tidak tercantum pada ekspor yang diterima. Penggunaan ulang mengikuti ketentuan penerbit. Dashboard merupakan proyek analisis independen.
 
 ## Arsip versi sebelumnya
 
-Mirror lama dan metadata pemeriksaannya disimpan di `data/archive/mirror-20261028/` untuk jejak perubahan; tidak dibaca sebagai input aktif. `--download` mirror ditolak ketika mode primer aktif. Perubahan file primer harus disertai receipt yang diperbarui dan pengujian ulang, bukan mengubah hash hanya agar tes lulus.
+Mirror lama dan metadata pemeriksaannya disimpan di `data/archive/mirror-20261028/` untuk jejak perubahan; tidak dibaca sebagai input aktif. `--download` mirror ditolak ketika mode primer aktif. Perubahan berkas sumber memerlukan catatan penerimaan dan pengujian ulang.

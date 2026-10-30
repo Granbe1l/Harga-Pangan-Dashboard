@@ -37,7 +37,7 @@ def main() -> None:
     summary = build_summary(frame, args.province, args.as_of, args.months, args.threshold,args.minimum_coverage)
     report = workbook_bytes(frame, args.province, args.as_of, args.months, threshold_pct=args.threshold, commodity=args.commodity,minimum_coverage=args.minimum_coverage)
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    (args.output_dir / "panganwatch_report.xlsx").write_bytes(report)
+    (args.output_dir / "harga_pangan_report.xlsx").write_bytes(report)
     (args.output_dir / "analysis_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     (args.output_dir / "analysis_summary.md").write_text(summary_markdown(summary), encoding="utf-8")
     database = ROOT / "data" / "panganwatch.sqlite"

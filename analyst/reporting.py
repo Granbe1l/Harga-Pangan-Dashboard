@@ -12,14 +12,12 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 from analyst.analytics import (
-    basket_simulation,
     comparison_frame,
     province_comparison,
     volatility_summary,
     matched_fluctuation,
 )
 
-from analyst.planning import historical_budget, basket_coverage, sensitivity_cases
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -27,14 +25,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 METHOD_NOTES = [
     "Snapshot historis harga konsumen bulanan; bukan harga real-time, transaksi, atau penawaran pemasok.",
     "Dataset aktif berasal dari ekspor CSV/XLSX BPN yang diberikan pengguna. Kecocokan kedua format diperiksa; pengambilan langsung dari server dan keaslian independen belum diverifikasi.",
-    "Satuan kg/liter merupakan asumsi kerja per komoditas; CSV asli tidak menyediakan kolom satuan. Verifikasi sebelum penggunaan operasional.",
+    "Ekspor sumber tidak mencantumkan satuan harga. Angka rupiah mengikuti sumber; kolom satuan asumsi tidak disertakan pada laporan analisis.",
     "MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama tahun sebelumnya. Bulan kosong tidak dilewati dan tidak diimputasi.",
     "Peringkat variasi tingkat harga memakai bulan pengamatan bersama untuk seri yang lolos cakupan; perubahan bulanan memakai pasangan bulan kalender yang sama. Tabel penyaringan bukan peringkat akhir.",
     "Volatilitas adalah koefisien variasi harga (simpangan baku sampel/mean × 100), minimal tiga observasi; bukan probabilitas kenaikan atau prediksi.",
     "Median antarwilayah tidak berbobot dan hanya mencakup wilayah dengan data pada bulan/komoditas terpilih; bukan harga nasional resmi atau inflasi IHK.",
     "Seri Papua dan Papua Barat sebelum perubahan skema 2024 dipisahkan dari seri sesudahnya. Jumlah seri geografis tidak sama dengan jumlah provinsi Indonesia pada satu waktu.",
-    "Simulasi menggunakan harga tepat pada bulan yang dipilih. Harga tidak tersedia tidak diganti harga bulan lain. Total lengkap tidak diterbitkan bila harga komoditas aktif belum lengkap.",
-    "Skenario anggaran berasal dari kuantitas dan perubahan harga yang dimasukkan pengguna; bukan penghematan atau dampak bisnis yang sudah terealisasi.",
     "Lisensi redistribusi snapshot belum terkonfirmasi; periksa ketentuan sumber asal dan penyedia salinan sebelum redistribusi atau penggunaan komersial.",
 ]
 
@@ -92,10 +88,8 @@ def build_summary(
     alerts = snapshot[snapshot["mom_pct"] >= float(threshold_pct)].sort_values("mom_pct", ascending=False)
     comparable = snapshot["mom_pct"].notna().sum()
     geography_column = "province_code" if "province_code" in frame else "province"
-    training = historical_budget(frame,province,end)
-    coverage = basket_coverage(frame,province)
     return {
-        "title": "Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner",
+        "title": "Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi",
         "province": province,
         "as_of": end.strftime("%Y-%m-%d"),
         "window_start": start.strftime("%Y-%m-%d"),
@@ -117,10 +111,9 @@ def build_summary(
             "without_previous_month": int(len(snapshot) - comparable),
             "alert_count": int(len(alerts)) if comparable else None,
         },
-        "training_budget": {"basis":"Estimasi latihan; kuantitas contoh dan satuan sumber belum terverifikasi", "total":training["total"],"change":training["delta"],"available":training["available"],"required":training["count"],"complete_months":coverage["complete_months"],"comparison_months":coverage["comparison_months"],"dataset_months":coverage["months"]},
-        "top_increases": _records(increases, ["commodity", "price", "unit", "previous_price", "mom_pct", "yoy_pct"]),
-        "alerts": _records(alerts, ["commodity", "price", "unit", "previous_price", "mom_pct"], len(alerts)),
-        "top_volatility": _records(risk[risk["cv_pct"].notna()], ["commodity", "cv_pct", "observations", "expected_months", "coverage_pct", "latest_date", "latest_price", "unit"]),
+        "top_increases": _records(increases, ["commodity", "price", "previous_price", "mom_pct", "yoy_pct"]),
+        "alerts": _records(alerts, ["commodity", "price", "previous_price", "mom_pct"], len(alerts)),
+        "top_volatility": _records(risk[risk["cv_pct"].notna()], ["commodity", "cv_pct", "observations", "expected_months", "coverage_pct", "latest_date", "latest_price"]),
         "methodology": METHOD_NOTES,
     }
 
@@ -151,13 +144,6 @@ DISPLAY = {
     "latest_price": "Harga terakhir tersedia (Rp)",
     "median_price": "Median wilayah teramati (Rp)",
     "deviation_pct": "Selisih dari median (%)",
-    "quantity": "Kuantitas kebutuhan",
-    "shock_pct": "Skenario perubahan harga (%)",
-    "scenario_price": "Harga skenario (Rp)",
-    "baseline_cost": "Anggaran acuan (Rp)",
-    "scenario_cost": "Anggaran skenario (Rp)",
-    "cost_change": "Perubahan anggaran (Rp)",
-    "price_available": "Harga tersedia bulan ini",
     "monthly_abs_pct":"Rata-rata perubahan absolut (%)",
     "monthly_std_pct":"Simpangan perubahan bulanan (%)",
     "monthly_pairs":"Pasangan bulanan bersama",
@@ -165,7 +151,7 @@ DISPLAY = {
 
 
 def _display(frame: pd.DataFrame) -> pd.DataFrame:
-    result = frame.copy()
+    result = frame.drop(columns=["unit", "unit_assumed"], errors="ignore").copy()
     for column in result.select_dtypes(include="datetime").columns:
         result[column] = result[column].dt.strftime("%Y-%m-%d")
     return result.rename(columns=DISPLAY)
@@ -208,8 +194,6 @@ def _summary_table(summary: dict[str, Any]) -> pd.DataFrame:
         ("Komoditas tanpa pembanding MoM", snap["without_previous_month"]),
         ("Komoditas melewati ambang peringatan", snap["alert_count"]),
     ]
-    training = summary["training_budget"]
-    items += [("Dasar estimasi keranjang",training["basis"]),("Estimasi biaya latihan (Rp)",training["total"]),("Perubahan estimasi latihan (Rp)",training["change"]),("Bulan keranjang lengkap",training["complete_months"]),("Bulan perubahan lengkap",training["comparison_months"]),("Bulan dalam dataset",training["dataset_months"])]
     for index, item in enumerate(summary["top_increases"], 1):
         items.append((f"Kenaikan MoM urutan {index}", f"{item['commodity']}: {item['mom_pct']:.2f}%"))
     for index, item in enumerate(summary["top_volatility"], 1):
@@ -241,7 +225,7 @@ def _style_workbook(writer: pd.ExcelWriter) -> None:
                 if isinstance(cell.value, str):
                     cell.data_type = "s"
                 cell.font = body_font
-                cell.alignment = wrapped_alignment if name in {"Sumber & Metode", "Ringkasan", "Ringkasan Skenario"} else body_alignment
+                cell.alignment = wrapped_alignment if name in {"Sumber & Metode", "Ringkasan"} else body_alignment
                 label = headers[cell.column - 1]
                 if isinstance(cell.value, (float, int)) and not isinstance(cell.value, bool):
                     if "(Rp)" in label:
@@ -255,7 +239,7 @@ def _style_workbook(writer: pd.ExcelWriter) -> None:
         for column_number, label in enumerate(headers, 1):
             if name == "Sumber & Metode":
                 width = 49 if column_number == 1 else 110
-            elif name in {"Ringkasan", "Ringkasan Skenario"}:
+            elif name in {"Ringkasan"}:
                 width = 60 if column_number == 1 else 85
             else:
                 values = [len(str(row[column_number - 1].value or "")) for row in sheet.iter_rows(min_row=2, max_row=min(sheet.max_row, 150))]
@@ -271,7 +255,6 @@ def workbook_bytes(
     province: str = "Jawa Barat",
     as_of: Any | None = None,
     months: int = 12,
-    basket: pd.DataFrame | None = None,
     threshold_pct: float = 10,
     commodity: str = "Beras Medium",
     minimum_coverage: float = 80,
@@ -288,26 +271,11 @@ def workbook_bytes(
         _summary_table(summary).to_excel(writer, sheet_name="Ringkasan", index=False)
         _display(df).to_excel(writer, sheet_name="Harga Bersih", index=False)
         _display(snapshot).to_excel(writer, sheet_name="Snapshot Provinsi", index=False)
-        sensitivity_cases(comparison_frame(df),province,summary["as_of"]).to_excel(writer,sheet_name="Sensitivitas latihan",index=False)
         _display(risk).to_excel(writer, sheet_name="Risiko Harga", index=False)
         _display(matched["screening"]).to_excel(writer,sheet_name="Penyaringan cakupan",index=False)
         pd.DataFrame({"Bulan harga bersama":pd.Series(summary["shared_price_months"]),"Pasangan bulanan (akhir)":pd.Series(summary["shared_monthly_pairs"])}).to_excel(writer,sheet_name="Bulan pembanding",index=False)
         _display(comparison).to_excel(writer, sheet_name="Banding Provinsi", index=False)
         _metadata().to_excel(writer, sheet_name="Sumber & Metode", index=False)
-        if basket is not None:
-            scenario = basket_simulation(df, province, end, basket)
-            _display(scenario["lines"]).to_excel(writer, sheet_name="Simulasi Anggaran", index=False)
-            pd.DataFrame([
-                ("Status", "Lengkap" if scenario["complete"] else "Belum lengkap / tidak ada kuantitas aktif"),
-                ("Harga tidak tersedia", ", ".join(scenario["missing_commodities"]) or "Tidak ada"),
-                ("Total anggaran acuan (Rp)", scenario["baseline_total"]),
-                ("Total anggaran skenario (Rp)", scenario["scenario_total"]),
-                ("Perubahan anggaran (Rp)", scenario["difference"]),
-                ("Perubahan anggaran (%)", scenario["difference_pct"]),
-                ("Subtotal acuan komoditas tersedia (Rp)", scenario["known_baseline_total"]),
-                ("Subtotal skenario komoditas tersedia (Rp)", scenario["known_scenario_total"]),
-                ("Catatan", "Skenario pengguna; bukan penghematan aktual. Satuan kg/liter adalah asumsi."),
-            ], columns=["Metrik", "Nilai"]).to_excel(writer, sheet_name="Ringkasan Skenario", index=False)
         _style_workbook(writer)
     return output.getvalue()
 
@@ -330,7 +298,7 @@ def summary_markdown(summary: dict[str, Any]) -> str:
     ]
     if summary["top_increases"]:
         for item in summary["top_increases"]:
-            lines.append(f"- **{item['commodity']}**: naik **{item['mom_pct']:.2f}%**, dari Rp{item['previous_price']:,.0f} menjadi Rp{item['price']:,.0f} per {item.get('unit', 'satuan asumsi')} (satuan asumsi; tidak tercantum pada ekspor).")
+            lines.append(f"- **{item['commodity']}**: naik **{item['mom_pct']:.2f}%**, dari Rp{item['previous_price']:,.0f} menjadi Rp{item['price']:,.0f} (satuan tidak tercantum pada ekspor).")
     else:
         lines.append("Peringkat kenaikan belum dapat dihitung: pembanding MoM tidak tersedia." if not snap["mom_comparable_commodities"] else "Tidak ada kenaikan positif pada pasangan bulan yang tersedia.")
     lines += ["", "## Variasi harga dalam jendela analisis", ""]
@@ -341,13 +309,9 @@ def summary_markdown(summary: dict[str, Any]) -> str:
         lines.append("Belum ada seri dengan minimal tiga observasi untuk menghitung CV.")
     lines += [
         "",
-        "## Cakupan dan estimasi latihan",
-        "",
-        f"Keranjang contoh lengkap pada {summary['training_budget']['complete_months']} dari {summary['training_budget']['dataset_months']} bulan; perubahan bulanan lengkap pada {summary['training_budget']['comparison_months']} bulan. Kuantitas dan satuan masih asumsi; nilai rupiah bukan hasil usaha nyata.",
-        "",
         "## Implikasi dan batas penggunaan",
         "",
-        "Komoditas dengan kenaikan atau variasi tinggi dapat diprioritaskan untuk evaluasi anggaran. Uji skenario kuantitas dan harga di simulator sebelum menyusun rekomendasi pembelian. Data ini belum cukup untuk membuktikan penghematan, menentukan pemasok termurah, atau memprediksi kenaikan berikutnya.",
+        "Kenaikan bulanan dibaca bersama riwayat dan cakupan pengamatan. Perbandingan wilayah memberi konteks harga, tanpa memasukkan ongkir, kualitas, atau pemasok. Hasil tidak menguji penyebab perubahan dan tidak memprediksi harga berikutnya.",
         "",
     ]
     lines += [f"- {note}" for note in summary["methodology"]]

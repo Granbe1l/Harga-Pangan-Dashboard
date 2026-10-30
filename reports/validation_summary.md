@@ -1,19 +1,11 @@
-# Hasil pengujian
+# Hasil pengujian analisis harga pangan
 
-- **84 tes lulus**: pipeline, analitik, sumber input aktif, normalisasi primer, laporan, state antarmuka, kuantitas/satuan pengguna, dan batas anggaran.
-- **Dua berkas asli dipertahankan:** CSV aktif dan XLSX pembanding dari unggahan pengguna. SHA-256 kedua file diperiksa; seluruh 33.422 baris dan enam kolom cocok setelah normalisasi teks.
-- **32.480 observasi** lolos aturan pembersihan. Harga bersih sama dengan versi sebelumnya: tidak ada observasi harga berubah. 942 baris dipisahkan; rujukan baris karantina kini mengikuti ekspor header-pertama.
-- **Perhitungan independen dari CSV:** Decimal menghasilkan 24 pembanding, dua kenaikan ≥10%, dan cabai merah keriting +11,16% untuk Jawa Barat Oktober 2025.
-- **Perlindungan input:** hash CSV dan XLSX serta kesamaan isinya diperiksa sebelum pembangunan ulang. File pembanding yang diubah ditolak sebelum output ditulis. Unduhan mirror ditolak pada mode primer.
-- **Navigasi ringkas:** Ringkasan, Tren & fluktuasi, Perbandingan wilayah, dan Simulator anggaran. Sumber & cara menghitung dapat dibuka di bawah setiap halaman; laporan Excel tetap tersedia.
-- **Konteks historis:** cabai merah keriting naik ≥10% pada 4 dari 12 pasangan bulan November 2024–Oktober 2025 di Jawa Barat; bukan probabilitas masa depan. Tren bahan pilihan tidak menyambungkan bulan kosong.
-- **Halaman depan:** temuan harga tanpa asumsi kuantitas/satuan. Tab terpisah mempertahankan estimasi keranjang latihan, profil, dan sensitivitas.
-- **Chromium desktop 1440 × 950 dan ponsel 390 px:** empat menu, kedua tab Ringkasan, perubahan profil, edit tabel mouse/keyboard, sumber harga/satuan, batas anggaran, reset, dan pemulihan bulan diperiksa. Tidak ada error JavaScript atau overflow badan halaman pada rangkaian pemeriksaan.
-- **Unduhan browser:** CSV/Excel skenario sesuai input. Excel analisis memuat 32.480 observasi, hash CSV primer aktif, cakupan, dan sensitivitas.
-- **Reproduksibilitas:** konfigurasi input, receipt, file asli, pembersihan, arsip mirror, dependency lock, workflow CI, dan screenshot tersedia. `.gitattributes` mempertahankan byte asli ekspor lintas sistem operasi.
+- **51 tes lulus:** pembersihan, kecocokan CSV/XLSX, kalender bulanan/tahunan, perbandingan wilayah, bulan pengamatan bersama, filter, navigasi, dan laporan.
+- **Data sumber:** 33.422 baris CSV dan XLSX cocok setelah normalisasi teks; hash berkas asli diperiksa. Hasil pembersihan berisi 32.480 observasi; 942 baris dipisahkan.
+- **Perhitungan independen:** data Jawa Barat Oktober 2025 memiliki 24 pembanding, dua kenaikan ≥10%, dan cabai merah keriting tertinggi +11,16%.
+- **Browser Chromium:** tiga menu diperiksa pada desktop 1440 × 950 dan ponsel lebar 390 px. Tidak ditemukan exception aplikasi, error JavaScript, atau overflow badan halaman dalam rangkaian pemeriksaan.
+- **Kondisi data terbatas:** Januari 2021 tidak menghasilkan perubahan bulanan palsu; wilayah tanpa harga menampilkan 0/25 dan perubahan yang belum dapat dihitung.
+- **Ekspor Excel:** unduhan berisi 32.480 observasi dan sheet analisis harga; tidak memuat anggaran, sensitivitas keranjang, atau kolom satuan asumsi.
+- **Sesi lama:** pilihan halaman yang tidak lagi tersedia diarahkan kembali ke Ringkasan.
 
-Pemeriksaan tidak membuktikan pengambilan langsung dari server BPN: file disediakan pengguna sebagai unduhan dari publikasi tersebut. Satuan dan lisensi tidak tercantum di kedua file; biaya tetap latihan/input pengguna. Uji manusia, manfaat usaha, akses URL hosting publik, dan pemulihan sleep hosting belum dibuktikan. Kelulusan lokal tidak otomatis membuktikan eksekusi CI remote terbaru.
-
-## Perapian ringkasan
-
-Kartu kenaikan tertinggi mencantumkan nama bahan; header menampilkan periode historis dan label Sumber: BPN. Seluruh 84 tes kembali lulus. Pemeriksaan ringkasan desktop/ponsel mencakup ketiga label tersebut, kondisi tanpa exception, dan lebar halaman. Screenshot ringkasan diperbarui; rangkaian browser menu lain mengacu pada pemeriksaan sebelumnya.
+File sumber tidak mencantumkan satuan atau lisensi. Pemeriksaan berkas lokal tidak membuktikan unduhan langsung dari server BPN. Akses deployment publik dibatasi proxy lingkungan pengujian; hasil di atas berasal dari server lokal. Hasil uji manusia belum tersedia.

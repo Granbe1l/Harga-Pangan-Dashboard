@@ -1,5 +1,5 @@
 {
-  "title": "Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner",
+  "title": "Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi",
   "province": "Jawa Barat",
   "as_of": "2025-10-01",
   "window_start": "2024-11-01",
@@ -47,21 +47,10 @@
     "without_previous_month": 1,
     "alert_count": 2
   },
-  "training_budget": {
-    "basis": "Estimasi latihan; kuantitas contoh dan satuan sumber belum terverifikasi",
-    "total": 1118460.0,
-    "change": 10687.0,
-    "available": 6,
-    "required": 6,
-    "complete_months": 22,
-    "comparison_months": 21,
-    "dataset_months": 58
-  },
   "top_increases": [
     {
       "commodity": "Cabai Merah Keriting",
       "price": 56690.0,
-      "unit": "kg",
       "previous_price": 50999.0,
       "mom_pct": 11.15904233,
       "yoy_pct": 101.47848029
@@ -69,7 +58,6 @@
     {
       "commodity": "Cabai Merah Besar",
       "price": 57169.0,
-      "unit": "kg",
       "previous_price": 51727.0,
       "mom_pct": 10.52061786,
       "yoy_pct": null
@@ -77,7 +65,6 @@
     {
       "commodity": "Telur Ayam Ras",
       "price": 30109.0,
-      "unit": "kg",
       "previous_price": 28418.0,
       "mom_pct": 5.95045394,
       "yoy_pct": 12.85655384
@@ -85,7 +72,6 @@
     {
       "commodity": "Bawang Merah",
       "price": 38527.0,
-      "unit": "kg",
       "previous_price": 37552.0,
       "mom_pct": 2.59639966,
       "yoy_pct": 42.31309102
@@ -93,7 +79,6 @@
     {
       "commodity": "Jagung Tingkat Peternak",
       "price": 6098.0,
-      "unit": "kg",
       "previous_price": 5971.0,
       "mom_pct": 2.12694691,
       "yoy_pct": 9.14623233
@@ -103,14 +88,12 @@
     {
       "commodity": "Cabai Merah Keriting",
       "price": 56690.0,
-      "unit": "kg",
       "previous_price": 50999.0,
       "mom_pct": 11.15904233
     },
     {
       "commodity": "Cabai Merah Besar",
       "price": 57169.0,
-      "unit": "kg",
       "previous_price": 51727.0,
       "mom_pct": 10.52061786
     }
@@ -123,8 +106,7 @@
       "expected_months": 12,
       "coverage_pct": 100.0,
       "latest_date": "2025-10-01T00:00:00.000",
-      "latest_price": 38978.0,
-      "unit": "kg"
+      "latest_price": 38978.0
     },
     {
       "commodity": "Cabai Merah Keriting",
@@ -133,8 +115,7 @@
       "expected_months": 12,
       "coverage_pct": 100.0,
       "latest_date": "2025-10-01T00:00:00.000",
-      "latest_price": 56690.0,
-      "unit": "kg"
+      "latest_price": 56690.0
     },
     {
       "commodity": "Bawang Merah",
@@ -143,8 +124,7 @@
       "expected_months": 12,
       "coverage_pct": 100.0,
       "latest_date": "2025-10-01T00:00:00.000",
-      "latest_price": 38527.0,
-      "unit": "kg"
+      "latest_price": 38527.0
     },
     {
       "commodity": "Bawang Putih (Bonggol)",
@@ -153,8 +133,7 @@
       "expected_months": 12,
       "coverage_pct": 100.0,
       "latest_date": "2025-10-01T00:00:00.000",
-      "latest_price": 34425.0,
-      "unit": "kg"
+      "latest_price": 34425.0
     },
     {
       "commodity": "Jagung Tingkat Peternak",
@@ -163,21 +142,18 @@
       "expected_months": 12,
       "coverage_pct": 100.0,
       "latest_date": "2025-10-01T00:00:00.000",
-      "latest_price": 6098.0,
-      "unit": "kg"
+      "latest_price": 6098.0
     }
   ],
   "methodology": [
     "Snapshot historis harga konsumen bulanan; bukan harga real-time, transaksi, atau penawaran pemasok.",
     "Dataset aktif berasal dari ekspor CSV/XLSX BPN yang diberikan pengguna. Kecocokan kedua format diperiksa; pengambilan langsung dari server dan keaslian independen belum diverifikasi.",
-    "Satuan kg/liter merupakan asumsi kerja per komoditas; CSV asli tidak menyediakan kolom satuan. Verifikasi sebelum penggunaan operasional.",
+    "Ekspor sumber tidak mencantumkan satuan harga. Angka rupiah mengikuti sumber; kolom satuan asumsi tidak disertakan pada laporan analisis.",
     "MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama tahun sebelumnya. Bulan kosong tidak dilewati dan tidak diimputasi.",
     "Peringkat variasi tingkat harga memakai bulan pengamatan bersama untuk seri yang lolos cakupan; perubahan bulanan memakai pasangan bulan kalender yang sama. Tabel penyaringan bukan peringkat akhir.",
     "Volatilitas adalah koefisien variasi harga (simpangan baku sampel/mean × 100), minimal tiga observasi; bukan probabilitas kenaikan atau prediksi.",
     "Median antarwilayah tidak berbobot dan hanya mencakup wilayah dengan data pada bulan/komoditas terpilih; bukan harga nasional resmi atau inflasi IHK.",
     "Seri Papua dan Papua Barat sebelum perubahan skema 2024 dipisahkan dari seri sesudahnya. Jumlah seri geografis tidak sama dengan jumlah provinsi Indonesia pada satu waktu.",
-    "Simulasi menggunakan harga tepat pada bulan yang dipilih. Harga tidak tersedia tidak diganti harga bulan lain. Total lengkap tidak diterbitkan bila harga komoditas aktif belum lengkap.",
-    "Skenario anggaran berasal dari kuantitas dan perubahan harga yang dimasukkan pengguna; bukan penghematan atau dampak bisnis yang sudah terealisasi.",
     "Lisensi redistribusi snapshot belum terkonfirmasi; periksa ketentuan sumber asal dan penyedia salinan sebelum redistribusi atau penggunaan komersial."
   ]
 }

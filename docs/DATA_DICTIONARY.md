@@ -28,7 +28,7 @@ Satu baris mewakili satu observasi provinsi–komoditas–bulan.
 | `commodity` | Teks | Nama komoditas sumber. |
 | `date` | Tanggal | Hari pertama bulan observasi, format `YYYY-MM-01`. Ini penanda bulan, bukan tanggal survei harian. |
 | `price` | Numerik | Harga konsumen tercatat dalam rupiah, harus lebih dari nol. |
-| `unit` | Teks | Satuan yang digunakan aplikasi untuk simulasi. Satuan merupakan asumsi karena file mentah tidak mempunyai kolom satuan. |
+| `unit` | Teks | Metadata asumsi dari pemrosesan versi sebelumnya; tidak digunakan dalam analisis dan tidak disertakan pada laporan. |
 | `source_province_code` | Teks | Kode wilayah sebelum pemisahan seri historis. Berguna untuk melacak observasi ke file mentah. |
 | `geography_note` | Teks | Catatan perubahan seri wilayah, terutama Papua sebelum perubahan skema pada snapshot. |
 | `unit_assumed` | Boolean | Penanda bahwa satuan berasal dari asumsi kerja aplikasi, bukan kolom satuan dalam CSV mentah. |
@@ -53,4 +53,4 @@ Nama kolom turunan pada hasil ekspor dapat dilihat pada header hasil. Definisi b
 
 ## Provenansi input aktif
 
-`data/source_input.json` memilih CSV ekspor primer yang diberikan pengguna. `data/raw/primary/receipt.json` memuat hash kedua file, nama asli, dan kecocokan 33.422 baris. Kolom `source_row` karantina mengikuti CSV header-pertama, sehingga observasi pertama berada di baris 2. Tidak ada kolom satuan pada CSV/XLSX; `unit` pada data olahan tetap asumsi bertanda `unit_assumed=True` untuk tab latihan.
+`data/source_input.json` memilih CSV ekspor primer yang diberikan pengguna. `data/raw/primary/receipt.json` memuat hash kedua file, nama asli, dan kecocokan 33.422 baris. Kolom `source_row` karantina mengikuti CSV header-pertama, sehingga observasi pertama berada di baris 2. Tidak ada kolom satuan pada CSV/XLSX; `unit` pada data olahan tetap asumsi bertanda `unit_assumed=True`; tidak digunakan pada analisis harga.

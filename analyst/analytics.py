@@ -2,7 +2,7 @@
 
 Prices are provincial consumer-price observations, not transaction or supplier
 quotes. Missing months stay missing. No function treats an unweighted median as
-an official national price or claims that a scenario is a realised saving.
+an official national price.
 """
 
 from __future__ import annotations
@@ -118,67 +118,6 @@ def province_comparison(df: pd.DataFrame, commodity: str, as_of: Any) -> pd.Data
     return result.sort_values("price", ascending=False).reset_index(drop=True)
 
 
-def basket_simulation(
-    df: pd.DataFrame,
-    province: str,
-    as_of: Any,
-    basket: pd.DataFrame,
-) -> dict[str, Any]:
-    """Apply user-selected quantities and price shocks to exact-month prices.
-
-    ``basket`` requires commodity, quantity, shock_pct. Quantity uses the unit
-    attached to each commodity in the prepared data; unit assignments originate
-    from documented assumptions rather than a unit column in the raw CSV.
-    A missing price for a positive quantity makes complete totals None; known
-    subtotals remain available and are explicitly labelled as incomplete.
-    """
-    data = _prices(df)
-    required = {"commodity", "quantity", "shock_pct"}
-    missing = required.difference(basket.columns)
-    if missing:
-        raise ValueError(f"Kolom keranjang tidak lengkap: {', '.join(sorted(missing))}")
-    lines = basket[list(required)].copy()
-    if lines.empty:
-        raise ValueError("Keranjang harus berisi minimal satu komoditas.")
-    if lines["commodity"].isna().any() or lines["commodity"].duplicated().any():
-        raise ValueError("Setiap komoditas harus terisi dan hanya muncul sekali di keranjang.")
-    for column in ["quantity", "shock_pct"]:
-        lines[column] = pd.to_numeric(lines[column], errors="raise")
-        if not np.isfinite(lines[column].to_numpy(dtype=float)).all():
-            raise ValueError("Kuantitas dan skenario harga harus berupa angka terbatas.")
-    if (lines["quantity"] < 0).any():
-        raise ValueError("Kuantitas tidak boleh negatif.")
-    if (lines["shock_pct"] < -100).any():
-        raise ValueError("Penurunan harga tidak boleh melebihi 100%.")
-    month = _month(as_of)
-    selected = data[(data["province"] == province) & (data["date"] == month)]
-    columns = ["commodity", "price"] + (["unit"] if "unit" in selected else [])
-    lines = lines.merge(selected[columns], on="commodity", how="left", validate="one_to_one")
-    if "unit" not in lines:
-        lines["unit"] = "satuan komoditas"
-    lines["price_available"] = lines["price"].notna()
-    lines["baseline_cost"] = lines["quantity"] * lines["price"]
-    lines["scenario_price"] = lines["price"] * (1.0 + lines["shock_pct"] / 100.0)
-    lines["scenario_cost"] = lines["quantity"] * lines["scenario_price"]
-    lines.loc[lines["quantity"] == 0, ["baseline_cost", "scenario_cost"]] = 0.0
-    lines["cost_change"] = lines["scenario_cost"] - lines["baseline_cost"]
-    absent = lines.loc[(lines["quantity"] > 0) & ~lines["price_available"], "commodity"].tolist()
-    active = bool((lines["quantity"] > 0).any())
-    complete = not absent and active
-    base = float(lines["baseline_cost"].sum())
-    scenario = float(lines["scenario_cost"].sum())
-    return {
-        "lines": lines[["commodity", "quantity", "unit", "price", "shock_pct", "scenario_price", "baseline_cost", "scenario_cost", "cost_change", "price_available"]],
-        "as_of": month,
-        "complete": complete,
-        "missing_commodities": absent,
-        "baseline_total": base if complete else None,
-        "scenario_total": scenario if complete else None,
-        "difference": scenario - base if complete else None,
-        "difference_pct": (scenario / base - 1.0) * 100.0 if complete and base > 0 else None,
-        "known_baseline_total": base,
-        "known_scenario_total": scenario,
-    }
 
 
 def create_sql_views(connection: sqlite3.Connection, sql_path: str | Path | None = None) -> None:

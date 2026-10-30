@@ -1,45 +1,34 @@
-# Studi kasus: perubahan harga dan anggaran bahan baku
+# Studi kasus: tren dan perbandingan harga pangan antarprovinsi
 
-Analisis ini menelusuri bahan dengan kenaikan harga terbesar dan membandingkan dampak biayanya pada beberapa contoh kebutuhan belanja.
+Analisis ini menjawab tiga pertanyaan: komoditas apa yang mengalami kenaikan terbesar, bagaimana pergerakannya sepanjang waktu, dan bagaimana harga suatu wilayah dibandingkan wilayah lain?
 
-**Ruang lingkup:** snapshot harga konsumen provinsi Januari 2021–Oktober 2025. Fokus awal Jawa Barat, dengan tiga komposisi keranjang contoh.
+Data berasal dari ekspor publikasi BPN untuk Januari 2021–Oktober 2025. Fokus awal dashboard adalah Jawa Barat; wilayah, bulan, dan komoditas dapat diubah. Satu observasi mewakili satu provinsi, komoditas, dan bulan.
 
-**Sumber:** berkas CSV/XLSX yang diterima sebagai ekspor publikasi BPN. Seluruh 33.422 baris cocok antardua format. Rincian penerimaan dan batas pemeriksaan tersedia di [Sumber data](SOURCES.md).
+## Temuan — Jawa Barat, Oktober 2025
 
-## Hasil
-
-| Analisis | Hasil pada Jawa Barat |
+| Analisis | Hasil |
 | --- | --- |
-| Temuan harga Oktober 2025 | Dua dari 24 pembanding naik ≥10%; cabai merah keriting tertinggi +11,16% |
-| Konteks kenaikan cabai merah keriting | Naik ≥10% pada 4 dari 12 pasangan bulan, November 2024–Oktober 2025; frekuensi historis, bukan peluang masa depan |
-| Data mentah → valid | 33.422 → 32.480 observasi |
-| Keranjang enam bahan lengkap | 22 dari 58 bulan; pertama Januari 2024 |
-| Perubahan total bulanan lengkap, profil A/B | 21 dari 58 bulan |
-| Alternatif profil C (tanpa minyak) | Harga lengkap 58/58 bulan; komposisi berbeda, dipilih eksplisit |
-| Profil latihan A, Oktober 2025 | Estimasi Rp1.118.460, bertambah Rp10.687 terhadap September |
-| Kontributor profil A | Telur ayam ras, tambahan Rp8.455 pada asumsi kebutuhan 5 kg |
-| Sensitivitas profil B | Telur diubah menjadi 1 kg, bahan lain tetap; kontributor terbesar bergeser ke ayam ras Rp3.890, perubahan total Rp3.923 |
+| Harga tersedia | 25 komoditas; 24 memiliki pembanding September |
+| Kenaikan ≥10% | Dua komoditas: cabai merah keriting dan cabai merah besar |
+| Kenaikan tertinggi | Cabai merah keriting, 11,16% |
+| Konteks historis cabai merah keriting | Naik ≥10% pada 4 dari 12 pasangan bulan November 2024–Oktober 2025 |
+| Data mentah → valid | 33.422 → 32.480 observasi; 942 baris dipisahkan |
 
-Nilai rupiah tersebut bersifat **latihan**, karena satuan sumber belum terverifikasi dan kebutuhan bukan hasil survei usaha. Pada contoh ini, perubahan jumlah telur menggeser bahan penyumbang biaya terbesar. Hasilnya bergantung pada komposisi belanja.
+Ambang 10% merupakan parameter analisis. Frekuensi kenaikan menggambarkan riwayat pengamatan, bukan peluang kenaikan berikutnya. Satu komoditas tanpa pembanding tidak dimasukkan dalam jumlah kenaikan.
 
-## Pengolahan dan analisis
+## Proses analisis
 
-1. Memisahkan harga kosong/nonpositif dan mempertahankan jejak sumber.
-2. Membandingkan dua bulan kalender secara tepat, termasuk ketika salah satu bulan tidak memiliki harga.
-3. Memisahkan total lengkap dan subtotal; menunjukkan periode yang benar-benar mendukung analisis.
-4. Menguji sensitivitas komposisi, mengedit harga/satuan dengan asal per baris, serta membandingkan skenario dengan batas anggaran.
-5. Membandingkan fluktuasi pada bulan harga dan pasangan bulanan yang sama, bukan hanya mencampurkan seri dengan cakupan berbeda.
-6. Menyediakan pengujian otomatis lokal, workflow CI, laporan CSV/Excel, dan pemeriksaan browser desktop/mobile.
+1. Memeriksa kecocokan CSV dan XLSX serta menyimpan hash berkas.
+2. Memisahkan harga kosong/nol dan mempertahankan nomor baris sumber.
+3. Membandingkan bulan kalender yang tepat, tanpa mengisi harga hilang.
+4. Membandingkan fluktuasi pada bulan dan pasangan bulanan yang sama.
+5. Membandingkan harga antarwilayah dengan median tanpa bobot.
+6. Menyediakan dashboard, laporan Excel, query SQL, dan pengujian otomatis.
 
-## Keterbatasan
+## Interpretasi
 
-- CSV/XLSX unggahan cocok isinya. Pengambilan langsung dari server, satuan sumber, dan izin redistribusi belum terkonfirmasi.
-- Belum ada catatan kebutuhan satu usaha atau hasil uji pengguna manusia yang dikumpulkan.
-- Belum ada bukti peningkatan laba, penghematan, atau kinerja prediksi.
-- Hosting publik dan sleep hosting membutuhkan URL deployment untuk diverifikasi.
+Kenaikan satu bulan perlu dibaca bersama riwayat dan cakupan pengamatan. Harga yang lebih rendah dari median wilayah tidak otomatis menunjukkan lokasi pembelian yang lebih baik, karena ongkir, kualitas, dan pemasok tidak tersedia dalam data.
 
-## Membaca dashboard
+Harga konsumen provinsi dapat berbeda dari harga toko. File sumber tidak mencantumkan satuan; angka harga ditampilkan mengikuti sumber. Analisis ini tidak menguji penyebab perubahan atau membuat prediksi.
 
-Tab **Temuan harga** menampilkan perubahan tanpa asumsi jumlah belanja. Tab **Dampak keranjang latihan** membandingkan biaya dan komposisi contoh. Jumlah, harga, dan skenario dapat diubah pada **Simulator anggaran**.
-
-**Sumber & cara menghitung** tersedia sebagai bagian yang bisa dibuka di bawah setiap halaman, termasuk unduhan laporan. **Tren & fluktuasi** memuat riwayat bahan pilihan dengan bulan kosong tetap kosong.
+[Sumber](SOURCES.md) · [Metode](METHODOLOGY.md) · [Pengujian](TESTING.md)

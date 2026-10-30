@@ -1,8 +1,8 @@
-# Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner
+# Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi
 
 [![Tests](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml)
 
-Dashboard untuk menelusuri perubahan harga pangan bulanan dan menghitung pengaruhnya terhadap contoh anggaran bahan baku. Analisis awal berfokus pada Jawa Barat; wilayah lain dapat dipilih melalui filter.
+Dashboard untuk menelusuri tren harga pangan bulanan, membandingkan fluktuasi komoditas, dan melihat perbedaan harga antarprovinsi. Analisis awal berfokus pada Jawa Barat; wilayah lain dapat dipilih melalui filter.
 
 **Python · Pandas · SQL/SQLite · Streamlit · Plotly · Excel**
 
@@ -17,20 +17,18 @@ Pada **Jawa Barat, Oktober 2025**:
 - Harga tersedia untuk **25 komoditas**; **24** memiliki pembanding September.
 - **Dua komoditas naik setidaknya 10%**. Cabai merah keriting mencatat kenaikan tertinggi, **11,16%**.
 - Cabai merah keriting naik setidaknya 10% pada **4 dari 12 pasangan bulan** dalam rentang November 2024–Oktober 2025. Angka ini menggambarkan riwayat yang tersedia, bukan peluang kenaikan berikutnya.
-- Biaya keranjang enam bahan contoh bertambah **Rp10.687** dibanding September dengan jumlah belanja tetap. Nilai ini merupakan estimasi dengan satuan asumsi, bukan catatan pengeluaran usaha.
 
-Ambang 10% dapat diubah dan bukan batas resmi pemerintah. Perincian komposisi dan sensitivitas keranjang tersedia dalam [studi kasus](docs/CASE_STUDY.md).
+Ambang 10% dapat diubah dan bukan batas resmi pemerintah. Perincian hasil dan cakupan pengamatan tersedia dalam [studi kasus](docs/CASE_STUDY.md).
 
 ## Fitur
 
 | Menu | Isi |
 | --- | --- |
-| Ringkasan | Perubahan harga bulan pilihan dan dampaknya pada keranjang contoh |
+| Ringkasan | Harga tersedia, kenaikan bulanan, dan konteks historis |
 | Tren & fluktuasi | Riwayat bahan pilihan dan perbandingan fluktuasi pada bulan pengamatan yang sama |
 | Perbandingan wilayah | Harga wilayah pilihan, median wilayah tersedia, dan selisih terhadap median |
-| Simulator anggaran | Perubahan jumlah, harga, satuan, skenario kenaikan, dan batas anggaran; ekspor CSV/Excel |
 
-Bagian **Sumber & cara menghitung** tersedia di bawah setiap halaman. Filter dan isian simulator bertahan selama sesi. Input tidak disimpan permanen.
+Bagian **Sumber & cara menghitung** tersedia di bawah setiap halaman. Pilihan filter bertahan selama sesi.
 
 ## Data
 
@@ -44,9 +42,9 @@ Berkas diterima sebagai ekspor dari publikasi tersebut. Pemeriksaan dilakukan pa
 
 - Data bersifat historis dan tidak diperbarui otomatis.
 - Harga konsumen provinsi dapat berbeda dari harga toko atau pemasok.
-- File sumber tidak mencantumkan satuan. Kg/liter dalam keranjang contoh merupakan asumsi; satuan input simulator merupakan pernyataan pengguna.
-- Harga kosong tidak diisi. Tanda **—** berarti belum dapat dihitung; total tidak lengkap ditampilkan sebagai subtotal.
-- Simulasi belum mencakup ongkir, susut, stok, dan biaya operasional. Hasilnya bukan prediksi harga atau bukti penghematan usaha.
+- File sumber tidak mencantumkan satuan. Harga ditampilkan mengikuti angka sumber; laporan analisis tidak menyertakan kolom satuan asumsi.
+- Harga kosong tidak diisi. Tanda **—** berarti belum dapat dihitung; **0** adalah hasil hitungan yang benar-benar nol.
+- Analisis tidak menguji penyebab perubahan harga dan tidak memprediksi harga berikutnya. Perbandingan wilayah belum mencakup ongkir, kualitas, atau pemasok.
 
 Rincian pembersihan dan rumus tersedia di [metodologi](docs/METHODOLOGY.md) dan [kamus data](docs/DATA_DICTIONARY.md).
 
@@ -69,7 +67,7 @@ Untuk Windows PowerShell, buat lingkungan dengan `py -3.12 -m venv .venv` lalu a
 
 | Folder | Isi |
 | --- | --- |
-| `analyst/` | Pembersihan data, perhitungan, simulasi, dan ekspor laporan |
+| `analyst/` | Pembersihan data, perhitungan harga, dan ekspor laporan |
 | `data/` | Berkas sumber, metadata, hasil pembersihan, dan SQLite |
 | `sql/` | Query analisis |
 | `tests/` | Pengujian otomatis |
@@ -84,4 +82,4 @@ python scripts/export_report.py --output-dir /tmp/analyst-report
 python scripts/package_project.py
 ```
 
-Pengujian mencakup perbandingan kalender, harga kosong, perhitungan anggaran, sumber harga per bahan, ekspor, dan perpindahan halaman. GitHub Actions menjalankan tes pada push dan pull request. Petunjuk pemeriksaan browser tersedia di [Testing](docs/TESTING.md).
+Pengujian mencakup perbandingan kalender, harga kosong, cakupan pengamatan bersama, filter, ekspor, dan perpindahan halaman. GitHub Actions menjalankan tes pada push dan pull request. Petunjuk pemeriksaan browser tersedia di [Testing](docs/TESTING.md).

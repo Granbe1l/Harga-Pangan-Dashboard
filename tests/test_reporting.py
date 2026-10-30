@@ -33,7 +33,7 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual(workbook["Snapshot Provinsi"].freeze_panes, "A2")
         methods = " ".join(str(cell.value) for row in workbook["Sumber & Metode"] for cell in row)
         self.assertIn("belum diverifikasi", methods)
-        self.assertIn("kg/liter", methods)
+        self.assertIn("tidak mencantumkan satuan", methods)
         self.assertIn("tidak diimputasi", methods)
         snapshot = workbook["Snapshot Provinsi"]
         headers = {cell.value: cell.column for cell in snapshot[1]}
@@ -41,21 +41,7 @@ class ReportingTests(unittest.TestCase):
         self.assertAlmostEqual(mom.value, 25)
         self.assertNotIn("%", mom.number_format)
 
-    def test_missing_prices_stay_missing_in_scenario_totals(self):
-        basket = pd.DataFrame({"commodity": ["Cabai"], "quantity": [2], "shock_pct": [20]})
-        workbook = load_workbook(BytesIO(workbook_bytes(fixture(), as_of="2024-03", basket=basket)))
-        scenario = workbook["Ringkasan Skenario"]
-        values = {row[0].value: row[1].value for row in scenario.iter_rows(min_row=2)}
-        self.assertEqual(values["Harga tidak tersedia"], "Cabai")
-        self.assertIsNone(values["Total anggaran acuan (Rp)"])
-        self.assertIsNone(values["Total anggaran skenario (Rp)"])
 
-    def test_valid_scenario_totals_are_readable(self):
-        basket = pd.DataFrame({"commodity": ["Beras Medium"], "quantity": [2], "shock_pct": [10]})
-        workbook = load_workbook(BytesIO(workbook_bytes(fixture(), as_of="2024-03", basket=basket)))
-        values = {row[0].value: row[1].value for row in workbook["Ringkasan Skenario"].iter_rows(min_row=2)}
-        self.assertEqual(values["Total anggaran acuan (Rp)"], 30000)
-        self.assertEqual(values["Total anggaran skenario (Rp)"], 33000)
 
     def test_strings_cannot_become_excel_formulas(self):
         data = fixture()
@@ -67,14 +53,16 @@ class ReportingTests(unittest.TestCase):
                     self.assertNotEqual(cell.data_type, "f")
         self.assertEqual(workbook["Harga Bersih"]["C2"].value, '=HYPERLINK("https://example.com","x")')
 
-    def test_analysis_export_records_shared_dates_and_training_coverage(self):
+    def test_analysis_export_records_shared_dates_without_budget_sheets(self):
         summary=build_summary(fixture(),as_of="2024-03",months=3)
         self.assertEqual(len(summary["shared_price_months"]),3)
-        self.assertIn("basis",summary["training_budget"])
+        self.assertNotIn("training_budget",summary)
         workbook=load_workbook(BytesIO(workbook_bytes(fixture(),as_of="2024-03",months=3)))
         self.assertIn("Bulan pembanding",workbook.sheetnames)
         self.assertIn("Penyaringan cakupan",workbook.sheetnames)
-        self.assertIn("Sensitivitas latihan",workbook.sheetnames)
+        self.assertNotIn("Sensitivitas latihan",workbook.sheetnames)
+        self.assertNotIn("Simulasi Anggaran",workbook.sheetnames)
+        self.assertNotIn("Satuan asumsi",[c.value for c in workbook["Harga Bersih"][1]])
 
     def test_no_comparison_is_unknown_in_report_not_zero_alerts(self):
         summary = build_summary(fixture(), as_of="2024-01")

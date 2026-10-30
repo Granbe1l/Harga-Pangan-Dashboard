@@ -29,7 +29,7 @@ Nama asli, ukuran, waktu impor, jalur akuisisi, dan hasil pencocokan dicatat di 
 
 CSV dan XLSX **tidak mencantumkan kolom satuan**, definisi rinci satuan harga, atau ketentuan lisensi. Kecocokan dua format bukan tanda tangan digital sumber dan tidak membuktikan pengambilan langsung dari server. Metadata karena itu membedakan penerimaan ekspor pengguna, konsistensi isi, dan verifikasi independen.
 
-Persentase perubahan harga pada halaman depan tidak membutuhkan asumsi jumlah belanja atau satuan kg/liter. Perhitungan rupiah pada keranjang diberi label latihan karena membutuhkan asumsi satuan dan kuantitas. Satuan/harga yang dimasukkan pengguna dicatat sebagai pernyataan pengguna, bukan verifikasi eksternal.
+Persentase perubahan membandingkan seri komoditas yang sama. Harga rupiah ditampilkan mengikuti sumber tanpa mengklaim satuan kg/liter. Kolom satuan asumsi tidak digunakan dalam analisis atau laporan.
 
 Ketentuan lisensi tidak tercantum pada ekspor yang diterima. Penggunaan ulang mengikuti ketentuan penerbit. Dashboard merupakan proyek analisis independen.
 

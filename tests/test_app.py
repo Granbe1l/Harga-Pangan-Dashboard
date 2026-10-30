@@ -1,221 +1,104 @@
-"""Exercise the complete recruiter journey, editable scenarios, and empty states."""
+"""Navigation, calendar comparisons, empty states, and report exports."""
 from pathlib import Path
-import json
-from datetime import datetime
-from zoneinfo import ZoneInfo
+from io import BytesIO
 import unittest
 import pandas as pd
+from openpyxl import load_workbook
 from streamlit.testing.v1 import AppTest
 
 ROOT=Path(__file__).resolve().parents[1]
-TITLE='Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner'
-PAGES=['Ringkasan','Tren & fluktuasi','Perbandingan wilayah','Simulator anggaran']
-
+TITLE='Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi'
+PAGES=['Ringkasan','Tren & fluktuasi','Perbandingan wilayah']
 
 class DashboardTests(unittest.TestCase):
     def open_app(self):
-        return AppTest.from_file(str(ROOT/'app.py'),default_timeout=45).run()
+        app=AppTest.from_file(str(ROOT/'app.py'),default_timeout=45).run()
+        self.good(app)
+        return app
 
     def good(self,app):
         self.assertEqual([e.message for e in app.exception],[])
 
     def menu(self,app,name):
-        app.radio(key='page').set_value(name).run(); self.good(app)
+        app.radio(key='page').set_value(name).run();self.good(app)
 
-    def edit(self,app,patch):
-        key='budget_editor_'+str(app.session_state['editor_version'])
-        app.session_state[key]={'edited_rows':{0:patch},'added_rows':[],'deleted_rows':[]}
-        app.run(); self.good(app)
-
-    def test_all_pages_render_with_real_data(self):
+    def test_three_analysis_pages_render_and_have_sources(self):
         app=self.open_app()
-        for name in PAGES:
-            self.menu(app,name)
-            self.assertGreaterEqual(len(app.metric),3)
-            self.assertTrue(any(e.label=="Sumber & cara menghitung" for e in app.expander))
+        self.assertEqual(app.radio(key='page').options,PAGES)
+        for page in PAGES:
+            self.menu(app,page)
+            self.assertEqual(len(app.metric),3)
+            self.assertTrue(any(e.label=='Sumber & cara menghitung' for e in app.expander))
+            text=' '.join(m.value for m in app.markdown)
+            self.assertNotIn('Keranjang',text)
+            self.assertFalse(app.get('data_editor'))
 
-    def test_opening_metrics_follow_one_historical_budget_story(self):
-        app=self.open_app();self.good(app)
+    def test_default_findings_match_observed_prices(self):
+        app=self.open_app()
         self.assertEqual(app.title[0].value,TITLE)
-        self.assertEqual([m.value for m in app.metric[:3]],['25 / 25','2','+11,16%'])
-        self.assertEqual(app.metric[3].value,'Rp 1.118.460')
-        self.assertEqual(app.metric[1].label,'Naik ≥10% bulanan')
+        self.assertEqual([m.value for m in app.metric],['25 / 25','2','+11,16%'])
         self.assertIn('Cabai Merah Keriting',app.metric[2].label)
+        self.assertTrue(any('4 dari 12 pasangan bulan' in m.value for m in app.markdown))
         self.assertTrue(any('Studi historis Januari 2021–Oktober 2025' in c.value for c in app.caption))
-        self.assertNotIn('Jika seluruh', ' '.join(m.value for m in app.markdown))
 
-    def test_first_month_has_unknown_change_and_no_single_point_trend(self):
+    def test_first_month_has_unknown_changes(self):
         app=self.open_app()
-        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run()
-        self.good(app)
+        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run();self.good(app)
         self.assertEqual(app.metric[1].value,'—')
         self.assertEqual(app.metric[2].value,'—')
-        self.assertEqual(app.metric[3].value,'—')
         self.assertEqual(len(app.get('plotly_chart')),0)
 
-    def test_missing_region_does_not_reuse_old_price(self):
+    def test_missing_region_does_not_reuse_old_prices(self):
         app=self.open_app()
-        app.selectbox(key='filter_province').set_value('Papua Pegunungan').run()
-        self.good(app)
+        app.selectbox(key='filter_province').set_value('Papua Pegunungan').run();self.good(app)
         self.assertEqual(app.metric[0].value,'0 / 25')
-        self.assertEqual(app.metric[5].value,'0 / 6 bahan')
+        self.assertEqual(app.metric[1].value,'—')
 
-    def test_detail_commodity_and_threshold_update_without_changing_historical_budget(self):
-        app=self.open_app()
-        baseline=[m.value for m in app.metric[3:6]]
-        app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run();self.good(app)
-        self.assertTrue(any(h.value=='Harga Cabai Rawit Merah' for h in app.subheader))
-        text=' '.join(m.value for m in app.markdown)
-        self.assertIn('2 dari 24 komoditas',text)
-        app.slider(key='filter_threshold').set_value(40).run();self.good(app)
-        self.assertIn('Tidak ada komoditas', ' '.join(m.value for m in app.markdown))
-        self.assertEqual([m.value for m in app.metric[3:6]],baseline)
-
-    def test_filters_are_contextual_and_preserved_when_hidden(self):
+    def test_filters_follow_navigation_and_threshold(self):
         app=self.open_app()
         app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run()
         app.selectbox(key='filter_window').set_value(36).run()
-        self.menu(app,'Simulator anggaran')
-        self.assertFalse(any(s.key in ['filter_commodity','filter_window'] for s in app.selectbox))
+        self.menu(app,'Perbandingan wilayah')
+        self.assertFalse(any(s.key=='filter_window' for s in app.selectbox))
         self.menu(app,'Ringkasan')
         self.assertEqual(app.selectbox(key='filter_commodity').value,'Cabai Rawit Merah')
         self.assertEqual(app.selectbox(key='filter_window').value,36)
+        app.slider(key='filter_threshold').set_value(40).run();self.good(app)
+        self.assertEqual(app.metric[1].value,'0')
 
-    def test_cta_navigates_to_simulator(self):
-        app=self.open_app()
-        app.button(key='price_cta').click().run()
-        self.good(app)
-        self.assertEqual(app.radio(key='page').value,'Simulator anggaran')
-
-    def test_quick_scenarios_and_reset(self):
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        app.button(key='quick_0').click().run();self.good(app)
-        self.assertEqual(app.metric[0].value,app.metric[1].value)
-        app.button(key='quick_20').click().run();self.good(app)
-        self.assertEqual(app.metric[1].value,'Rp 1.342.152')
-        app.button(key='reset_budget').click().run();self.good(app)
-        self.assertEqual(app.metric[1].value,'Rp 1.230.306')
-
-    def test_bulk_control_only_applies_after_button_and_preserves_quantity(self):
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        self.edit(app,{'Jumlah':30.5})
-        before=app.metric[1].value
-        app.number_input(key='bulk_shock').set_value(30).run()
-        self.assertEqual(app.metric[1].value,before)
-        next(b for b in app.button if b.label=='Terapkan ke semua bahan').click().run()
-        self.good(app)
-        self.assertEqual(app.session_state['plan']['Beras Medium']['quantity'],30.5)
-        self.assertEqual(app.session_state['plan']['Beras Medium']['shock_pct'],30)
-
-    def test_budget_edits_and_period_survive_page_navigation(self):
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        self.edit(app,{'Jumlah':30.5,'Perubahan (%)':25})
-        app.selectbox(key='budget_period').set_value('Per minggu').run()
-        before=app.metric[1].value
-        self.menu(app,'Ringkasan');self.menu(app,'Simulator anggaran')
-        self.assertEqual(app.metric[1].value,before)
-        self.assertEqual(app.selectbox(key='budget_period').value,'Per minggu')
-
-    def test_empty_and_zero_quantity_baskets(self):
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        app.multiselect(key='basket_commodities').set_value([]).run();self.good(app)
-        self.assertTrue(any('Pilih minimal satu' in i.value for i in app.info))
-        app.multiselect(key='basket_commodities').set_value(['Beras Medium']).run()
-        self.edit(app,{'Jumlah':0})
-        self.assertEqual(app.metric[0].value,'—')
-        self.assertTrue(any('Isi jumlah' in i.value for i in app.info))
-
-    def test_manual_price_preserves_dataset_and_only_changes_edited_row_source(self):
-        before=(ROOT/'data/processed/prices.csv').read_bytes()
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        app.checkbox(key='manual_prices').check().run()
-        self.edit(app,{'Harga acuan (Rp)':20000})
-        self.assertEqual(app.session_state['plan']['Beras Medium']['override'],20000)
-        self.assertNotIn('override',app.session_state['plan']['Daging Ayam Ras'])
-        self.menu(app,'Ringkasan');self.menu(app,'Simulator anggaran')
-        self.assertTrue(app.checkbox(key='manual_prices').value)
-        self.assertEqual((ROOT/'data/processed/prices.csv').read_bytes(),before)
-
-    def test_missing_month_has_subtotal_and_recovery_button(self):
-        app=self.open_app()
-        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run()
-        self.menu(app,'Simulator anggaran')
-        self.assertEqual(app.metric[0].value,'—')
-        self.assertTrue(any('Subtotal bahan tersedia' in c.value for c in app.caption))
-        app.button(key='complete_basket_month').click().run();self.good(app)
-        self.assertNotEqual(app.metric[0].value,'—')
-        self.assertFalse(any('Total belum lengkap' in w.value for w in app.warning))
-
-    def test_risk_first_month_and_minimum_coverage(self):
+    def test_selected_trend_changes_and_insufficient_history_is_explained(self):
         app=self.open_app();self.menu(app,'Tren & fluktuasi')
-        app.select_slider(key='filter_coverage').set_value(100).run();self.good(app)
-        self.assertEqual(app.metric[1].value,'100%')
-        self.menu(app,'Ringkasan');self.menu(app,'Tren & fluktuasi')
-        self.assertEqual(app.select_slider(key='filter_coverage').value,100)
-        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run();self.good(app)
-        self.assertEqual(app.metric[0].value,'0')
-        self.assertTrue(any('Riwayat belum cukup' in i.value for i in app.info))
-
-    def test_regions_toggle_changes_chart_row_count(self):
-        app=self.open_app();self.menu(app,'Perbandingan wilayah')
-        first=app.get('plotly_chart')[0].proto.spec
-        app.toggle(key='filter_all_regions').set_value(True).run();self.good(app)
-        self.assertNotEqual(first,app.get('plotly_chart')[0].proto.spec)
-
-    def test_training_profile_changes_impact_and_discloses_coverage(self):
-        app=self.open_app()
-        self.assertTrue(any('22/58' in c.value for c in app.caption))
-        app.selectbox(key='filter_basket_profile').set_value('Latihan B').run();self.good(app)
-        self.assertEqual(app.metric[4].value,'Rp 3.923')
-        self.assertTrue(any('Daging Ayam Ras' in m.value and 'terbesar' in m.value for m in app.markdown))
-
-    def test_explicit_five_material_profile_supports_early_period_without_imputation(self):
-        app=self.open_app()
-        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run()
-        app.selectbox(key='filter_basket_profile').set_value('Latihan C').run();self.good(app)
-        self.assertNotEqual(app.metric[3].value,'—')
-        self.assertEqual(app.metric[5].value,'5 / 5 bahan')
-        self.assertEqual(app.metric[4].value,'—')
-        self.assertTrue(any('58/58' in c.value for c in app.caption))
-
-    def test_budget_limit_is_separate_from_raw_scenario_cost(self):
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        app.number_input(key='budget_limit').set_value(1200000.0).run();self.good(app)
-        self.assertTrue(any('melewati batas' in w.value for w in app.warning))
-        self.assertEqual(app.metric[1].value,'Rp 1.230.306')
-        self.menu(app,'Ringkasan');self.menu(app,'Simulator anggaran')
-        self.assertEqual(app.number_input(key='budget_limit').value,1200000.0)
-
-    def test_unit_declaration_is_not_claimed_as_verified_source(self):
-        app=self.open_app();self.menu(app,'Simulator anggaran')
-        app.multiselect(key='basket_commodities').set_value(['Beras Medium']).run()
-        app.checkbox(key='manual_prices').check().run()
-        self.edit(app,{'Harga acuan (Rp)':20000,'Satuan':'kg'})
-        self.assertTrue(any('Input pengguna; belum diaudit' in c.value for c in app.caption))
-
-    def test_historical_context_and_selected_trend_follow_filters(self):
-        app=self.open_app();self.good(app)
-        self.assertTrue(any('4 dari 12 pasangan bulan' in m.value for m in app.markdown))
-        self.menu(app,'Tren & fluktuasi')
         before=app.get('plotly_chart')[0].proto.spec
         app.selectbox(key='filter_commodity').set_value('Cabai Rawit Merah').run();self.good(app)
         self.assertNotEqual(before,app.get('plotly_chart')[0].proto.spec)
+        app.select_slider(key='filter_coverage').set_value(100).run();self.good(app)
+        self.assertEqual(app.metric[1].value,'100%')
         app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run();self.good(app)
+        self.assertEqual(app.metric[0].value,'0')
         self.assertTrue(any('Minimal dua bulan' in i.value for i in app.info))
 
-    def test_data_page_distinguishes_recorded_date_and_last_price_and_exports_excel(self):
-        app=self.open_app()
-        self.assertNotIn('Data & metode',app.radio(key='page').options)
-        self.assertTrue(any(e.label=='Sumber & cara menghitung' for e in app.expander))
-        text=' '.join(m.value for m in app.markdown)
-        self.assertIn('Snapshot dicatat',text)
-        source=json.loads((ROOT/'data/source.json').read_text())
-        date=datetime.fromisoformat(source['snapshot_recorded_at_utc']).astimezone(ZoneInfo('Asia/Jakarta')).strftime('%d/%m/%Y')
-        self.assertIn(date,text)
-        self.assertIn('CSV dan XLSX',text)
-        self.assertNotIn('salinan CSV publik',text)
-        app.button(key='prepare_excel').click().run();self.good(app)
-        self.assertTrue(app.session_state['excel_report'][1].startswith(b'PK'))
+    def test_regions_toggle_changes_displayed_series(self):
+        app=self.open_app();self.menu(app,'Perbandingan wilayah')
+        before=app.get('plotly_chart')[0].proto.spec
+        app.toggle(key='filter_all_regions').set_value(True).run();self.good(app)
+        self.assertNotEqual(before,app.get('plotly_chart')[0].proto.spec)
 
+    def test_report_has_analysis_without_budget_or_assumed_units(self):
+        app=self.open_app()
+        app.button(key='prepare_excel').click().run();self.good(app)
+        book=load_workbook(BytesIO(app.session_state['excel_report'][1]))
+        self.assertIn('Bulan pembanding',book.sheetnames)
+        self.assertNotIn('Sensitivitas latihan',book.sheetnames)
+        self.assertNotIn('Simulasi Anggaran',book.sheetnames)
+        self.assertNotIn('Satuan asumsi',[c.value for c in book['Harga Bersih'][1]])
+        summary={r[0]:r[1] for r in book['Ringkasan'].iter_rows(min_row=2,values_only=True)}
+        self.assertEqual(summary['Judul'],TITLE)
+        self.assertFalse(any('keranjang' in str(k).lower() for k in summary))
+
+    def test_old_simulator_session_returns_to_summary(self):
+        app=AppTest.from_file(str(ROOT/'app.py'),default_timeout=45)
+        app.session_state['page']='Simulator anggaran'
+        app.run();self.good(app)
+        self.assertEqual(app.radio(key='page').value,'Ringkasan')
 
 if __name__=='__main__':unittest.main()

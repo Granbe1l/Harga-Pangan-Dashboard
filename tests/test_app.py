@@ -34,7 +34,7 @@ class DashboardTests(unittest.TestCase):
         app=self.open_app();self.good(app)
         self.assertEqual(app.title[0].value,TITLE)
         self.assertEqual([m.value for m in app.metric[:3]],['Rp 1.118.460','Rp 10.687','6 / 6 bahan'])
-        self.assertEqual(app.metric[1].label,'Perubahan biaya vs bulan lalu')
+        self.assertEqual(app.metric[1].label,'Perubahan estimasi vs bulan lalu')
         self.assertNotIn('Jika seluruh', ' '.join(m.value for m in app.markdown))
 
     def test_first_month_has_unknown_change_and_no_single_point_trend(self):
@@ -153,6 +153,37 @@ class DashboardTests(unittest.TestCase):
         first=app.get('plotly_chart')[0].proto.spec
         app.toggle(key='filter_all_regions').set_value(True).run();self.good(app)
         self.assertNotEqual(first,app.get('plotly_chart')[0].proto.spec)
+
+    def test_training_profile_changes_impact_and_discloses_coverage(self):
+        app=self.open_app()
+        self.assertTrue(any('22/58' in c.value for c in app.caption))
+        app.selectbox(key='filter_basket_profile').set_value('Latihan B').run();self.good(app)
+        self.assertEqual(app.metric[1].value,'Rp 3.923')
+        self.assertTrue(any('Daging Ayam Ras' in m.value and 'terbesar' in m.value for m in app.markdown))
+
+    def test_explicit_five_material_profile_supports_early_period_without_imputation(self):
+        app=self.open_app()
+        app.selectbox(key='filter_as_of').set_value(pd.Timestamp('2021-01-01')).run()
+        app.selectbox(key='filter_basket_profile').set_value('Latihan C').run();self.good(app)
+        self.assertNotEqual(app.metric[0].value,'—')
+        self.assertEqual(app.metric[2].value,'5 / 5 bahan')
+        self.assertEqual(app.metric[1].value,'—')
+        self.assertTrue(any('58/58' in c.value for c in app.caption))
+
+    def test_budget_limit_is_separate_from_raw_scenario_cost(self):
+        app=self.open_app();self.menu(app,'Simulator anggaran')
+        app.number_input(key='budget_limit').set_value(1200000.0).run();self.good(app)
+        self.assertTrue(any('melewati batas' in w.value for w in app.warning))
+        self.assertEqual(app.metric[1].value,'Rp 1.230.306')
+        self.menu(app,'Ringkasan');self.menu(app,'Simulator anggaran')
+        self.assertEqual(app.number_input(key='budget_limit').value,1200000.0)
+
+    def test_unit_declaration_is_not_claimed_as_verified_source(self):
+        app=self.open_app();self.menu(app,'Simulator anggaran')
+        app.multiselect(key='basket_commodities').set_value(['Beras Medium']).run()
+        app.checkbox(key='manual_prices').check().run()
+        self.edit(app,{'Harga acuan (Rp)':20000,'Satuan':'kg'})
+        self.assertTrue(any('Input pengguna; belum diaudit' in c.value for c in app.caption))
 
     def test_data_page_distinguishes_recorded_date_and_last_price_and_exports_excel(self):
         app=self.open_app();self.menu(app,'Data & metode')

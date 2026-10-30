@@ -5,6 +5,35 @@
   "window_start": "2024-11-01",
   "window_months": 12,
   "threshold_pct": 10.0,
+  "minimum_coverage": 80.0,
+  "shared_price_months": [
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10"
+  ],
+  "shared_monthly_pairs": [
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10"
+  ],
   "dataset": {
     "rows": 32480,
     "geographic_series": 40,
@@ -17,6 +46,16 @@
     "mom_comparable_commodities": 24,
     "without_previous_month": 1,
     "alert_count": 2
+  },
+  "training_budget": {
+    "basis": "Estimasi latihan; kuantitas contoh dan satuan sumber belum terverifikasi",
+    "total": 1118460.0,
+    "change": 10687.0,
+    "available": 6,
+    "required": 6,
+    "complete_months": 22,
+    "comparison_months": 21,
+    "dataset_months": 58
   },
   "top_increases": [
     {
@@ -98,16 +137,6 @@
       "unit": "kg"
     },
     {
-      "commodity": "Cabai Merah Besar",
-      "cv_pct": 14.45462756,
-      "observations": 9,
-      "expected_months": 12,
-      "coverage_pct": 75.0,
-      "latest_date": "2025-10-01T00:00:00.000",
-      "latest_price": 57169.0,
-      "unit": "kg"
-    },
-    {
       "commodity": "Bawang Merah",
       "cv_pct": 12.88456107,
       "observations": 12,
@@ -126,6 +155,16 @@
       "latest_date": "2025-10-01T00:00:00.000",
       "latest_price": 34425.0,
       "unit": "kg"
+    },
+    {
+      "commodity": "Jagung Tingkat Peternak",
+      "cv_pct": 5.19815576,
+      "observations": 12,
+      "expected_months": 12,
+      "coverage_pct": 100.0,
+      "latest_date": "2025-10-01T00:00:00.000",
+      "latest_price": 6098.0,
+      "unit": "kg"
     }
   ],
   "methodology": [
@@ -133,6 +172,7 @@
     "CSV diperoleh dari salinan pihak ketiga yang mencantumkan Badan Pangan Nasional sebagai sumber asal. Kesesuaian dengan versi terbaru sumber asal belum diverifikasi secara independen.",
     "Satuan kg/liter merupakan asumsi kerja per komoditas; CSV asli tidak menyediakan kolom satuan. Verifikasi sebelum penggunaan operasional.",
     "MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama tahun sebelumnya. Bulan kosong tidak dilewati dan tidak diimputasi.",
+    "Peringkat variasi tingkat harga memakai bulan pengamatan bersama untuk seri yang lolos cakupan; perubahan bulanan memakai pasangan bulan kalender yang sama. Tabel penyaringan bukan peringkat akhir.",
     "Volatilitas adalah koefisien variasi harga (simpangan baku sampel/mean × 100), minimal tiga observasi; bukan probabilitas kenaikan atau prediksi.",
     "Median antarwilayah tidak berbobot dan hanya mencakup wilayah dengan data pada bulan/komoditas terpilih; bukan harga nasional resmi atau inflasi IHK.",
     "Seri Papua dan Papua Barat sebelum perubahan skema 2024 dipisahkan dari seri sesudahnya. Jumlah seri geografis tidak sama dengan jumlah provinsi Indonesia pada satu waktu.",

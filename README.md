@@ -1,5 +1,9 @@
 # Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner
 
+[![Tests](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml)
+
+**[Baca studi kasus dalam satu menit](docs/CASE_STUDY.md)** · [Lihat dashboard](reports/screenshots/ringkasan-first-screen.png) · [Bukti pengujian](reports/validation_summary.md)
+
 Studi kasus portofolio **data analyst**: menghubungkan perubahan harga pangan historis dengan estimasi biaya bahan baku warung makan di Jawa Barat. Wilayah lain tersedia sebagai eksplorasi tambahan.
 
 **Python 3.12 · Pandas · SQL/SQLite · Streamlit · Plotly · Excel**
@@ -14,7 +18,15 @@ Studi kasus portofolio **data analyst**: menghubungkan perubahan harga pangan hi
 
 Halaman **Ringkasan** hanya menyajikan hasil berdasarkan data historis dan kuantitas contoh tetap. Halaman **Simulator anggaran** menyajikan skenario asumsi pengguna. Keduanya bukan catatan transaksi atau klaim dampak bisnis yang sudah terjadi.
 
-Pada Jawa Barat, Oktober 2025, keranjang enam bahan contoh bernilai **Rp1.118.460**, bertambah **Rp10.687** terhadap September dengan jumlah tetap. Seluruh bahan memiliki pembanding. Skenario terpisah berupa kenaikan seragam 10% menghasilkan **Rp1.230.306**, tambahan **Rp111.846**. Angka skenario bukan perubahan historis bulan tersebut.
+Pada Jawa Barat, Oktober 2025, keranjang enam bahan contoh bernilai **Rp1.118.460**, bertambah **Rp10.687** terhadap September dengan jumlah tetap. Seluruh bahan memiliki pembanding. Nilai tersebut adalah **estimasi latihan dengan satuan asumsi**, bukan biaya usaha terverifikasi. Skenario terpisah berupa kenaikan seragam 10% menghasilkan **Rp1.230.306**, tambahan **Rp111.846**. Angka skenario bukan perubahan historis bulan tersebut.
+
+## Apa yang membuat analisis ini menarik?
+
+Mengurangi contoh kebutuhan telur dari 5 kg menjadi 1 kg menggeser kontributor biaya terbesar dari telur ke ayam, pada data harga yang sama. Karena itu, temuan selalu dilekatkan pada komposisi latihan, bukan digeneralisasi untuk semua usaha.
+
+Profil A/B (enam bahan) memiliki harga lengkap pada **22 dari 58 bulan** di Jawa Barat; perubahan bulanan lengkap pada **21 bulan**. Profil C secara eksplisit memakai lima bahan tanpa minyak dan mendukung **58 dari 58 bulan**. Profil tidak pernah diganti otomatis atau disambungkan sebagai satu tren. Harga umum tetap dapat dieksplorasi sejak Januari 2021.
+
+Mirror CSV diambil ulang dan cocok SHA-256. **Satuan sumber, kesesuaian terhadap sumber primer, serta lisensi redistribusi belum terverifikasi.** Pencocokan mirror tidak menyelesaikan tiga hal tersebut. Bukti akses tersedia di [verification.json](data/verification.json).
 
 ## Jalankan aplikasi
 
@@ -34,8 +46,8 @@ Windows PowerShell: `py -3.12 -m venv .venv`, lalu `.venv\Scripts\Activate.ps1` 
 | Menu | Kegunaan |
 | --- | --- |
 | Ringkasan | Biaya keranjang, perubahan historis, kelengkapan, grafik kontribusi biaya; detail bahan dan tren dapat dibuka |
-| Simulator anggaran | Kuantitas per periode belanja, perubahan per bahan, penerapan massal yang eksplisit, harga yang dapat diedit, reset, CSV dan Excel |
-| Fluktuasi historis | CV harga dengan minimal tiga observasi, filter minimum cakupan, jumlah bulan pada tooltip, status seri kurang lengkap |
+| Simulator anggaran | Kuantitas per periode, harga/satuan per bahan dengan asal input, batas anggaran, penerapan massal, reset, CSV dan Excel |
+| Fluktuasi historis | Perbandingan perubahan bulanan dan CV pada bulan pengamatan bersama; filter cakupan, jumlah bulan/pasangan, dan pemeriksaan seri yang dikeluarkan |
 | Perbandingan wilayah | Harga wilayah pilihan, median tanpa bobot, selisih terhadap median, grafik ringkas atau seluruh wilayah |
 | Data & metode | Sumber, bulan harga terakhir, tanggal pencatatan snapshot, laporan analisis, rumus, pembersihan, dan jejak sumber |
 
@@ -76,3 +88,9 @@ Ekspor analisis di menu Data & metode mengikuti filter analisis. Ekspor simulato
 ## Tautan publik untuk CV
 
 Lihat [panduan deployment](docs/DEPLOYMENT.md). Antarmuka bergaya BI dibuat langsung dengan Streamlit dan Plotly; tidak memerlukan lisensi Power BI. Link GitHub adalah kode sumber, bukan link aplikasi yang sudah dihosting. Kecepatan dan akses publik perlu diperiksa pada URL deployment sebenarnya.
+
+## Kualitas dan batas bukti
+
+Workflow GitHub Actions menjalankan pengujian pada push/pull request. Hasil browser lokal tetap dibedakan dari uji manusia dan deployment publik. [Rencana uji pengguna](docs/USER_TESTING.md) dan formulir unduhan sukarela tersedia; **belum ada hasil peserta manusia**. Tidak ada klaim aplikasi sudah dipakai UMKM atau meningkatkan laba.
+
+Pada simulator, harga yang diedit dan satuan yang dinyatakan pengguna diberi sumber masing-masing. Semua bahan aktif harus memiliki harga input dan satuan yang dinyatakan agar dasar hasil disebut input pengguna; ini pun belum diaudit. Nilai lain tetap berlabel estimasi latihan. Batas anggaran hanya dibandingkan dengan total lengkap.

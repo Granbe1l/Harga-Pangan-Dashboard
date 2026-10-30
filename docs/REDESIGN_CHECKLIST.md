@@ -52,3 +52,14 @@ python scripts/verify_browser.py --url http://127.0.0.1:8502 --chromium /usr/bin
 ```
 
 Runner berhenti dengan exit code nonnol bila asersi gagal. Pada keberhasilan, `browser-validation.json` memuat daftar pemeriksaan, status, dan nama screenshot dari eksekusi tersebut.
+
+## Perbaikan audit lanjutan
+
+- Lookup harga dua bulan dilakukan independen; regresi harga bulan lalu tetap tersedia ketika bulan kini kosong diuji.
+- Cakupan keranjang dan perubahan total ditampilkan, dengan dua profil latihan serta tabel sensitivitas.
+- Label biaya menyatakan estimasi latihan. Harga dan satuan input pengguna dicatat per baris; tanpa pernyataan bahwa sumber telah terverifikasi.
+- Batas anggaran dibandingkan hanya dengan total skenario lengkap, tidak dengan subtotal.
+- Peringkat fluktuasi memakai bulan bersama dan pasangan perubahan bulanan bersama. Saringan awal tetap dapat diperiksa.
+- Pencocokan mirror dilakukan dan direkam. Primer/satuan/lisensi tetap belum terverifikasi.
+- CI ditambahkan untuk push dan pull request. Status eksekusi remote tidak diasumsikan dari keberadaan workflow.
+- Studi kasus satu halaman dan rencana uji pengguna tersedia. Hasil peserta manusia belum tersedia dan tidak diganti dengan hasil browser otomatis.

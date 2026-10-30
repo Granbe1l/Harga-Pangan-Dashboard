@@ -67,6 +67,15 @@ class ReportingTests(unittest.TestCase):
                     self.assertNotEqual(cell.data_type, "f")
         self.assertEqual(workbook["Harga Bersih"]["C2"].value, '=HYPERLINK("https://example.com","x")')
 
+    def test_analysis_export_records_shared_dates_and_training_coverage(self):
+        summary=build_summary(fixture(),as_of="2024-03",months=3)
+        self.assertEqual(len(summary["shared_price_months"]),3)
+        self.assertIn("basis",summary["training_budget"])
+        workbook=load_workbook(BytesIO(workbook_bytes(fixture(),as_of="2024-03",months=3)))
+        self.assertIn("Bulan pembanding",workbook.sheetnames)
+        self.assertIn("Penyaringan cakupan",workbook.sheetnames)
+        self.assertIn("Sensitivitas latihan",workbook.sheetnames)
+
     def test_no_comparison_is_unknown_in_report_not_zero_alerts(self):
         summary = build_summary(fixture(), as_of="2024-01")
         self.assertIsNone(summary["snapshot"]["alert_count"])

@@ -185,3 +185,37 @@ def create_sql_views(connection: sqlite3.Connection, sql_path: str | Path | None
     """Register the reviewable SQL views in an existing prepared database."""
     path = Path(sql_path) if sql_path is not None else Path(__file__).resolve().parents[1] / "sql" / "analytics.sql"
     connection.executescript(path.read_text(encoding="utf-8"))
+
+
+def matched_fluctuation(df, start, end, minimum_coverage=80):
+    """Rank on identical observed months, using exact-month price changes as well as levels."""
+    if not 0 <= minimum_coverage <= 100:
+        raise ValueError("Cakupan harus antara 0 dan 100.")
+    data = _prices(df)
+    if data.province.nunique() > 1:
+        raise ValueError("Pilih satu wilayah untuk perbandingan fluktuasi.")
+    first, last = _month(start), _month(end)
+    screening = volatility_summary(data, first, last)
+    eligible = screening[(screening.observations >= 3) & (screening.coverage_pct >= minimum_coverage)]
+    selected = data[data.commodity.isin(eligible.commodity) & data.date.between(first, last)]
+    pivot = selected.pivot(index="date", columns="commodity", values="price").sort_index()
+    common = pivot.dropna().index if len(pivot.columns) else pd.DatetimeIndex([])
+    columns = ["commodity","common_observations","cv_pct","monthly_abs_pct","monthly_std_pct","monthly_pairs"]
+    result = pd.DataFrame(columns=columns)
+    monthly_dates = pd.DatetimeIndex([])
+    if len(common) >= 3:
+        raw_columns = ["province","commodity","date","price"] + [c for c in ["province_code","unit"] if c in data]
+        change = comparison_frame(data[raw_columns])
+        monthly = change[change.commodity.isin(eligible.commodity) & change.date.isin(common)].pivot(index="date",columns="commodity",values="mom_pct").dropna()
+        monthly_dates = monthly.index
+        aligned = pivot.loc[common]
+        rows = []
+        for name in aligned.columns:
+            prices = aligned[name]
+            movements = monthly[name]
+            rows.append({"commodity":name,"common_observations":len(common),"cv_pct":prices.std()/prices.mean()*100,
+                "monthly_abs_pct":float(movements.abs().mean()) if len(movements)>=2 else None,
+                "monthly_std_pct":float(movements.std()) if len(movements)>=2 else None,
+                "monthly_pairs":len(movements)})
+        result = pd.DataFrame(rows).sort_values("monthly_abs_pct",ascending=False,na_position="last")
+    return {"summary":result,"screening":screening,"common_months":list(common),"monthly_months":list(monthly_dates),"eligible_count":len(eligible)}

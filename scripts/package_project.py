@@ -6,7 +6,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "reports" / "analyst.zip"
-DIRECTORIES = ["assets", "analyst", "scripts", "sql", "tests", "docs", "data", "reports"]
+DIRECTORIES = [".github", "assets", "analyst", "scripts", "sql", "tests", "docs", "data", "reports"]
 TOP_FILES = ["app.py", "README.md", "requirements.txt", "requirements.lock.txt", ".gitignore", ".streamlit/config.toml"]
 
 

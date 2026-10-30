@@ -31,3 +31,13 @@ Contoh atribusi pada laporan:
 ## Memperbarui data dengan aman
 
 Simpan data pengganti sebagai versi baru dan pertahankan file yang digunakan untuk laporan sebelumnya. Jangan menimpa hasil lama tanpa mencatat perubahan input. Pastikan granularitas, satuan, dan kode wilayah kompatibel; file harian, harga produsen, atau harga grosir tidak boleh dimasukkan sebagai pengganti harga konsumen bulanan tanpa perubahan metodologi yang jelas.
+
+## Pemeriksaan ulang 30 Oktober 2026
+
+- CSV pada mirror publik diunduh ulang melalui HTTPS dengan verifikasi TLS aktif. SHA-256-nya identik dengan snapshot lokal: `c4b206afd027949f1165d4ecc2dd0799108bb0449b6aa16b29fee9d58c165d9d`.
+- README mirror berhasil dibaca dan memang merujuk halaman Badan Pangan Nasional yang dicantumkan proyek. Klaim model/prediksi dari README mirror tidak dipakai sebagai hasil proyek ini.
+- CSV tidak memiliki kolom satuan. Pencocokan file tidak memverifikasi asumsi kg/liter, akurasi terhadap sumber primer, atau lisensi redistribusi.
+- Permintaan ke sumber primer gagal dengan `ProxyError` pada lingkungan pengembangan. Verifikasi primer dan izin penggunaan tetap berstatus belum selesai; kegagalan akses ini tidak membuktikan sumbernya salah atau situsnya tidak tersedia bagi semua orang.
+- Bukti terstruktur, waktu pemeriksaan, URL, status permintaan, serta hash tersedia pada `data/verification.json`.
+
+Sebelum mengubah status satuan menjadi terverifikasi, catat bukti per komoditas (URL dokumen primer, satuan, definisi harga, periode, dan tanggal pemeriksaan). Sampai itu tersedia, nilai rupiah dari snapshot dan kuantitas contoh dipresentasikan sebagai **estimasi latihan**. Harga dan satuan yang diisi pengguna dicatat terpisah sebagai pernyataan pengguna, bukan hasil verifikasi sumber.

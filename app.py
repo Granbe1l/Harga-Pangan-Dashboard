@@ -12,10 +12,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from analyst.analytics import comparison_frame, province_comparison, volatility_summary
+from analyst.analytics import comparison_frame, province_comparison, volatility_summary, matched_fluctuation
 from analyst.pipeline import load_clean_data, load_quality_report
 from analyst.planning import (DEFAULT_BASKET, historical_budget, scenario,
-    apply_edits, complete_months, scenario_table, scenario_workbook)
+    apply_edits, complete_months, scenario_table, scenario_workbook, basket_coverage, sensitivity_cases, apply_budget_limit)
 from analyst.presentation import (TEAL, RED, NAVY, AMBER, rupiah, percent, month_label,
     table, chart, finding, csv_bytes)
 
@@ -54,8 +54,10 @@ def change_month(month):
 
 
 def initialize(data):
-    if "filters" not in st.session_state:
-        st.session_state.filters = {"province": "Jawa Barat", "as_of": data.date.max(), "commodity": "Beras Medium", "window": 12, "threshold": 10, "coverage": 80, "all_regions": False}
+    defaults = {"province":"Jawa Barat","as_of":data.date.max(),"commodity":"Beras Medium","window":12,"threshold":10,"coverage":80,"all_regions":False,"basket_profile":"Latihan A"}
+    if "filters" not in st.session_state: st.session_state.filters = {}
+    for key, value in defaults.items(): st.session_state.filters.setdefault(key,value)
+    if "spending_limit" not in st.session_state: st.session_state.spending_limit = 0.0
     if "plan" not in st.session_state:
         st.session_state.plan = {name: {"quantity": DEFAULT_BASKET.get(name, 1.0), "shock_pct": 10.0} for name in sorted(data.commodity.unique())}
         st.session_state.chosen = list(DEFAULT_BASKET)
@@ -72,6 +74,10 @@ def persist_chosen():
 def toggle_manual():
     st.session_state.manual_mode = st.session_state.manual_prices
     st.session_state.editor_version += 1
+
+
+def persist_limit():
+    st.session_state.spending_limit = st.session_state.budget_limit
 
 
 def persist_period():
@@ -101,19 +107,28 @@ def reset_budget():
     st.session_state.period = "Satu kali belanja"
     st.session_state.budget_period = "Satu kali belanja"
     st.session_state.bulk_shock = 10
+    st.session_state.budget_limit = 0.0
+    st.session_state.spending_limit = 0.0
     st.session_state.editor_version += 1
 
 
 def overview(data, changes, province, commodity, as_of, start, threshold):
-    budget = historical_budget(changes, province, as_of)
-    st.html('<div class="section-tag">01 / RINGKASAN ANGGARAN · DATA HISTORIS</div>')
+    quantities = dict(DEFAULT_BASKET)
+    profile = st.session_state.filters.get("basket_profile", "Latihan A")
+    if profile == "Latihan B": quantities["Telur Ayam Ras"] = 1.0
+    if profile == "Latihan C": quantities.pop("Minyak Goreng Curah")
+    budget = historical_budget(changes, province, as_of, quantities)
+    coverage = basket_coverage(data, province, quantities)
+    st.html('<div class="section-tag">01 / DAMPAK HARGA · KERANJANG LATIHAN</div>')
     cols = st.columns(3)
-    cols[0].metric("Biaya keranjang bulan pilihan", rupiah(budget["total"]), help="Keranjang contoh enam bahan dengan kuantitas tetap; bukan catatan pembelian usaha.")
-    cols[1].metric("Perubahan biaya vs bulan lalu", rupiah(budget["delta"]), percent(budget["delta_pct"]), delta_color="inverse")
+    cols[0].metric("Estimasi biaya keranjang latihan", rupiah(budget["total"]), help="Keranjang latihan yang dipilih dengan kuantitas tetap; bukan catatan pembelian usaha.")
+    cols[1].metric("Perubahan estimasi vs bulan lalu", rupiah(budget["delta"]), percent(budget["delta_pct"]), delta_color="inverse")
     cols[2].metric("Kelengkapan harga keranjang", f"{budget['available']} / {budget['count']} bahan")
+    first = month_label(coverage["first_complete"]) if coverage["first_complete"] is not None else "belum tersedia"
+    st.caption(f"{profile} · Keranjang lengkap {coverage['complete_months']}/{coverage['months']} bulan; pertama {first}. Satuan sumber belum terverifikasi: angka rupiah di sini adalah estimasi latihan.")
     if budget["delta"] is not None:
         movement = "bertambah" if budget["delta"] > 0 else "berkurang" if budget["delta"] < 0 else "tetap"
-        finding(f"Dengan jumlah belanja tetap, biaya keranjang <b>{movement} {rupiah(abs(budget['delta']))}</b> dibanding {month_label(as_of - pd.DateOffset(months=1))}. Harga kedua bulan tersedia untuk seluruh {budget['count']} bahan.")
+        finding(f"Untuk komposisi latihan dan jumlah tetap, estimasi biaya keranjang <b>{movement} {rupiah(abs(budget['delta']))}</b> dibanding {month_label(as_of - pd.DateOffset(months=1))}. Harga kedua bulan tersedia untuk seluruh {budget['count']} bahan.")
     elif budget["available"] == 0:
         finding("Belum ada harga pada bulan ini. Pilih bulan lain untuk melihat anggaran; harga lama tidak dipakai sebagai pengganti.", "DATA BELUM TERSEDIA")
     else:
@@ -134,18 +149,23 @@ def overview(data, changes, province, commodity, as_of, start, threshold):
             chart(fig, "historical_impact", height=265)
             st.caption(f"{len(lines)} dari {budget['count']} bahan memiliki pembanding. Positif = tambahan biaya; negatif = pengurangan biaya.")
     with right, st.container(border=True):
-        st.subheader("Yang perlu diperhatikan")
+        st.subheader("Mengapa komposisi penting?")
         positive = lines[lines.impact > 0] if not lines.empty else lines
         if not positive.empty:
             top = positive.iloc[-1]
             st.markdown(f"**{top.commodity}** memberi tambahan biaya terbesar: **{rupiah(top.impact)}**.")
-            st.write("Tinjau jumlah kebutuhan bahan ini saat menyiapkan anggaran berikutnya.")
+            st.write("Coba Profil A dan B: perubahan jumlah telur saja dapat mengubah peringkat. Buka panel profil untuk membandingkan, lalu uji kebutuhan sendiri.")
         elif not lines.empty:
             st.write("Tidak ada tambahan biaya pada bahan yang memiliki pembanding. Periksa rincian sebelum mengubah anggaran.")
         else:
             st.write("Mulai dari bulan dengan data pembanding yang tersedia untuk membaca perubahan biaya.")
         st.button("Coba simulasi belanja →", type="primary", width="stretch", on_click=navigate, args=("Simulator anggaran",))
-        with st.expander("Asumsi keranjang contoh"):
+        with st.expander("Profil latihan, sensitivitas, dan cakupan"):
+            select_filter("basket_profile", "Pilih komposisi latihan", ["Latihan A", "Latihan B", "Latihan C"])
+            st.caption("A: enam bahan, telur 5 kg. B: telur 1 kg, bahan lain tetap. C: lima bahan tanpa minyak untuk riwayat yang lebih panjang. Profil tidak diganti otomatis antarbulan; semuanya contoh buatan, bukan data usaha.")
+            table(sensitivity_cases(changes,province,as_of))
+            st.metric("Estimasi bulan sebelumnya",rupiah(budget["previous_total"]))
+            st.caption(f"Perubahan total lengkap tersedia {coverage['comparison_months']}/{coverage['months']} bulan pada profil ini.")
             st.write("Contoh kebutuhan untuk satu kali belanja; bukan hasil survei atau transaksi. Satuan kg/liter adalah asumsi. Tanpa ongkir, susut bahan, atau biaya operasional.")
             table(budget["lines"][["commodity", "quantity", "unit"]].rename(columns={"commodity":"Bahan","quantity":"Jumlah","unit":"Satuan asumsi"}))
     with st.expander("Detail bahan, tren, dan pemantauan harga"):
@@ -203,6 +223,8 @@ def budget_page(data, changes, province, commodity, as_of, start, threshold):
             st.button("Terapkan ke semua bahan",on_click=apply_bulk,width="stretch")
         if "manual_prices" not in st.session_state: st.session_state.manual_prices = st.session_state.manual_mode
         st.checkbox("Edit harga pembelian sendiri",key="manual_prices",on_change=toggle_manual)
+        if "budget_limit" not in st.session_state: st.session_state.budget_limit = st.session_state.spending_limit
+        st.number_input("Batas anggaran (Rp, 0 = tanpa batas)",min_value=0.0,step=50000.0,key="budget_limit",on_change=persist_limit)
         st.button("Kembalikan contoh awal",on_click=reset_budget,key="reset_budget")
     if not chosen:
         with results: st.info("Pilih minimal satu bahan untuk mulai menghitung.")
@@ -216,21 +238,22 @@ def budget_page(data, changes, province, commodity, as_of, start, threshold):
         overridden = manual and "override" in row
         price = row.get("override") if overridden else prices.get(name)
         source = "Belum tersedia" if price is None or pd.isna(price) else "Diubah pengguna" if overridden else "Snapshot historis"
-        rows.append({"Bahan":name,"Satuan":units[name],"Jumlah":row["quantity"],"Perubahan (%)":row["shock_pct"],"Harga acuan (Rp)":price,"Sumber":source})
+        unit = row.get("unit_override", units[name]) if manual else units[name]
+        rows.append({"Bahan":name,"Satuan":unit,"Jumlah":row["quantity"],"Perubahan (%)":row["shock_pct"],"Harga acuan (Rp)":price,"Sumber":source})
     entry = pd.DataFrame(rows)
     st.subheader("Rincian kebutuhan")
     st.caption("Klik sel Jumlah atau Perubahan (%) untuk mengedit. Harga yang kamu ubah disimpan selama sesi, termasuk saat berpindah menu atau bulan.")
     if manual:
-        st.caption("Harga simulasi dapat diedit; nilai awal dari snapshot. Sumber per bahan berubah hanya ketika harga pada baris tersebut diedit. Nilai kosong tetap dianggap belum tersedia.")
+        st.caption("Satuan dapat dipilih per bahan (kg/liter/satuan). Pilihan ini adalah pernyataan pengguna, bukan verifikasi sumber. Harga simulasi dapat diedit; nilai awal dari snapshot. Sumber per bahan berubah hanya ketika harga pada baris tersebut diedit. Nilai kosong tetap dianggap belum tersedia.")
     key = 'budget_editor_' + str(st.session_state.editor_version)
-    st.data_editor(entry,hide_index=True,width="stretch",disabled=["Bahan","Satuan","Sumber"] + ([] if manual else ["Harga acuan (Rp)"]),
-        column_config={"Jumlah":st.column_config.NumberColumn(min_value=0.0,step=.5,format="%.2f"),"Perubahan (%)":st.column_config.NumberColumn(min_value=-100.0,max_value=500.0,step=1.0,format="%.1f"),"Harga acuan (Rp)":st.column_config.NumberColumn(min_value=1.0,format="localized")},
+    st.data_editor(entry,hide_index=True,width="stretch",disabled=["Bahan","Sumber"] + ([] if manual else ["Harga acuan (Rp)","Satuan"]),
+        column_config={"Satuan":st.column_config.SelectboxColumn(options=["kg","liter","satuan"],required=True),"Jumlah":st.column_config.NumberColumn(min_value=0.0,step=.5,format="%.2f"),"Perubahan (%)":st.column_config.NumberColumn(min_value=-100.0,max_value=500.0,step=1.0,format="%.1f"),"Harga acuan (Rp)":st.column_config.NumberColumn(min_value=1.0,format="localized")},
         key=key,on_change=commit_editor)
     # Also consume editor deltas on programmatic reruns; real browser edits use the callback.
     if key in st.session_state and st.session_state[key].get("edited_rows"):
         st.session_state.plan = apply_edits(st.session_state.plan,chosen,st.session_state[key])
     try:
-        result = scenario(data,province,as_of,st.session_state.plan,chosen,manual)
+        result = apply_budget_limit(scenario(data,province,as_of,st.session_state.plan,chosen,manual),st.session_state.budget_limit)
     except (ValueError, TypeError) as exc:
         st.warning(f"Periksa isian keranjang: {exc}")
         return
@@ -240,6 +263,12 @@ def budget_page(data, changes, province, commodity, as_of, start, threshold):
         st.metric("Anggaran skenario",rupiah(result["scenario_total"]))
         st.metric("Selisih anggaran",rupiah(result["difference"]),percent(result["difference_pct"]),delta_color="inverse")
     lines = result["lines"]
+    st.caption("Dasar perhitungan: " + result["basis"] + ". Tidak menyatakan hasil usaha nyata.")
+    if result.get("headroom") is not None:
+        if result["headroom"] >= 0: st.success(f"Sisa anggaran setelah skenario: {rupiah(result['headroom'])}.")
+        else: st.warning(f"Skenario melewati batas anggaran sebesar {rupiah(-result['headroom'])}.")
+    elif result.get("budget_limit") is not None:
+        st.info("Batas anggaran belum dapat dibandingkan karena total keranjang tidak lengkap.")
     if result["missing_commodities"]:
         active = lines[lines.quantity>0]
         st.warning("Total belum lengkap. Harga tidak tersedia untuk: " + ", ".join(result["missing_commodities"]) + ". Isi harga sendiri atau hapus bahan dari keranjang.")
@@ -275,28 +304,36 @@ def risk_page(data, changes, province, commodity, as_of, start, threshold):
     st.caption(f"{month_label(start)}–{month_label(as_of)} · Seluruh bahan di {province}")
     if "filter_coverage" not in st.session_state: st.session_state.filter_coverage = st.session_state.filters["coverage"]
     coverage = st.select_slider("Minimum cakupan data (%)",options=[0,50,80,100],key="filter_coverage",on_change=save_filter,args=("coverage",),help="CV memerlukan minimal tiga observasi; cakupan adalah bagian bulan dengan harga tersedia dalam rentang efektif.")
-    summary = volatility_summary(data[data.province==province],start,as_of)
-    valid = summary[(summary.observations>=3)&(summary.coverage_pct>=coverage)].dropna(subset=["cv_pct"])
+    aligned = matched_fluctuation(data[data.province==province],start,as_of,coverage)
+    summary, valid = aligned["screening"], aligned["summary"]
     cols = st.columns(3)
     cols[0].metric("Bahan memenuhi kriteria",str(len(valid)))
     cols[1].metric("Minimum cakupan",f"{coverage}%")
-    cols[2].metric("Bulan dalam rentang",str((as_of.year-start.year)*12+as_of.month-start.month+1))
-    if valid.empty:
-        st.info("Riwayat belum cukup atau cakupan tidak memenuhi kriteria. CV memerlukan minimal tiga harga bulanan. Pilih bulan lebih akhir atau turunkan batas cakupan; memperpanjang rentang sebelum awal dataset tidak menambah data.")
+    cols[2].metric("Bulan bersama",str(len(aligned["common_months"])))
+    measure = st.radio("Ukuran yang dibandingkan",["Perubahan bulanan absolut","Variasi tingkat harga (CV)"],horizontal=True,key="risk_measure")
+    column = "monthly_abs_pct" if measure == "Perubahan bulanan absolut" else "cv_pct"
+    ranked = valid.dropna(subset=[column]).sort_values(column,ascending=False)
+    if ranked.empty:
+        st.info("Riwayat belum cukup untuk perbandingan setara: minimal tiga bulan harga bersama dan dua pasangan bulanan diperlukan untuk ukuran perubahan. Pilih bulan lebih akhir atau ubah cakupan.")
     else:
-        top = valid.iloc[0]
-        finding(f"<b>{html.escape(top.commodity)}</b> memiliki fluktuasi relatif tertinggi: <b>{percent(top.cv_pct,signed=False)}</b>, berdasarkan {int(top.observations)} dari {int(top.expected_months)} bulan.")
-        ranked = valid.head(10).sort_values("cv_pct")
-        fig = px.bar(ranked,x="cv_pct",y="commodity",orientation="h",color_discrete_sequence=[TEAL],custom_data=["observations","expected_months","coverage_pct"],labels={"cv_pct":"Koefisien variasi (%)","commodity":""})
-        fig.update_traces(hovertemplate="%{y}<br>CV: %{x:.1f}%<br>%{customdata[0]} dari %{customdata[1]} bulan<br>Cakupan: %{customdata[2]:.1f}%<extra></extra>")
-        chart(fig,"risk_cv",max(280,len(ranked)*30))
-    st.caption("CV mengukur variasi tingkat harga historis. Nilai tinggi bukan peluang harga naik; ukuran ini belum memisahkan tren dan pola musiman.")
-    with st.expander("Tabel lengkap, seri cakupan rendah, dan unduhan"):
-        clean = summary[["commodity","observations","expected_months","coverage_pct","cv_pct"]].rename(columns={"commodity":"Bahan","observations":"Bulan tersedia","expected_months":"Bulan rentang","coverage_pct":"Cakupan (%)","cv_pct":"CV (%)"})
-        clean["Status"] = ["Riwayat <3 bulan" if r.observations<3 else "Cakupan rendah" if r.coverage_pct<coverage else "Memenuhi kriteria" for r in summary.itertuples()]
+        top = ranked.iloc[0]
+        finding(f"<b>{html.escape(top.commodity)}</b> tertinggi pada ukuran pilihan: <b>{percent(top[column],signed=False)}</b>. Semua bahan di grafik memakai <b>{len(aligned['common_months'])} bulan harga bersama</b> dan {len(aligned['monthly_months'])} pasangan bulanan yang sama.","PERBANDINGAN PADA BULAN YANG SAMA")
+        shown = ranked.head(10).sort_values(column)
+        fig = px.bar(shown,x=column,y="commodity",orientation="h",color_discrete_sequence=[TEAL],custom_data=["common_observations","monthly_pairs"],labels={column:"Perubahan absolut rata-rata (%)" if column=="monthly_abs_pct" else "CV tingkat harga (%)","commodity":""})
+        fig.update_traces(hovertemplate="%{y}<br>%{x:.1f}%<br>%{customdata[0]} bulan harga bersama<br>%{customdata[1]} pasangan bulanan<extra></extra>")
+        chart(fig,"risk_cv",max(280,len(shown)*30))
+    st.caption("Ukuran perubahan bulanan membaca besar pergerakan tanpa arah, bukan peluang kenaikan berikutnya. CV tingkat harga belum memisahkan tren dan musiman. Keduanya tidak menjadi peringkat risiko usaha.")
+    with st.expander("Bulan pembanding, tabel kelengkapan, dan unduhan"):
+        st.write("Bulan harga bersama: " + (", ".join(month_label(d) for d in aligned["common_months"]) or "belum tersedia"))
+        st.write("Pasangan bulanan sama (bulan akhir): " + (", ".join(month_label(d) for d in aligned["monthly_months"]) or "belum tersedia"))
+        if len(valid):
+            export = valid.rename(columns={"commodity":"Bahan","common_observations":"Bulan bersama","cv_pct":"CV bulan bersama (%)","monthly_abs_pct":"Perubahan absolut rata-rata (%)","monthly_std_pct":"Simpangan perubahan bulanan (%)","monthly_pairs":"Pasangan bulanan"})
+            table(export)
+            st.download_button("Unduh perbandingan bulan bersama",csv_bytes(export),"fluktuasi_bulan_bersama.csv","text/csv")
+        clean = summary[["commodity","observations","expected_months","coverage_pct"]].rename(columns={"commodity":"Bahan","observations":"Bulan tersedia","expected_months":"Bulan rentang","coverage_pct":"Cakupan (%)"})
+        clean["Status"] = ["Riwayat <3 bulan" if r.observations<3 else "Cakupan rendah" if r.coverage_pct<coverage else "Lolos penyaringan awal" for r in summary.itertuples()]
         table(clean)
-        st.download_button("Unduh analisis fluktuasi",csv_bytes(clean),"fluktuasi_historis.csv","text/csv")
-        st.markdown("**CV** = standar deviasi sampel ÷ rata-rata harga × 100%. Minimum tiga observasi adalah batas perhitungan, bukan jaminan kekuatan analisis. Bandingkan seri pada rentang yang sama dan periksa cakupan datanya.")
+        st.download_button("Unduh kelengkapan seluruh seri",csv_bytes(clean),"cakupan_fluktuasi.csv","text/csv")
 
 
 def regions_page(data, changes, province, commodity, as_of, start, threshold):
@@ -340,13 +377,13 @@ def data_page(data, changes, province, commodity, as_of, start, threshold, quali
     st.markdown(f"**Sumber:** [salinan CSV publik]({source['mirror_repository']}) yang mencantumkan [Badan Pangan Nasional]({source['original_url_cited']}) sebagai sumber asal. Belum diverifikasi terhadap versi resmi terbaru.")
     finding("Harga konsumen provinsi menjadi acuan analisis historis. Satuan kg/liter adalah asumsi; harga usaha dan pemasok dapat berbeda. Aplikasi tidak memperbarui harga secara otomatis.","BATAS PENGGUNAAN")
     st.subheader("Unduh laporan analisis")
-    st.caption("Mengikuti wilayah, bahan, bulan, dan rentang pilihan. Skenario yang kamu edit diunduh terpisah dari menu Simulator anggaran.")
-    signature = (province,commodity,str(as_of),str(start),threshold)
+    st.caption("Mengikuti wilayah, bahan, bulan, rentang, serta minimum cakupan pada menu Fluktuasi. Skenario yang kamu edit diunduh terpisah dari menu Simulator anggaran.")
+    signature = (province,commodity,str(as_of),str(start),threshold,st.session_state.filters["coverage"])
     if st.button("Siapkan laporan Excel",type="primary",key="prepare_excel"):
         from analyst.reporting import workbook_bytes
         with st.spinner("Menyusun laporan…"):
             months = (as_of.year-start.year)*12+as_of.month-start.month+1
-            st.session_state.excel_report = (signature,workbook_bytes(data,province,as_of,months,threshold_pct=threshold,commodity=commodity))
+            st.session_state.excel_report = (signature,workbook_bytes(data,province,as_of,months,threshold_pct=threshold,commodity=commodity,minimum_coverage=st.session_state.filters["coverage"]))
     saved = st.session_state.get("excel_report")
     if saved and saved[0]==signature:
         st.download_button("Unduh laporan Excel",saved[1],"laporan_analyst.xlsx","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
@@ -376,10 +413,23 @@ def data_page(data, changes, province, commodity, as_of, start, threshold, quali
         st.code(source["raw_sha256"],language=None)
         st.caption("SHA-256 snapshot CSV mentah; tanggal pencatatan disimpan dalam metadata, tidak mengikuti jam saat dashboard dibuka.")
         st.json(source)
+    verification = json.loads((ROOT/"data/verification.json").read_text())
+    with st.expander("Hasil pemeriksaan sumber dan satuan"):
+        st.write("CSV publik diambil ulang dan cocok byte-per-byte dengan snapshot lokal. Ini memverifikasi salinan yang dipakai, bukan kebenaran data terhadap sumber primer.")
+        st.json(verification)
     with st.expander("Tentang proyek dan kode sumber"):
         st.write("Studi kasus portofolio data analyst untuk anggaran warung makan di Jawa Barat; wilayah lain tersedia untuk eksplorasi. Dibangun dengan Python, Pandas, SQL/SQLite, Streamlit, Plotly, dan Excel.")
         st.markdown(f"[Kode sumber]({REPO}) · [Metodologi]({REPO}/blob/main/docs/METHODOLOGY.md) · [Pengujian]({REPO}/tree/main/tests)")
         st.caption("Tampilan bergaya BI dibangun langsung di Streamlit. Proyek ini tidak memerlukan akun atau lisensi Power BI.")
+        st.markdown(f"[Studi kasus satu halaman]({REPO}/blob/main/docs/CASE_STUDY.md) · [Rencana uji pengguna]({REPO}/blob/main/docs/USER_TESTING.md)")
+    with st.expander("Uji pemahaman dashboard — sukarela"):
+        st.caption("Belum ada hasil uji pengguna nyata. Jawaban diproses sementara dalam sesi untuk membuat CSV; aplikasi tidak menyimpannya permanen atau mengirimkannya ke layanan lain. Unduh untuk dibagikan secara sukarela. Jangan isi nama atau informasi pribadi.")
+        answer = st.selectbox("Rp10.687 pada contoh awal berarti apa?",["Pilih jawaban","Perubahan estimasi keranjang antara dua bulan","Penghematan usaha yang sudah terjadi","Prediksi pengeluaran bulan depan"],key="usability_meaning")
+        missing = st.selectbox("Jika satu harga bahan aktif kosong, bagaimana membaca hasilnya?",["Pilih jawaban","Total belum lengkap; subtotal diberi label","Bahan tersebut gratis","Anggap harganya sama dengan bulan lalu"],key="usability_missing")
+        difficulty = st.selectbox("Apakah kamu berhasil mengubah satu jumlah di simulator?",["Belum mencoba","Berhasil tanpa bantuan","Berhasil dengan bantuan","Belum berhasil"],key="usability_task")
+        if answer != "Pilih jawaban" and missing != "Pilih jawaban":
+            feedback = pd.DataFrame([{"arti_angka":answer,"harga_kosong":missing,"tugas_edit":difficulty}])
+            st.download_button("Unduh jawaban uji penggunaan",csv_bytes(feedback),"jawaban_uji_penggunaan.csv","text/csv")
 
 
 def main():
@@ -409,7 +459,7 @@ def main():
     commodity, window, threshold = filters["commodity"],filters["window"],filters["threshold"]
     start = max(as_of-pd.DateOffset(months=window-1),data.date.min())
     st.title(TITLE)
-    st.caption("Studi kasus warung makan di Jawa Barat: pahami perubahan biaya bahan, lalu uji anggaran belanjamu.")
+    st.caption("Dari 33.422 baris harga pangan ke estimasi dampak biaya. Ubah komposisi belanja dan lihat bagaimana temuannya berubah.")
     st.html(f'<div class="context"><span class="chip">{html.escape(province)}</span><span class="chip">{month_label(as_of)}</span><span class="chip accent">{"Skenario asumsi" if page=="Simulator anggaran" else "Data historis"}</span></div>')
     if page in ["Ringkasan","Fluktuasi historis","Data & metode"] and start>as_of-pd.DateOffset(months=window-1):
         st.caption(f"Rentang efektif dimulai {month_label(start)} sesuai awal dataset; riwayat sebelumnya tidak tersedia.")

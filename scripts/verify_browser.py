@@ -45,6 +45,8 @@ def main():
                 settle(page)
         def select(page,label,value):
             box=page.get_by_role('combobox',name=re.compile(re.escape(label)))
+            if label=='Pilih komposisi latihan' and box.count()==0:
+                page.get_by_text('Profil latihan, sensitivitas, dan cakupan',exact=True).click();settle(page)
             box.click();box.fill(value)
             page.get_by_role('option',name=value,exact=True).click();settle(page)
         def screenshot(page,name,width,height):
@@ -78,6 +80,18 @@ def main():
         for label,name in MENUS:
             if label!='Ringkasan':menu(page,label)
             screenshot(page,name,1440,950)
+        menu(page,'Ringkasan')
+        page.get_by_text('Profil latihan, sensitivitas, dan cakupan',exact=True).click();settle(page)
+        select(page,'Pilih komposisi latihan','Latihan B')
+        expect(page.get_by_test_id('stMetricValue').nth(1)).to_have_text('Rp 3.923')
+        screenshot(page,'profil-b-sensitivitas',1440,950)
+        select(page,'Bulan referensi','Januari 2021')
+        select(page,'Pilih komposisi latihan','Latihan C')
+        expect(page.get_by_test_id('stMetricValue').nth(2)).to_have_text('5 / 5 bahan')
+        screenshot(page,'profil-c-riwayat-panjang',1440,950)
+        select(page,'Pilih komposisi latihan','Latihan A')
+        select(page,'Bulan referensi','Oktober 2025')
+        report['checks'].append('profile sensitivity changes contributor; explicit five-item profile supports early history without imputation')
         menu(page,'Simulator anggaran')
         edit_cell(page,.43,'30.5')
         expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.191.214',timeout=10000)
@@ -101,7 +115,12 @@ def main():
         book=load_workbook(path)
         assert {'Ringkasan','Rincian bahan','Metode'}<=set(book.sheetnames)
         assert book['Rincian bahan'].max_row==7
-        report['checks'].append('browser CSV and Excel downloads contain actual edited scenario and row provenance')
+        assert 'Dasar satuan' in export.columns
+        assert export['Dasar satuan'].str.contains('Asumsi latihan').all()
+        page.get_by_role('spinbutton',name='Batas anggaran (Rp, 0 = tanpa batas)').fill('1200000')
+        page.get_by_role('spinbutton',name='Batas anggaran (Rp, 0 = tanpa batas)').press('Enter');settle(page)
+        assert 'melewati batas anggaran' in page.get_by_test_id('stMain').inner_text()
+        report['checks'].append('browser CSV and Excel downloads preserve edited prices and unverified unit status; spending limit evaluated separately')
         page.get_by_role('button',name='Kembalikan contoh awal',exact=True).click();settle(page)
         expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.118.460')
         select(page,'Bulan referensi','Januari 2021')
@@ -110,7 +129,11 @@ def main():
         page.get_by_role('button',name=re.compile('Gunakan Oktober 2025')).click();settle(page)
         expect(page.get_by_test_id('stMetricValue').first).to_have_text('Rp 1.118.460')
         report['checks'].append('reset and missing-price recovery button restore complete scenario')
-        menu(page,'Fluktuasi historis');select(page,'Bulan referensi','Januari 2021')
+        menu(page,'Fluktuasi historis')
+        assert 'Bulan bersama' in page.get_by_test_id('stMain').inner_text()
+        assert 'pasangan bulanan yang sama' in page.get_by_test_id('stMain').inner_text()
+        report['checks'].append('fluctuation ranking explicitly shares observation months and monthly comparison pairs')
+        select(page,'Bulan referensi','Januari 2021')
         screenshot(page,'risiko-riwayat-terbatas',1440,950)
         menu(page,'Ringkasan');screenshot(page,'ringkasan-riwayat-terbatas',1440,950)
         select(page,'Bulan referensi','Oktober 2025');select(page,'Wilayah acuan','Papua Pegunungan')
@@ -125,7 +148,12 @@ def main():
         with page.expect_download() as download:button.click()
         path=out/'browser-laporan.xlsx';download.value.save_as(path)
         assert load_workbook(path)['Harga Bersih'].max_row==32481
-        report['checks'].append('analysis Excel download contains 32,480 clean observations plus header')
+        book = load_workbook(path)
+        assert 'Sensitivitas latihan' in book.sheetnames
+        summary={r[0]:r[1] for r in book['Ringkasan'].iter_rows(min_row=2,values_only=True)}
+        assert summary['Bulan keranjang lengkap']==22
+        assert summary['Bulan perubahan lengkap']==21
+        report['checks'].append('analysis Excel includes 32,480 rows, coverage counts, and sensitivity profiles')
         mobile=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True)
         mobile.on('pageerror',lambda e: errors.append(str(e)))
         mobile.goto(opt.url);ready(mobile)

@@ -74,3 +74,11 @@ Kontribusi perubahan biaya = (harga bulan pilihan − harga bulan kalender sebel
 Simulator adalah hasil hipotetis terpisah. Kuantitas dan persentase dapat diubah per bahan. Penerapan persentase massal tidak mengubah kuantitas atau harga acuan. Sumber per baris membedakan snapshot yang belum diedit, harga yang diubah pengguna, dan harga yang belum tersedia. Harga manual hanya digunakan ketika mode edit harga aktif; data historis tidak berubah.
 
 Minimum cakupan CV adalah filter tampilan pengguna (default 80%), bukan aturan resmi atau jaminan kualitas statistik. CV menggunakan tingkat harga dan belum memisahkan tren dari musiman. Seri dengan kurang dari tiga observasi tidak diberi nilai CV; seri yang tidak memenuhi cakupan tetap dapat ditinjau pada tabel lengkap dengan status yang jelas.
+
+## Perbandingan setara dan audit cakupan
+
+Harga bulan kini dan bulan sebelumnya diambil terpisah agar harga lama yang valid tidak hilang saat baris kini kosong. Profil A/B tetap memakai enam bahan. Profil C mengeluarkan minyak secara eksplisit untuk latihan dengan riwayat lebih panjang; tidak ada perubahan komposisi otomatis antarbulan. Profil bukan survei kebutuhan usaha.
+
+Untuk grafik fluktuasi terbaru, seri disaring menurut minimal tiga harga dan cakupan. Perhitungan berikutnya memakai irisan bulan yang memiliki harga untuk seluruh seri yang lolos. Ukuran perubahan memakai bulan akhir yang sama, dan seluruh seri harus memiliki harga pada bulan kalender sebelumnya. CV harga memerlukan minimal tiga bulan bersama; rata-rata perubahan absolut dan simpangan perubahan membutuhkan minimal dua pasangan bersama. Rata-rata perubahan absolut mengabaikan arah; tidak berarti prediksi atau tingkat risiko usaha. Tabel penyaringan dipisahkan dari tabel perbandingan bulan bersama.
+
+Batas anggaran dibandingkan dengan total skenario lengkap saja. Harga/satuan input pengguna dicatat per bahan, belum dianggap hasil verifikasi eksternal. Laporan analisis mencatat cakupan keranjang latihan dan sensitivitas komposisi.

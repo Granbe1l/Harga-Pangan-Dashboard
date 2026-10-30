@@ -16,7 +16,10 @@ from analyst.analytics import (
     comparison_frame,
     province_comparison,
     volatility_summary,
+    matched_fluctuation,
 )
+
+from analyst.planning import historical_budget, basket_coverage, sensitivity_cases
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +29,7 @@ METHOD_NOTES = [
     "CSV diperoleh dari salinan pihak ketiga yang mencantumkan Badan Pangan Nasional sebagai sumber asal. Kesesuaian dengan versi terbaru sumber asal belum diverifikasi secara independen.",
     "Satuan kg/liter merupakan asumsi kerja per komoditas; CSV asli tidak menyediakan kolom satuan. Verifikasi sebelum penggunaan operasional.",
     "MoM membandingkan bulan kalender sebelumnya; YoY membandingkan bulan yang sama tahun sebelumnya. Bulan kosong tidak dilewati dan tidak diimputasi.",
+    "Peringkat variasi tingkat harga memakai bulan pengamatan bersama untuk seri yang lolos cakupan; perubahan bulanan memakai pasangan bulan kalender yang sama. Tabel penyaringan bukan peringkat akhir.",
     "Volatilitas adalah koefisien variasi harga (simpangan baku sampel/mean × 100), minimal tiga observasi; bukan probabilitas kenaikan atau prediksi.",
     "Median antarwilayah tidak berbobot dan hanya mencakup wilayah dengan data pada bulan/komoditas terpilih; bukan harga nasional resmi atau inflasi IHK.",
     "Seri Papua dan Papua Barat sebelum perubahan skema 2024 dipisahkan dari seri sesudahnya. Jumlah seri geografis tidak sama dengan jumlah provinsi Indonesia pada satu waktu.",
@@ -55,12 +59,23 @@ def _records(frame: pd.DataFrame, columns: list[str], n: int = 5) -> list[dict[s
     return json.loads(frame[available].head(n).to_json(orient="records", date_format="iso", double_precision=8))
 
 
+def _aligned_risk(data, start, end, minimum_coverage):
+    matched = matched_fluctuation(data,start,end,minimum_coverage)
+    result = matched["summary"].rename(columns={"common_observations":"observations"})
+    metadata = matched["screening"]
+    columns = [c for c in ["commodity","unit","expected_months","latest_date","latest_price"] if c in metadata]
+    result = result.merge(metadata[columns],on="commodity",how="left",validate="one_to_one")
+    result["coverage_pct"] = result.observations / result.expected_months * 100
+    return result.sort_values("cv_pct",ascending=False,na_position="last"), matched
+
+
 def build_summary(
     df: pd.DataFrame,
     province: str = "Jawa Barat",
     as_of: Any | None = None,
     months: int = 12,
     threshold_pct: float = 10,
+    minimum_coverage: float = 80,
 ) -> dict[str, Any]:
     """Return JSON-safe, observed findings with exact-month comparisons.
 
@@ -72,11 +87,13 @@ def build_summary(
     frame, start, end = _window(df, as_of, months)
     snapshot = frame[(frame["province"] == province) & (frame["date"] == end)]
     selected = frame[frame["province"] == province]
-    risk = volatility_summary(selected, start, end)
+    risk, matched = _aligned_risk(selected,start,end,minimum_coverage)
     increases = snapshot[snapshot["mom_pct"] > 0].sort_values("mom_pct", ascending=False)
     alerts = snapshot[snapshot["mom_pct"] >= float(threshold_pct)].sort_values("mom_pct", ascending=False)
     comparable = snapshot["mom_pct"].notna().sum()
     geography_column = "province_code" if "province_code" in frame else "province"
+    training = historical_budget(frame,province,end)
+    coverage = basket_coverage(frame,province)
     return {
         "title": "Analisis Harga Pangan dan Simulasi Anggaran Bahan Baku UMKM Kuliner",
         "province": province,
@@ -84,6 +101,9 @@ def build_summary(
         "window_start": start.strftime("%Y-%m-%d"),
         "window_months": months,
         "threshold_pct": float(threshold_pct),
+        "minimum_coverage":float(minimum_coverage),
+        "shared_price_months":[d.strftime("%Y-%m") for d in matched["common_months"]],
+        "shared_monthly_pairs":[d.strftime("%Y-%m") for d in matched["monthly_months"]],
         "dataset": {
             "rows": int(len(frame)),
             "geographic_series": int(frame[geography_column].nunique()),
@@ -97,6 +117,7 @@ def build_summary(
             "without_previous_month": int(len(snapshot) - comparable),
             "alert_count": int(len(alerts)) if comparable else None,
         },
+        "training_budget": {"basis":"Estimasi latihan; kuantitas contoh dan satuan sumber belum terverifikasi", "total":training["total"],"change":training["delta"],"available":training["available"],"required":training["count"],"complete_months":coverage["complete_months"],"comparison_months":coverage["comparison_months"],"dataset_months":coverage["months"]},
         "top_increases": _records(increases, ["commodity", "price", "unit", "previous_price", "mom_pct", "yoy_pct"]),
         "alerts": _records(alerts, ["commodity", "price", "unit", "previous_price", "mom_pct"], len(alerts)),
         "top_volatility": _records(risk[risk["cv_pct"].notna()], ["commodity", "cv_pct", "observations", "expected_months", "coverage_pct", "latest_date", "latest_price", "unit"]),
@@ -137,6 +158,9 @@ DISPLAY = {
     "scenario_cost": "Anggaran skenario (Rp)",
     "cost_change": "Perubahan anggaran (Rp)",
     "price_available": "Harga tersedia bulan ini",
+    "monthly_abs_pct":"Rata-rata perubahan absolut (%)",
+    "monthly_std_pct":"Simpangan perubahan bulanan (%)",
+    "monthly_pairs":"Pasangan bulanan bersama",
 }
 
 
@@ -171,6 +195,9 @@ def _summary_table(summary: dict[str, Any]) -> pd.DataFrame:
         ("Awal jendela volatilitas", summary["window_start"]),
         ("Jendela analisis (bulan)", summary["window_months"]),
         ("Ambang peringatan kenaikan (%)", summary["threshold_pct"]),
+        ("Minimum cakupan fluktuasi (%)",summary["minimum_coverage"]),
+        ("Bulan harga bersama",len(summary["shared_price_months"])),
+        ("Pasangan bulanan bersama",len(summary["shared_monthly_pairs"])),
         ("Observasi pada data masukan", data["rows"]),
         ("Seri geografis pada data masukan (termasuk historis)", data["geographic_series"]),
         ("Komoditas pada data masukan", data["commodities"]),
@@ -181,6 +208,8 @@ def _summary_table(summary: dict[str, Any]) -> pd.DataFrame:
         ("Komoditas tanpa pembanding MoM", snap["without_previous_month"]),
         ("Komoditas melewati ambang peringatan", snap["alert_count"]),
     ]
+    training = summary["training_budget"]
+    items += [("Dasar estimasi keranjang",training["basis"]),("Estimasi biaya latihan (Rp)",training["total"]),("Perubahan estimasi latihan (Rp)",training["change"]),("Bulan keranjang lengkap",training["complete_months"]),("Bulan perubahan lengkap",training["comparison_months"]),("Bulan dalam dataset",training["dataset_months"])]
     for index, item in enumerate(summary["top_increases"], 1):
         items.append((f"Kenaikan MoM urutan {index}", f"{item['commodity']}: {item['mom_pct']:.2f}%"))
     for index, item in enumerate(summary["top_volatility"], 1):
@@ -245,12 +274,13 @@ def workbook_bytes(
     basket: pd.DataFrame | None = None,
     threshold_pct: float = 10,
     commodity: str = "Beras Medium",
+    minimum_coverage: float = 80,
 ) -> bytes:
     """Create a styled multi-sheet .xlsx file using local data only."""
     frame, start, end = _window(df, as_of, months)
-    summary = build_summary(df, province, end, months, threshold_pct)
+    summary = build_summary(df, province, end, months, threshold_pct, minimum_coverage)
     snapshot = frame[(frame["province"] == province) & (frame["date"] == end)].sort_values("commodity")
-    risk = volatility_summary(frame[frame["province"] == province], start, end)
+    risk, matched = _aligned_risk(frame[frame["province"] == province],start,end,minimum_coverage)
     comparison = province_comparison(df, commodity, end)
     comparison["Referensi"] = "Median tidak berbobot; bukan rata-rata nasional resmi"
     output = BytesIO()
@@ -258,7 +288,10 @@ def workbook_bytes(
         _summary_table(summary).to_excel(writer, sheet_name="Ringkasan", index=False)
         _display(df).to_excel(writer, sheet_name="Harga Bersih", index=False)
         _display(snapshot).to_excel(writer, sheet_name="Snapshot Provinsi", index=False)
+        sensitivity_cases(comparison_frame(df),province,summary["as_of"]).to_excel(writer,sheet_name="Sensitivitas latihan",index=False)
         _display(risk).to_excel(writer, sheet_name="Risiko Harga", index=False)
+        _display(matched["screening"]).to_excel(writer,sheet_name="Penyaringan cakupan",index=False)
+        pd.DataFrame({"Bulan harga bersama":pd.Series(summary["shared_price_months"]),"Pasangan bulanan (akhir)":pd.Series(summary["shared_monthly_pairs"])}).to_excel(writer,sheet_name="Bulan pembanding",index=False)
         _display(comparison).to_excel(writer, sheet_name="Banding Provinsi", index=False)
         _metadata().to_excel(writer, sheet_name="Sumber & Metode", index=False)
         if basket is not None:
@@ -307,6 +340,10 @@ def summary_markdown(summary: dict[str, Any]) -> str:
     else:
         lines.append("Belum ada seri dengan minimal tiga observasi untuk menghitung CV.")
     lines += [
+        "",
+        "## Cakupan dan estimasi latihan",
+        "",
+        f"Keranjang contoh lengkap pada {summary['training_budget']['complete_months']} dari {summary['training_budget']['dataset_months']} bulan; perubahan bulanan lengkap pada {summary['training_budget']['comparison_months']} bulan. Kuantitas dan satuan masih asumsi; nilai rupiah bukan hasil usaha nyata.",
         "",
         "## Implikasi dan batas penggunaan",
         "",

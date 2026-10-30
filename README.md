@@ -6,7 +6,7 @@ Dashboard untuk menelusuri perubahan harga pangan bulanan dan menghitung pengaru
 
 **Python · Pandas · SQL/SQLite · Streamlit · Plotly · Excel**
 
-[Studi kasus](docs/CASE_STUDY.md) · [Sumber data](docs/SOURCES.md) · [Metode](docs/METHODOLOGY.md) · [Hasil pengujian](reports/validation_summary.md)
+[Buka dashboard](https://harga-pangan-dashboard-candy.streamlit.app/) · [Studi kasus](docs/CASE_STUDY.md) · [Sumber data](docs/SOURCES.md) · [Metode](docs/METHODOLOGY.md) · [Hasil pengujian](reports/validation_summary.md)
 
 ![Ringkasan dashboard](reports/screenshots/ringkasan-first-screen.png)
 

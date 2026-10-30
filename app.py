@@ -119,7 +119,7 @@ def price_overview(data, changes, province, commodity, as_of, start, threshold):
     cols[0].metric("Komoditas dengan harga",f"{observed['available']} / {observed['universe']}")
     cols[1].metric(f"Naik ≥{threshold}% bulanan",str(observed['alert_count']) if observed['alert_count'] is not None else "—")
     top=observed['top_rise']
-    cols[2].metric("Kenaikan tertinggi",percent(top['mom_pct'],digits=2) if top else "—")
+    cols[2].metric(f"Kenaikan tertinggi · {top['commodity']}" if top else "Kenaikan tertinggi",percent(top['mom_pct'],digits=2) if top else "—")
     if observed['comparable_count']:
         message=f"<b>{observed['alert_count']} dari {observed['comparable_count']} komoditas</b> dengan pembanding naik setidaknya {threshold}%."
         if top: message+=f" Tertinggi: <b>{html.escape(top['commodity'])} {percent(top['mom_pct'],digits=2)}</b>."
@@ -486,8 +486,8 @@ def main():
     commodity, window, threshold = filters["commodity"],filters["window"],filters["threshold"]
     start = max(as_of-pd.DateOffset(months=window-1),data.date.min())
     st.title(TITLE)
-    st.caption("33.422 baris ekspor harga pangan BPN → temuan perubahan harga → simulasi dampak biaya. Jelajahi hasilnya dalam satu menit.")
-    st.html(f'<div class="context"><span class="chip">{html.escape(province)}</span><span class="chip">{month_label(as_of)}</span><span class="chip">Ekspor BPN · unggahan pengguna</span><span class="chip accent">{"Skenario asumsi" if page=="Simulator anggaran" else "Data historis"}</span></div>')
+    st.caption(f"Studi historis {month_label(data.date.min())}–{month_label(data.date.max())} · Analisis perubahan harga pangan dan simulasi dampak biaya. Data tidak diperbarui otomatis.")
+    st.html(f'<div class="context"><span class="chip">{html.escape(province)}</span><span class="chip">{month_label(as_of)}</span><span class="chip">Sumber: BPN</span><span class="chip accent">{"Skenario asumsi" if page=="Simulator anggaran" else "Data historis"}</span></div>')
     if page in ["Ringkasan","Tren & fluktuasi"] and start>as_of-pd.DateOffset(months=window-1):
         st.caption(f"Rentang efektif dimulai {month_label(start)} sesuai awal dataset; riwayat sebelumnya tidak tersedia.")
     {"Ringkasan":overview,"Simulator anggaran":budget_page,"Tren & fluktuasi":risk_page,"Perbandingan wilayah":regions_page}[page](data,changes,province,commodity,as_of,start,threshold)

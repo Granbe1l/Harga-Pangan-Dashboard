@@ -16,3 +16,9 @@ Aplikasi dapat dijalankan melalui Streamlit Community Cloud:
 - Periksa tautan sumber data, metode, dan repository.
 
 Pengujian yang tersimpan di repository dilakukan pada server lokal. Akses publik dan perilaku sleep hosting belum diverifikasi.
+
+## Memperbarui aplikasi
+
+Aplikasi yang terhubung ke branch `main` akan menerima perubahan dari push ke branch tersebut. URL dan konfigurasi deployment tetap sama. Jika perubahan belum terlihat, periksa log melalui **Manage app**, lalu gunakan **Reboot app** bila diperlukan.
+
+Alamat aplikasi: https://harga-pangan-dashboard-candy.streamlit.app/. Akses publik dari lingkungan pengujian dibatasi proxy, sehingga status layanan pada alamat tersebut belum diverifikasi secara langsung.

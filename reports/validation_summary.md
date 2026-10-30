@@ -13,3 +13,7 @@
 - **Reproduksibilitas:** konfigurasi input, receipt, file asli, pembersihan, arsip mirror, dependency lock, workflow CI, dan screenshot tersedia. `.gitattributes` mempertahankan byte asli ekspor lintas sistem operasi.
 
 Pemeriksaan tidak membuktikan pengambilan langsung dari server BPN: file disediakan pengguna sebagai unduhan dari publikasi tersebut. Satuan dan lisensi tidak tercantum di kedua file; biaya tetap latihan/input pengguna. Uji manusia, manfaat usaha, akses URL hosting publik, dan pemulihan sleep hosting belum dibuktikan. Kelulusan lokal tidak otomatis membuktikan eksekusi CI remote terbaru.
+
+## Perapian ringkasan
+
+Kartu kenaikan tertinggi mencantumkan nama bahan; header menampilkan periode historis dan label Sumber: BPN. Seluruh 84 tes kembali lulus. Pemeriksaan ringkasan desktop/ponsel mencakup ketiga label tersebut, kondisi tanpa exception, dan lebar halaman. Screenshot ringkasan diperbarui; rangkaian browser menu lain mengacu pada pemeriksaan sebelumnya.

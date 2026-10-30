@@ -40,6 +40,8 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual([m.value for m in app.metric[:3]],['25 / 25','2','+11,16%'])
         self.assertEqual(app.metric[3].value,'Rp 1.118.460')
         self.assertEqual(app.metric[1].label,'Naik ≥10% bulanan')
+        self.assertIn('Cabai Merah Keriting',app.metric[2].label)
+        self.assertTrue(any('Studi historis Januari 2021–Oktober 2025' in c.value for c in app.caption))
         self.assertNotIn('Jika seluruh', ' '.join(m.value for m in app.markdown))
 
     def test_first_month_has_unknown_change_and_no_single_point_trend(self):

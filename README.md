@@ -1,7 +1,5 @@
 # Analisis Tren dan Perbandingan Harga Pangan Antarprovinsi
 
-[![Tests](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/Granbe1l/Harga-Pangan-Dashboard/actions/workflows/tests.yml)
-
 Dashboard untuk menelusuri tren harga pangan bulanan, membandingkan fluktuasi komoditas, dan melihat perbedaan harga antarprovinsi. Analisis awal berfokus pada Jawa Barat; provinsi lain dapat dipilih melalui filter.
 
 Sumber: [Badan Pangan Nasional](https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi) · Januari 2021–Oktober 2025. Data historis, tidak diperbarui otomatis.

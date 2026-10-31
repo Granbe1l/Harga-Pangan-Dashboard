@@ -57,6 +57,17 @@ def main():
         assert 'Batas kenaikan bulanan (%)' not in page.get_by_test_id('stSidebar').inner_text()
         assert page.get_by_test_id('stSidebar').get_by_role('slider').count()==0
         assert 'Simulator anggaran' not in page.get_by_test_id('stSidebar').inner_text()
+        details = ['Lihat rincian ketersediaan harga komoditas', 'Lihat komoditas dengan kenaikan ≥10%']
+        for label in details:
+            panel = page.get_by_test_id('stExpander').filter(has_text=label)
+            assert panel.locator('details').get_attribute('open') is None
+            panel.get_by_text(label, exact=True).click();settle(page)
+            assert panel.get_by_test_id('stDataFrame').count()==1
+        assert '25 dari 25 komoditas memiliki data harga' in page.get_by_test_id('stMain').inner_text()
+        assert '2 dari 24 komoditas dengan data pembanding' in page.get_by_test_id('stMain').inner_text()
+        screenshot(page,'rincian-kpi',1440,950)
+        for label in details:page.get_by_text(label,exact=True).click()
+        report['checks'].append('KPI details collapsed by default; availability and monthly-rise tables expand')
         page.screenshot(path=str(out/'ringkasan-first-screen.png'));report['screenshots'].append('ringkasan-first-screen.png')
         for label,name in MENUS:
             menu(page,label);screenshot(page,name,1440,950)
@@ -100,6 +111,10 @@ def main():
         for label,name in MENUS:
             mobile=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
             mobile.on('pageerror',lambda e:errors.append(str(e)));ready(mobile)
+            if label=='Ringkasan':
+                for detail in details:mobile.get_by_text(detail,exact=True).click();settle(mobile)
+                screenshot(mobile,'rincian-kpi-mobile',390,844)
+                for detail in details:mobile.get_by_text(detail,exact=True).click()
             if label!='Ringkasan':
                 mobile.get_by_test_id('stExpandSidebarButton').click();settle(mobile);menu(mobile,label)
                 mobile.get_by_test_id('stSidebar').get_by_role('button').filter(has_text='keyboard_double_arrow_left').click();settle(mobile)

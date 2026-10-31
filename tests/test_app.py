@@ -50,6 +50,56 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(app.metric[2].value,'—')
         self.assertEqual(len(app.get('plotly_chart')),0)
 
+    def kpi_details(self, app):
+        availability = next(e for e in app.expander if e.label == 'Lihat rincian ketersediaan harga komoditas')
+        rises = next(e for e in app.expander if e.label == 'Lihat komoditas dengan kenaikan ≥10%')
+        self.assertFalse(availability.proto.expanded)
+        self.assertFalse(rises.proto.expanded)
+        return availability, rises
+
+    def test_kpi_details_follow_province_month_and_window(self):
+        from analyst.pipeline import load_clean_data
+        from analyst.analytics import comparison_frame, monthly_findings
+        changes = comparison_frame(load_clean_data(ROOT))
+        app = self.open_app()
+        for province, month, available, count in [
+            ('Jawa Barat', '2025-10-01', 25, 2),
+            ('DI Yogyakarta', '2025-10-01', 23, 1),
+            ('Jawa Barat', '2021-02-01', 12, 0),
+            ('Jawa Barat', '2021-01-01', 12, None),
+            ('Papua Pegunungan', '2025-10-01', 0, None),
+        ]:
+            with self.subTest(province=province, month=month):
+                app.selectbox(key='filter_province').set_value(province).run()
+                app.selectbox(key='filter_as_of').set_value(pd.Timestamp(month)).run()
+                self.good(app)
+                availability, rises = self.kpi_details(app)
+                frame = availability.dataframe[0].value
+                expected = monthly_findings(changes, province, month)
+                self.assertEqual(len(frame), 25)
+                self.assertEqual(frame['Nama komoditas'].tolist(), sorted(changes.commodity.unique()))
+                self.assertEqual(frame['No.'].tolist(), [str(n) for n in range(1, 26)])
+                self.assertEqual((frame['Status data'] == 'Tersedia').sum(), available)
+                self.assertTrue((frame.loc[frame['Status data'] == 'Tidak tersedia', 'Harga pada bulan referensi'] == '—').all())
+                self.assertEqual(app.metric[0].value, f'{available} / 25')
+                self.assertEqual(app.metric[1].value, '—' if count is None else str(count))
+                if count:
+                    detail = rises.dataframe[0].value
+                    self.assertEqual(len(detail), count)
+                    self.assertEqual(detail['Nama komoditas'].tolist(), expected['alerts'].commodity.tolist())
+                    from analyst.presentation import percent, rupiah
+                    self.assertEqual(detail['Perubahan harga (%)'].tolist(), [percent(v, digits=2) for v in expected['alerts'].mom_pct])
+                    self.assertEqual(detail['Harga bulan sebelumnya'].tolist(), [rupiah(v) for v in expected['alerts'].previous_price])
+                    self.assertEqual(detail['Harga bulan referensi'].tolist(), [rupiah(v) for v in expected['alerts'].price])
+                else:
+                    self.assertEqual(len(rises.dataframe), 0)
+                    message = rises.info[0].value
+                    self.assertIn('belum dapat dihitung' if count is None else 'Tidak ada komoditas yang mengalami kenaikan minimal 10%', message)
+        app.selectbox(key='filter_province').set_value('Jawa Barat').run()
+        before = self.kpi_details(app)[1].dataframe[0].value.copy()
+        app.selectbox(key='filter_window').set_value(6).run()
+        pd.testing.assert_frame_equal(before, self.kpi_details(app)[1].dataframe[0].value)
+
     def test_missing_region_does_not_reuse_old_prices(self):
         app=self.open_app()
         app.selectbox(key='filter_province').set_value('Papua Pegunungan').run();self.good(app)

@@ -32,6 +32,8 @@ Ringkasan kenaikan dua digit memakai batas tetap 10%, bukan batas resmi pemerint
 
 Bagian **Sumber & cara menghitung** tersedia di bawah setiap halaman. Pilihan filter bertahan selama sesi.
 
+Pada **Ringkasan**, dua bagian rincian di bawah KPI dapat dibuka untuk menelusuri seluruh komoditas beserta status ketersediaan harganya, serta komoditas dengan kenaikan bulanan minimal 10%. Rincian mengikuti provinsi dan bulan referensi. Harga yang tidak tersedia ditampilkan sebagai **—**; belum adanya pasangan bulan dibedakan dari hasil nol kenaikan. Perubahan bulanan tetap memakai bulan kalender sebelumnya, terlepas dari rentang analisis.
+
 ## Data
 
 Sumber: [Badan Pangan Nasional — Rata-rata Harga Pangan Bulanan Tingkat Konsumen Provinsi](https://data.badanpangan.go.id/datasetpublications/178/rata-rata-harga-pangan-bulanan-konsumen-provinsi).

@@ -70,6 +70,36 @@ def price_overview(data, changes, province, commodity, as_of, start, threshold):
     missing=observed['snapshot'].loc[observed['snapshot'].mom_pct.isna(),'commodity'].tolist()
     if missing:
         st.caption(f"{observed['comparable_count']} dari {observed['available']} komoditas memiliki pembanding {month_label(as_of-pd.DateOffset(months=1))}. Harga bulan sebelumnya tidak tersedia untuk: {', '.join(missing)}. Komoditas tersebut tidak masuk hitungan kenaikan.")
+    with st.expander("Lihat rincian ketersediaan harga komoditas", expanded=False):
+        st.caption(f"{province} · {month_label(as_of)}")
+        st.write(f"{observed['available']} dari {observed['universe']} komoditas memiliki data harga pada periode pilihan.")
+        availability = pd.DataFrame({'commodity': sorted(changes.commodity.unique())}).merge(
+            observed['snapshot'][['commodity', 'price']], on='commodity', how='left', validate='one_to_one')
+        unavailable = availability.loc[availability.price.isna(), 'commodity'].tolist()
+        if unavailable:
+            st.caption("Harga tidak tersedia untuk: " + ", ".join(unavailable) + ".")
+        availability['Status data'] = availability.price.notna().map({True: 'Tersedia', False: 'Tidak tersedia'})
+        availability['price'] = availability.price.map(rupiah)
+        availability = availability.rename(columns={'commodity': 'Nama komoditas', 'price': 'Harga pada bulan referensi'})
+        availability.insert(0, 'No.', range(1, len(availability) + 1))
+        table(availability, height=350)
+    with st.expander("Lihat komoditas dengan kenaikan ≥10%", expanded=False):
+        st.caption(f"{province} · {month_label(as_of)} dibandingkan dengan {month_label(as_of-pd.DateOffset(months=1))}")
+        if observed['alert_count'] is None:
+            st.info("Perubahan bulanan belum dapat dihitung karena belum ada komoditas dengan harga pada bulan referensi dan bulan kalender sebelumnya.")
+        elif observed['alert_count'] == 0:
+            st.info("Tidak ada komoditas yang mengalami kenaikan minimal 10% pada periode pilihan.")
+        else:
+            st.write(f"{observed['alert_count']} dari {observed['comparable_count']} komoditas dengan data pembanding mengalami kenaikan minimal 10%.")
+            alerts = observed['alerts'][['commodity', 'previous_price', 'price', 'mom_pct']].copy()
+            for column in ['previous_price', 'price']:
+                alerts[column] = alerts[column].map(rupiah)
+            alerts['mom_pct'] = alerts.mom_pct.map(lambda value: percent(value, digits=2))
+            alerts = alerts.rename(columns={'commodity': 'Nama komoditas', 'previous_price': 'Harga bulan sebelumnya',
+                'price': 'Harga bulan referensi', 'mom_pct': 'Perubahan harga (%)'})
+            alerts.insert(0, 'No.', range(1, len(alerts) + 1))
+            st.dataframe(alerts, hide_index=True, width="stretch")
+        st.caption("Hanya harga komoditas dan provinsi yang sama pada kedua bulan kalender yang dibandingkan; harga kosong tidak diisi.")
     left,right=st.columns([1.6,1],gap="large")
     with left,st.container(border=True):
         st.subheader(f"Perubahan harga · {month_label(as_of)}")

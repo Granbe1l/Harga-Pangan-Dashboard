@@ -18,6 +18,14 @@ Pada **Jawa Barat, Oktober 2025**:
 
 Ringkasan kenaikan dua digit memakai batas tetap 10%, bukan batas resmi pemerintah. Perincian hasil dan cakupan pengamatan tersedia dalam [studi kasus](docs/CASE_STUDY.md).
 
+## Makna temuan dan tindak lanjut
+
+**Temuan:** Pada Jawa Barat, Oktober 2025, cabai merah keriting dan cabai merah besar mengalami kenaikan bulanan setidaknya 10%. Kenaikan tertinggi adalah cabai merah keriting (11,16%).
+
+**Tindak lanjut yang disarankan:** Jadikan kedua komoditas tersebut prioritas pemantauan pada data periode berikutnya, lalu bandingkan dengan riwayat harga dan ketersediaan bulan pembanding agar kenaikan satu bulan tidak ditafsirkan terpisah dari konteksnya.
+
+**Batas interpretasi:** Prioritas pemantauan ini bukan prediksi kenaikan berikutnya dan tidak menjelaskan penyebab perubahan harga.
+
 ![Ringkasan dashboard](reports/screenshots/ringkasan-first-screen.png)
 
 ## Fitur
